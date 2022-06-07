@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id('card_number');
-            $table->date('expiration date');
-            $table->string('Cardhole_name');
+            $table->string('expiration_date');
+            $table->string('cardhole_name');
             $table->timestamps();
         });
     }

@@ -6,6 +6,10 @@ use App\Models\Genre;
 use App\Models\Distributor;
 use App\Models\Geographic_location;
 use App\Models\Role;
+use App\Models\Permission;
+use App\Models\Payment_method;
+use App\Models\Playlist;
+use App\Models\Receipt;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,10 +26,11 @@ class DatabaseSeeder extends Seeder
         Distributor::factory(10)->create();
         Geographic_location::factory(10)->create();
         Role::factory(10)->create();
+        Permission::factory(10)->create();
+        Payment_method::factory(10)->create();
+        Playlist::factory(10)->create();
+        Receipt::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+    
     }
 }

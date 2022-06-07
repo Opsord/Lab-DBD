@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Payment_method extends Model
 {
     use HasFactory;
-    protected $primarykey = 'card_number';
+    protected $primaryKey = 'card_number';
 }

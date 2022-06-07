@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     use HasFactory;
-    protected $primarykey = 'id_user';
+    protected $primaryKey = 'id_user';
 }

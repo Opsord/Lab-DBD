@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Genre;
+use App\Models\Distributor;
+use App\Models\Geographic_location;
+use App\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Genre::factory(10)->create();
+        Distributor::factory(10)->create();
+        Geographic_location::factory(10)->create();
+        Role::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

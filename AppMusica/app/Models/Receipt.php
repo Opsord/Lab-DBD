@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Receipt extends Model
 {
     use HasFactory;
-    protected $primarykey = 'id_receipt';
+    protected $primaryKey = 'id_receipt';
 }

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Subscription extends Model
 {
     use HasFactory;
-    protected $primarykey = 'id_subscription';
+    protected $primaryKey = 'id_subscription';
 }

@@ -1,2 +1,2 @@
 # Lab-DBD
-Laboratorio de diseño de bases de datos - App de musica
+Laboratorio de diseño de bases de datos - Proyecto Zhiv

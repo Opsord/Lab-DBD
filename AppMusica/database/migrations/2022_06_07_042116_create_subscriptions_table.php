@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id('id_subscription');
             $table->string('state');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->unsignedBigInteger('card_number')->nullable();
             $table->foreign('card_number')->references('card_number')->on('payment_methods');
             $table->timestamps();

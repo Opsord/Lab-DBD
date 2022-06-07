@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Geographic_location extends Model
 {
     use HasFactory;
+    protected $primarykey = 'id_country';
+    
 }

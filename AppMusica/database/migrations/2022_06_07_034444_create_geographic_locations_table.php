@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('geographic_locations', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_country');
+            $table->string('name_country');
             $table->timestamps();
         });
     }

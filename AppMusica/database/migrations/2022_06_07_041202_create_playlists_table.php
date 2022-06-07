@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('playlists', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_playlist');
+            $table->string('name_playlist');
+            $table->string('state');
             $table->timestamps();
         });
     }

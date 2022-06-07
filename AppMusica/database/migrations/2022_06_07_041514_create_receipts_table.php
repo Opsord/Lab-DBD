@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('receipts', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_receipt');
+            $table->integer('total');
+            $table->unsignedBigInteger('card_number')->nullable();
+            $table->foreign('card_number')->references('card_number')->on('payment_methods');
             $table->timestamps();
         });
     }

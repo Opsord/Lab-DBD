@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payment_methods', function (Blueprint $table) {
+
             $table->id('card_number');
             $table->string('expiration_date');
             $table->string('cardhole_name');
+            
             $table->timestamps();
         });
     }

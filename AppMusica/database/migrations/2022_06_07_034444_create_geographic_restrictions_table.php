@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('geographic_locations', function (Blueprint $table) {
+        Schema::create('geographic_restrictions', function (Blueprint $table) {
+
             $table->id('id_country');
             $table->string('name_country');
+
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('geographic_locations');
+        Schema::dropIfExists('geographic_restrictions');
     }
 };

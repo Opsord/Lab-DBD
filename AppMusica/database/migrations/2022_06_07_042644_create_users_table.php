@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+
             $table->id('id_user');
             $table->string('name_user');
             $table->string('pass_user');
             $table->string('email');
+            
             $table->unsignedBigInteger('id_subscription')->nullable();
             $table->foreign('id_subscription')->references('id_subscription')->on('subscriptions');
 

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Song_genre extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id_songgenre';
+    protected $primaryKey = 'id_song_genre';
 }

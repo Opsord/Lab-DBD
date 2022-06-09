@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Genre;
 use App\Models\Distributor;
-use App\Models\Geographic_location;
+use App\Models\Geographic_restriction;
 use App\Models\Role;
 use App\Models\Permission;
 use App\Models\Payment_method;
@@ -14,6 +14,7 @@ use App\Models\Subscription;
 use App\Models\User;
 use App\Models\Album;
 use App\Models\Song;
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -28,7 +29,7 @@ class DatabaseSeeder extends Seeder
     {
         Genre::factory(10)->create();
         Distributor::factory(10)->create();
-        Geographic_location::factory(10)->create();
+        Geographic_restriction::factory(10)->create();
         Role::factory(10)->create();
         Permission::factory(10)->create();
         Payment_method::factory(10)->create();

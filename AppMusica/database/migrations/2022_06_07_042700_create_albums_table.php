@@ -14,11 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('albums', function (Blueprint $table) {
+
             $table->id('id_album');
             $table->string('name_album');
             $table->string('release_date');
+
             $table->unsignedBigInteger('id_distributor')->nullable();
             $table->foreign('id_distributor')->references('id_distributor')->on('distributors');
+            
             $table->timestamps();
         });
     }

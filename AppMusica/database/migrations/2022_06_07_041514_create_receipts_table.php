@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('receipts', function (Blueprint $table) {
 
             $table->id('id_receipt');
-            $table->integer('total');
+            $table->integer('amount');
 
-            $table->unsignedBigInteger('card_number')->nullable();
-            $table->foreign('card_number')->references('card_number')->on('payment_methods');
-            
+            $table->unsignedBigInteger('used_method')->nullable();
+            $table->foreign('used_method')->references('id_method')->on('payment_methods');
+
             $table->timestamps();
         });
     }

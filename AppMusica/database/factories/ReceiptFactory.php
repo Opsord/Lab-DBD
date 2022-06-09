@@ -1,7 +1,10 @@
 <?php
 
 namespace Database\Factories;
+
 use App\Models\Receipt;
+use App\Models\Payment_method;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,10 @@ class ReceiptFactory extends Factory
     public function definition()
     {
         return [
-            'total' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
+            
+            'amount' => $this->faker->randomNumber($nbDigits = NULL, $strict = false),
+
+            'used_method' => Payment_method::all()->random()->id_method,
         ];
     }
 }

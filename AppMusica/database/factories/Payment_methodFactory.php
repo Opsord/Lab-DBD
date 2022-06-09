@@ -1,7 +1,9 @@
 <?php
 
 namespace Database\Factories;
+
 use App\Models\Payment_method;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,9 +19,11 @@ class Payment_methodFactory extends Factory
     public function definition()
     {
         return [
-            'card_number' => random_int(1000000000000000, 9999999999999999),
-            'expiration_date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-            'cardhole_name' => $this->faker->name,
+            'card_alias' => $this->faker->word,
+            'card_holder' => $this->faker->name,
+            'card_number' => $this ->faker->creditCardNumber,
+            'expiration_date' => $this->faker->creditCardExpirationDate,
+            'security_code' => random_int(100, 999),
         ];
     }
 }

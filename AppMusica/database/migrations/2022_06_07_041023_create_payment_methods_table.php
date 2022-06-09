@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('payment_methods', function (Blueprint $table) {
 
-            $table->id('card_number');
-            $table->string('expiration_date');
-            $table->string('cardhole_name');
-            
+            $table->id('id_method');
+            $table->string('card_alias');
+            $table->string('card_holder');
+            $table->bigInteger('card_number');
+            $table->date('expiration_date');
+            $table->integer('security_code');
+
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ use App\Models\Subscription;
 use App\Models\User;
 use App\Models\Album;
 use App\Models\Song;
+use App\Models\SongRG;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -39,5 +40,6 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Album::factory(10)->create();
         Song::factory(10)->create();
+        SongRG::factory(10)->create();
     }
 }

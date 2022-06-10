@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Distributor extends Model
 {
     use HasFactory;
+
     protected $primaryKey = 'id_distributor';
+
+    public function subscription(){
+        return $this->hasMany('App\Models\Album');
+    }
+
 }

@@ -2,12 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\Song;
+use App\Models\Geographic_restriction;
+use App\Models\SongRG;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Song_genre>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SongRG>
  */
-class Song_genreFactory extends Factory
+class SongRGFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +21,9 @@ class Song_genreFactory extends Factory
     public function definition()
     {
         return [
-            
+            //
             'song' => Song::all() -> random() -> id_song,
-            'genre' => Genre::all() -> random() -> id_genre,
-            
+            'restricted_to' => Geographic_restriction::all() -> random() -> id_geographic_restriction,
         ];
     }
 }

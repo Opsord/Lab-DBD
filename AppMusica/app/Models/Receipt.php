@@ -11,7 +11,7 @@ class Receipt extends Model
 
     protected $primaryKey = 'id_receipt';
 
-    public function subject(){
+    public function payment_method(){
         return $this->belongsTo('App\Models\Payment_method');
     }
 }

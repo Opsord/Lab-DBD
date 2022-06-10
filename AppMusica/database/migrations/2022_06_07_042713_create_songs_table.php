@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('name_song');
             $table->time('duration');
 
-            $table->unsignedBigInteger('id_album')->nullable();
-            $table->foreign('id_album')->references('id_album')->on('albums');
+            $table->unsignedBigInteger('album')->nullable();
+            $table->foreign('album')->references('id_album')->on('albums');
 
-            $table->unsignedBigInteger('id_country')->nullable();
-            $table->foreign('id_country')->references('id_country')->on('geographic_restrictions');
+            /* $table->unsignedBigInteger('restricted_to')->nullable();
+            $table->foreign('restricted_to')->references('id_country')->on('geographic_restrictions'); */
 
             $table->timestamps();
         });

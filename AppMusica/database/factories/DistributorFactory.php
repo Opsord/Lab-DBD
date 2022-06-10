@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Distributor;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,7 @@ class DistributorFactory extends Factory
     public function definition()
     {
         return [
-            'name_distributor' => $this->faker->name,
+            'name_distributor' => $this->faker->company,
         ];
     }
 }

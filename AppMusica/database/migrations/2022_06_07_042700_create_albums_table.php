@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('name_album');
             $table->string('release_date');
 
-            $table->unsignedBigInteger('id_distributor')->nullable();
-            $table->foreign('id_distributor')->references('id_distributor')->on('distributors');
+            $table->unsignedBigInteger('distributed_by')->nullable();
+            $table->foreign('distributed_by')->references('id_distributor')->on('distributors');
             
             $table->timestamps();
         });

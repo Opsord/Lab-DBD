@@ -10,4 +10,8 @@ class Genre extends Model
     use HasFactory;
     protected $primaryKey = 'id_genre';
 
+    public function song_genre(){
+        return $this->hasMany('App\Models\Song_genre');
+    }
+
 }

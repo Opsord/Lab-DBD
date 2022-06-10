@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Album extends Model
 {
     use HasFactory;
+
     protected $primaryKey = 'id_album';
+
+    public function distributor(){
+        return $this->belongsTo('App\Models\Distributor');
+    }
 }

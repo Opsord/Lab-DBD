@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('song_r_g_s', function (Blueprint $table) {
-
+        Schema::create('song__geo_recs', function (Blueprint $table) {
+            
             $table->id('id_song_rg');
 
             $table->unsignedBigInteger('song')->nullable();
@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('restricted_to')->nullable();
             $table->foreign('restricted_to')->references('id_country')->on('geographic_restrictions');
-
+            
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('song_r_g_s');
+        Schema::dropIfExists('song__geo_recs');
     }
 };

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SongRG extends Model
+class Song_GeoRec extends Model
 {
     use HasFactory;
 

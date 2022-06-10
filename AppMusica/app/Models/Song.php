@@ -15,7 +15,7 @@ class Song extends Model
     }
 
     public function song_rg(){
-        return $this->hasMany('App\Models\SongRG');
+        return $this->hasMany('App\Models\Song_GeoRec');
     }
 
     public function song_genre(){

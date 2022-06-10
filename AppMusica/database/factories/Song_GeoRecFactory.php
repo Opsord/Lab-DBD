@@ -4,14 +4,14 @@ namespace Database\Factories;
 
 use App\Models\Song;
 use App\Models\Geographic_restriction;
-use App\Models\SongRG;
+use App\Models\Song_GeoRec;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SongRG>
  */
-class SongRGFactory extends Factory
+class Song_GeoRecFactory extends Factory
 {
     /**
      * Define the model's default state.

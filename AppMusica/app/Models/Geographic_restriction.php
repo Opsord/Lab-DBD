@@ -11,7 +11,7 @@ class Geographic_restriction extends Model
     protected $primaryKey = 'id_country';
 
     public function song_rg(){
-        return $this->hasMany('App\Models\SongRG');
+        return $this->hasMany('App\Models\Song_GeoRec');
     }
     
 }

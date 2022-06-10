@@ -23,7 +23,7 @@ class SongRGFactory extends Factory
         return [
             //
             'song' => Song::all() -> random() -> id_song,
-            'restricted_to' => Geographic_restriction::all() -> random() -> id_geographic_restriction,
+            'restricted_to' => Geographic_restriction::all() -> random() -> id_country,
         ];
     }
 }

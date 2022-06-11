@@ -9,7 +9,7 @@ class Song_GeoRec extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_song_rg';
+    protected $primaryKey = 'id_song_gr';
 
     public function song(){
         return $this->belongsTo('App\Models\Song');

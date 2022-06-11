@@ -18,13 +18,11 @@ class User extends Model
         return $this->hasMany('App\Models\Song');
     }
 
-    public function subscription(){
-        return $this->belongsTo('App\Models\Subscription');
-    }
-    
     public function user_user(){
         return $this->hasMany('App\Models\User_user');
     }
 
-
+    public function subscription(){
+        return $this->belongsTo('App\Models\Subscription');
+    }
 }

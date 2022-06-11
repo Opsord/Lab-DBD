@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('song__geo_recs', function (Blueprint $table) {
             
-            $table->id('id_song_rg');
+            $table->id('id_song_gr');
 
             $table->unsignedBigInteger('song')->nullable();
             $table->foreign('song')->references('id_song')->on('songs');

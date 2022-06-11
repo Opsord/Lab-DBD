@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('servers', function (Blueprint $table) {
+
             $table->id('id_server');
             $table->string('name_server');
-            $table->string('ubicacion'); // a discutir 
+            $table->string('ubicacion');
+             // a discutir 
             $table->timestamps();
         });
     }

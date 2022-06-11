@@ -11,7 +11,13 @@ class Subscription extends Model
 
     protected $primaryKey = 'id_subscription';
 
-    public function subject(){
+    public function payMeth(){
+        
         return $this->belongsTo('App\Models\Payment_method');
+    }
+    
+    public function user(){
+        
+        return $this->hasMany('App\Models\User');
     }
 }

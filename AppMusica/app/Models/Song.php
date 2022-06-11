@@ -21,4 +21,8 @@ class Song extends Model
     public function song_genre(){
         return $this->hasMany('App\Models\Song_genre');
     }
+
+    public function song_server(){
+        return $this->hasMany('App\Models\Song_server');
+    }
 }

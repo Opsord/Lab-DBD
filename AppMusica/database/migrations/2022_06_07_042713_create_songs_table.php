@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id('id_song');
             $table->string('name_song');
             $table->time('duration');
+            $table->boolean('is_explicit');
 
             $table->unsignedBigInteger('album')->nullable();
             $table->foreign('album')->references('id_album')->on('albums');

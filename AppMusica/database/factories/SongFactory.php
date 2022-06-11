@@ -22,6 +22,7 @@ class SongFactory extends Factory
         return [
             'name_song' => $this->faker->word,
             'duration' => $this->faker->time($format = 'H:i:s', $max = '00:05:00'),
+            'is_explicit' => $this->faker->boolean($chanceOfGettingTrue = 50),
 
             'album' => Album::all() -> random() -> id_album,
         ];

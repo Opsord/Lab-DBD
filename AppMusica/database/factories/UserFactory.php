@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 use App\Models\User;
+use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,8 +21,8 @@ class UserFactory extends Factory
             'name_user' => $this->faker->name,
             'pass_user' => $this->faker->password,
             'email' => $this->faker->safeEmail,
-            'birthday' => $this->faker->dateTimeThisDecade($max = 'now', $timezone = null)
-
+            'birthday' => $this->faker->dateTimeThisDecade($max = 'now', $timezone = null),
+            'id_subscription' => Subscription::all()->random()->id_subscription
         ];
     }
 }

@@ -9,4 +9,9 @@ class Permission extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id_permission';
+
+    public function role_permission(){
+        return $this->hasMany('App\Models\Role_permission');
+    }
+
 }

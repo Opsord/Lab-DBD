@@ -18,6 +18,7 @@ class PermissionFactory extends Factory
     {
         return [
             'action' => $this->faker->word,
+            'command' => $this->faker->word
         ];
     }
 }

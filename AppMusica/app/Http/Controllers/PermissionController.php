@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Permission;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 class PermissionController extends Controller
 {
     /**
@@ -13,7 +14,11 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $permissions = Permission::all();
+        if ($permissions->isEmpty()){
+            return response()->json([]);
+        }
+        return response($permissions, 200);
     }
 
     /**
@@ -34,7 +39,21 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),[
+                'action' => 'required',
+                'command' => 'required'
+            ]
+            
+        );
+        $newpermission = new Permission();
+        $newpermission->action = $request->action;
+        $newpermission->command = $request->command;
+        $newpermission->save();
+        return response()->json([
+            'respuesta' => 'se ha creado un nuevo permiso',
+            'id' => $newpermission->id_permission,
+        ], 201);
     }
 
     /**
@@ -45,7 +64,11 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        //
+        $permission = Permission::find($id);
+        if(empty($permission)){
+            return response()->json([]);
+        }
+        return response($permission, 200);
     }
 
     /**

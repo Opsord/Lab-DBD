@@ -19,4 +19,7 @@ Route::get('/', function () {
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
+Route::get('/permission/{id}', 'App\Http\Controllers\PermissionController@show');
+Route::get('/permissions', 'App\Http\Controllers\PermissionController@index');
 Route::post('/user/create', 'App\Http\Controllers\UserController@store');
+Route::post('/permission/create', 'App\Http\Controllers\PermissionController@store');

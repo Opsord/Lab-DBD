@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     /**
@@ -27,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -38,7 +39,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required',
+                'password' => 'required'
+            ]
+            
+        );
+        $newuser = new User();
+        $newuser->name_user = $request->name;
+        $newuser->pass_user = $request->password;
+        $newuser->email = $request->email;
+        $newuser->birthday = $request->birthday;
+        $newuser->save();
+        return response()->json([
+            'respuesta' => 'se ha creado un nuevo usuario',
+            'id' => $newuser->id_user,
+        ], 201);
     }
 
     /**

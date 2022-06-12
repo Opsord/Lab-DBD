@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Genre;
+use App\Models\Distributor;
 
 use Illuminate\Http\Request;
 
-class GenreController extends Controller
+class DistributorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +16,11 @@ class GenreController extends Controller
     public function index()
     {
         //
-        $genres = Genre::all();
-        if ($genres->isEmpty()) {
-            return response()->json(['message' => 'No genres found'], 404);
+        $distributors = Distributor::all();
+        if ($distributors->isEmpty()) {
+            return response()->json(['message' => 'No distributors found'], 404);
         }
-        return response($genres);
+        return response($distributors);
     }
 
     /**
@@ -53,11 +53,11 @@ class GenreController extends Controller
     public function show($id)
     {
         //
-        $genre = Genre::find($id);
-        if (!$genre) {
-            return response()->json(['message' => 'Genre not found'], 404);
+        $distributor = Distributor::find($id);
+        if (!$distributor) {
+            return response()->json(['message' => 'Distributor not found'], 404);
         }
-        return response($genre);
+        return response($distributor);
     }
 
     /**

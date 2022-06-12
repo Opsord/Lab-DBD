@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Song_genre;
+
 use Illuminate\Http\Request;
 
 class Song_genreController extends Controller
@@ -14,6 +16,11 @@ class Song_genreController extends Controller
     public function index()
     {
         //
+        $song_genres = Song_genre::all();
+        if ($song_genres->isEmpty()) {
+            return response()->json(['message' => 'No song_genres found'], 404);
+        }
+        return response($song_genres);
     }
 
     /**
@@ -46,6 +53,11 @@ class Song_genreController extends Controller
     public function show($id)
     {
         //
+        $song_genre = Song_genre::find($id);
+        if (!$song_genre) {
+            return response()->json(['message' => 'Song_genre not found'], 404);
+        }
+        return response($song_genre);
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Geographic_restriction;
+
 use Illuminate\Http\Request;
 
 class Geographic_restrictionController extends Controller
@@ -14,6 +16,11 @@ class Geographic_restrictionController extends Controller
     public function index()
     {
         //
+        $geographic_restrictions = Geographic_restriction::all();
+        if ($geographic_restrictions->isEmpty()) {
+            return response()->json(['message' => 'No geographic_restrictions found'], 404);
+        }
+        return response($geographic_restrictions);
     }
 
     /**
@@ -46,6 +53,11 @@ class Geographic_restrictionController extends Controller
     public function show($id)
     {
         //
+        $geographic_restriction = Geographic_restriction::find($id);
+        if (!$geographic_restriction) {
+            return response()->json(['message' => 'Geographic_restriction not found'], 404);
+        }
+        return response($geographic_restriction);
     }
 
     /**

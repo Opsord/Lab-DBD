@@ -14,6 +14,11 @@ class SubscriptionController extends Controller
     public function index()
     {
         //
+        $Subscriptions = Subscription::all();
+        if ($Subscriptions->isEmpty()) {
+            return response()->json(['message' => 'No Subscriptions found'], 404);
+        }
+        return response($Subscriptions);
     }
 
     /**
@@ -46,6 +51,11 @@ class SubscriptionController extends Controller
     public function show($id)
     {
         //
+        $Subscription = Subscription::find($id);
+        if (!$Subscription) {
+            return response()->json(['message' => 'Subscription not found'], 404);
+        }
+        return response($Subscription);
     }
 
     /**

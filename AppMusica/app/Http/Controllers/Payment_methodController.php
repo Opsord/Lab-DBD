@@ -14,6 +14,11 @@ class Payment_methodController extends Controller
     public function index()
     {
         //
+        $Payment_methods = Payment_method::all();
+        if ($Payment_methods->isEmpty()) {
+            return response()->json(['message' => 'No Payment_methods found'], 404);
+        }
+        return response($Payment_methods);
     }
 
     /**
@@ -46,6 +51,11 @@ class Payment_methodController extends Controller
     public function show($id)
     {
         //
+        $Payment_method = Payment_method::find($id);
+        if (!$Payment_method) {
+            return response()->json(['message' => 'Payment method not found'], 404);
+        }
+        return response($Payment_method);
     }
 
     /**

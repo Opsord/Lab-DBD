@@ -14,6 +14,11 @@ class ReceiptController extends Controller
     public function index()
     {
         //
+        $Receipts = Receipt::all();
+        if ($Receipts->isEmpty()) {
+            return response()->json(['message' => 'No Receipts found'], 404);
+        }
+        return response($Receipts);
     }
 
     /**
@@ -46,6 +51,11 @@ class ReceiptController extends Controller
     public function show($id)
     {
         //
+        $Receipt = Receipt::find($id);
+        if (!$Receipt) {
+            return response()->json(['message' => 'Receipt not found'], 404);
+        }
+        return response($Receipt);
     }
 
     /**

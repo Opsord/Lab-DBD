@@ -14,6 +14,11 @@ class ServerController extends Controller
     public function index()
     {
         //
+        $Servers = Server::all();
+        if ($Servers->isEmpty()) {
+            return response()->json(['message' => 'No Servers found'], 404);
+        }
+        return response($Servers);
     }
 
     /**
@@ -46,6 +51,11 @@ class ServerController extends Controller
     public function show($id)
     {
         //
+        $Server = Server::find($id);
+        if (!$Server) {
+            return response()->json(['message' => 'Server not found'], 404);
+        }
+        return response($Server);
     }
 
     /**

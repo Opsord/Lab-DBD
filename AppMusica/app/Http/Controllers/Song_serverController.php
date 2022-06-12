@@ -14,6 +14,11 @@ class Song_serverController extends Controller
     public function index()
     {
         //
+        $SongServs = Song_server::all();
+        if ($SongServs->isEmpty()) {
+            return response()->json(['message' => 'No Song servers found'], 404);
+        }
+        return response($SongServs);
     }
 
     /**
@@ -46,6 +51,11 @@ class Song_serverController extends Controller
     public function show($id)
     {
         //
+        $SongServ = Song_server::find($id);
+        if (!$SongServ) {
+            return response()->json(['message' => 'Song Server not found'], 404);
+        }
+        return response($SongServ);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
+use illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class SongController extends Controller
         if ($songs->isEmpty()) {
             return response()->json(['message' => 'No songs found'], 404);
         }
-        return response($songs);
+        return response($songs, 200);
     }
 
     /**
@@ -42,6 +43,26 @@ class SongController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_song' => 'required',
+                'duration' => 'required',
+                'id_album' => 'required',
+                'id_genre' => 'required',
+            ]
+        );
+
+        $newsong = new Song();
+        $newsong->name_song = $request->name_song;
+        $newsong->duration = $request->duration;
+        $newsong->id_album = $request->id_album;
+        $newsong->id_genre = $request->id_genre;
+        $newsong->save();
+
+        return response()->json([
+            'respuesta' => 'nueva cancion creada',
+            'id' => $newsong->id_song,
+        ], 201);
     }
 
     /**
@@ -57,7 +78,7 @@ class SongController extends Controller
         if (!$song) {
             return response()->json(['message' => 'Song not found'], 404);
         }
-        return response($song);
+        return response($song, 200);
     }
 
     /**

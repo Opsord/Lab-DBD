@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
+use illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class GenreController extends Controller
         if ($genres->isEmpty()) {
             return response()->json(['message' => 'No genres found'], 404);
         }
-        return response($genres);
+        return response($genres, 200);
     }
 
     /**
@@ -42,6 +43,20 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_genre' => 'required',
+            ]
+        );
+
+        $newgenre = new Genre();
+        $newgenre->name_genre = $request->name_genre;
+        $newgenre->save();
+        
+        return response()->json([
+            'respuesta' => 'nuevo genero creado',
+            'id' => $newgenre->id_genre,
+        ], 201);
     }
 
     /**
@@ -57,7 +72,7 @@ class GenreController extends Controller
         if (!$genre) {
             return response()->json(['message' => 'Genre not found'], 404);
         }
-        return response($genre);
+        return response($genre, 200);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class AlbumController extends Controller
         if ($albums->isEmpty()) {
             return response()->json(['message' => 'No albums found'], 404);
         }
-        return response($albums);
+        return response($albums, 200);
     }
 
     /**
@@ -42,6 +43,24 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_album' => 'required',
+                'release_date' => 'required',
+                #'distributed_by' => 'required',
+            ]
+        );
+
+        $newalbum = new Album();
+        $newalbum->name_album = $request->name_album;
+        $newalbum->release_date = $request->release_date;
+        $newalbum->distributed_by = $request->distributed_by;
+        $newalbum->save();
+
+        return response()->json([
+            'respuesta' => 'nuevo album creado',
+            'id' => $newalbum->id_album,
+        ], 201);
     }
 
     /**
@@ -57,7 +76,7 @@ class AlbumController extends Controller
         if (!$album) {
             return response()->json(['message' => 'Album not found'], 404);
         }
-        return response($album);
+        return response($album, 200);
     }
 
     /**

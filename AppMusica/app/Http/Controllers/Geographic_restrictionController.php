@@ -20,7 +20,7 @@ class Geographic_restrictionController extends Controller
         if ($geographic_restrictions->isEmpty()) {
             return response()->json(['message' => 'No geographic_restrictions found'], 404);
         }
-        return response($geographic_restrictions);
+        return response($geographic_restrictions, 200);
     }
 
     /**
@@ -42,6 +42,20 @@ class Geographic_restrictionController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_geographic_restriction' => 'required',
+            ]
+        );
+
+        $newgeographic_restriction = new Geographic_restriction();
+        $newgeographic_restriction->name_geographic_restriction = $request->name_geographic_restriction;
+        $newgeographic_restriction->save();
+
+        return response()->json([
+            'respuesta' => 'nueva restriccion geografica agregada',
+            'id' => $newgeographic_restriction->id_geographic_restriction,
+        ], 201);
     }
 
     /**
@@ -57,7 +71,7 @@ class Geographic_restrictionController extends Controller
         if (!$geographic_restriction) {
             return response()->json(['message' => 'Geographic_restriction not found'], 404);
         }
-        return response($geographic_restriction);
+        return response($geographic_restriction, 200);
     }
 
     /**

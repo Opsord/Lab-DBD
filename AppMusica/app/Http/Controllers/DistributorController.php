@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Distributor;
+use illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class DistributorController extends Controller
         if ($distributors->isEmpty()) {
             return response()->json(['message' => 'No distributors found'], 404);
         }
-        return response($distributors);
+        return response($distributors, 200);
     }
 
     /**
@@ -42,6 +43,20 @@ class DistributorController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_distributor' => 'required',
+            ]
+        );
+
+        $newdistributor = new Distributor();
+        $newdistributor->name_distributor = $request->name_distributor;
+        $newdistributor->save();
+        
+        return response()->json([
+            'respuesta' => 'nuevo distribuidor creado',
+            'id' => $newdistributor->id_distributor,
+        ], 201);
     }
 
     /**
@@ -57,7 +72,7 @@ class DistributorController extends Controller
         if (!$distributor) {
             return response()->json(['message' => 'Distributor not found'], 404);
         }
-        return response($distributor);
+        return response($distributor, 200);
     }
 
     /**

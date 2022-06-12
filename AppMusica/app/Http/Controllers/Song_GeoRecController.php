@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\GeoRec;
+use App\Models\Song_GeoRec;
+use illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class Song_GeoRecController extends Controller
         if ($song_georecs->isEmpty()) {
             return response()->json(['message' => 'No song_georecs found'], 404);
         }
-        return response($song_georecs);
+        return response($song_georecs, 200);
     }
 
     /**
@@ -42,6 +43,22 @@ class Song_GeoRecController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'song' => 'required',
+                'restricted_to' => 'required',
+            ]
+        );
+
+        $newsong_georec = new Song_GeoRec();
+        $newsong_georec->song = $request->song;
+        $newsong_georec->restricted_to = $request->restricted_to;
+        $newsong_georec->save();
+
+        return response()->json([
+            'respuesta' => 'nuevo interseccion song_georec creado',
+        ]);
+
     }
 
     /**
@@ -57,7 +74,7 @@ class Song_GeoRecController extends Controller
         if (!$song_georec) {
             return response()->json(['message' => 'Song_georec not found'], 404);
         }
-        return response($song_georec);
+        return response($song_georec, 200);
     }
 
     /**

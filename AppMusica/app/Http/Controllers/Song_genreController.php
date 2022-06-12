@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song_genre;
+use illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class Song_genreController extends Controller
         if ($song_genres->isEmpty()) {
             return response()->json(['message' => 'No song_genres found'], 404);
         }
-        return response($song_genres);
+        return response($song_genres, 200);
     }
 
     /**
@@ -42,6 +43,21 @@ class Song_genreController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'song' => 'required',
+                'genre' => 'required',
+            ]
+        );
+
+        $newsong_genre = new Song_genre();
+        $newsong_genre->song = $request->song;
+        $newsong_genre->genre = $request->genre;
+        $newsong_genre->save();
+
+        return response()->json([
+            'respuesta' => 'nuevo interseccion song_genre creado',
+        ]);
     }
 
     /**
@@ -57,7 +73,7 @@ class Song_genreController extends Controller
         if (!$song_genre) {
             return response()->json(['message' => 'Song_genre not found'], 404);
         }
-        return response($song_genre);
+        return response($song_genre, 200);
     }
 
     /**

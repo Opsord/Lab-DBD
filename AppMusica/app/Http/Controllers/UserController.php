@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
@@ -13,7 +13,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        if ($users->isEmpty()){
+            return response()->json([]);
+        }
+        return response($users, 200);
     }
 
     /**
@@ -46,6 +50,11 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $user = User::find($id);
+        if(empty($user)){
+            return response()->json([]);
+        }
+        return response($user, 200);
     }
 
     /**

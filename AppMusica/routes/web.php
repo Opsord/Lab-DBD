@@ -92,3 +92,34 @@ Route::get('/song_georec/{id}', 'App\Http\Controllers\Song_georecController@show
 Route::post('/song_georec/create', 'App\Http\Controllers\Song_georecController@store');
 Route::put('/song_georec/{id}', 'App\Http\Controllers\Song_georecController@update');
 Route::delete('/song_georec/{id}', 'App\Http\Controllers\Song_georecController@destroy');
+
+#Valero
+Route::get('/users', 'App\Http\Controllers\SubscriptionController@index');
+Route::get('/user/{id}', 'App\Http\Controllers\SubscriptionController@show');
+Route::post('/user/create', 'App\Http\Controllers\SubscriptionController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\SubscriptionController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\SubscriptionController@destroy');
+
+Route::get('/users', 'App\Http\Controllers\Payment_methodController@index');
+Route::get('/user/{id}', 'App\Http\Controllers\Payment_methodController@show');
+Route::post('/user/create', 'App\Http\Controllers\Payment_methodController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\Payment_methodController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\Payment_methodController@destroy');
+
+Route::get('/users', 'App\Http\Controllers\ReceiptController@index');
+Route::get('/user/{id}', 'App\Http\Controllers\ReceiptController@show');
+Route::post('/user/create', 'App\Http\Controllers\ReceiptController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\ReceiptController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\ReceiptController@destroy');
+
+Route::get('/users', 'App\Http\Controllers\ServerController@index');
+Route::get('/user/{id}', 'App\Http\Controllers\ServerController@show');
+Route::post('/user/create', 'App\Http\Controllers\ServerController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\ServerController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\ServerController@destroy');
+
+Route::get('/users', 'App\Http\Controllers\Song_serverController@index');
+Route::get('/user/{id}', 'App\Http\Controllers\Song_serverController@show');
+Route::post('/user/create', 'App\Http\Controllers\Song_serverController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\Song_serverController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\Song_serverController@destroy');

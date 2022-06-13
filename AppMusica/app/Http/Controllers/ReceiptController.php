@@ -40,6 +40,21 @@ class ReceiptController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'amount' => 'required'
+            ]
+            
+        );
+        $newReceipt = new Receipt();
+        $newReceipt->amount = $request->amount;
+        //como se hace con las llaves foraneas? asdada
+
+        $newReceipt->save();
+        return response()->json([
+            'respuesta' => 'se ha creado una nueva boleta de pago',
+            'id' => $newReceipt->id_receipt,
+        ], 201);
     }
 
     /**

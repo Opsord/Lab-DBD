@@ -40,6 +40,27 @@ class Payment_methodController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'alias' => 'required',
+                'holder' => 'required',
+                'card_number' => 'required',
+                'date' => 'required',
+                'security_code' => 'required'
+            ]
+            
+        );
+        $newPayMeth = new Payment_method();
+        $newPayMeth->card_alias = $request->alias;
+        $newPayMeth->card_holder = $request->holder;
+        $newPayMeth->card_number = $request->number;
+        $newPayMeth->expiration_date = $request->date;
+        $newPayMeth->security_code = $request->security_code;
+        $newPayMeth->save();
+        return response()->json([
+            'respuesta' => 'se ha creado un nuevo metodo de pago',
+            'id' => $newPayMeth->id_method,
+        ], 201);
     }
 
     /**

@@ -39,7 +39,21 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required',
+                'ubicacion' => 'required'
+            ]
+            
+        );
+        $newserver = new Server();
+        $newserver->name_server = $request->name;
+        $newserver->ubicacion = $request->ubicacion;
+        $newserver->save();
+        return response()->json([
+            'respuesta' => 'se ha creado un nuevo servidor',
+            'id' => $newserver->id_server,
+        ], 201);
     }
 
     /**

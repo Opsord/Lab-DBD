@@ -40,6 +40,25 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'state' => 'required',
+                'start_date' => 'required',
+                'end_date' => 'required'
+            ]
+            
+        );
+        $newSubs = new Payment_method();
+        $newSubs->state = $request->state;
+        $newSubs->start_date = $request->start_date;
+        $newSubs->end_date = $request->end_date;
+        //como se hace con las llaves foraneas? asdada
+        
+        $newSubs->save();
+        return response()->json([
+            'respuesta' => 'se ha creado una nueva subscripción',
+            'id' => $newSubs->id_subscription,
+        ], 201);
     }
 
     /**

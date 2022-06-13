@@ -13,4 +13,8 @@ class Song_playlist extends Model
     public function playlist(){
         return $this->belongsTo('App\Models\Playlist');
     }
+
+    public function song(){
+        return $this->belongsTo('App\Models\Song');
+    }
 }

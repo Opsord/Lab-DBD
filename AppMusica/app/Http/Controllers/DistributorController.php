@@ -63,6 +63,15 @@ class DistributorController extends Controller
         ], 201);
     }
 
+    public function archive()
+    {
+        $distributors = Distributor::onlyTrashed()->get();
+        if ($distributors->isEmpty()) {
+            return response()->json(['message' => 'No archived distributors found'], 404);
+        }
+        return response($distributors, 200);
+
+    }
     /**
      * Display the specified resource.
      *

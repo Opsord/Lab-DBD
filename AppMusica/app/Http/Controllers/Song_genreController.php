@@ -60,6 +60,17 @@ class Song_genreController extends Controller
         ]);
     }
 
+
+    public function archive()
+    {
+        //
+        $song_genres = Song_genre::onlyTrashed()->get();
+        if ($song_genres->isEmpty()) {
+            return response()->json(['message' => 'No archived song_genres found'], 404);
+        }
+        return response($song_genres, 200);
+    }
+
     /**
      * Display the specified resource.
      *

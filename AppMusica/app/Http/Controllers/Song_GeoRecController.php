@@ -61,6 +61,17 @@ class Song_GeoRecController extends Controller
 
     }
 
+
+    public function archive()
+    {
+        //
+        $georecs = GeoRec::onlyTrashed()->get();
+        if ($georecs->isEmpty()) {
+            return response()->json(['message' => 'No archived georecs found'], 404);
+        }
+        return response($georecs, 200);
+    }
+
     /**
      * Display the specified resource.
      *

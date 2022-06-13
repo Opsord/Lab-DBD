@@ -58,6 +58,16 @@ class Geographic_restrictionController extends Controller
         ], 201);
     }
 
+
+    public function archive()
+    {
+        //
+        $geographic_restrictions = Geographic_restriction::onlyTrashed()->get();
+        if ($geographic_restrictions->isEmpty()) {
+            return response()->json(['message' => 'No geographic_restrictions found'], 404);
+        }
+        return response($geographic_restrictions, 200);
+    }
     /**
      * Display the specified resource.
      *

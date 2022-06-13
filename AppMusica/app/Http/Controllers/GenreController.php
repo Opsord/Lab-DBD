@@ -59,6 +59,17 @@ class GenreController extends Controller
         ], 201);
     }
 
+    public function archive()
+    {
+        //
+        $genres = Genre::onlyTrashed()->get();
+        if ($genres->isEmpty()) {
+            return response()->json(['message' => 'No archived genres found'], 404);
+        }
+        return response($genres, 200);
+    }
+
+
     /**
      * Display the specified resource.
      *

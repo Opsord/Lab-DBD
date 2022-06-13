@@ -65,6 +65,16 @@ class SongController extends Controller
         ], 201);
     }
 
+    public function archive()
+    {
+        //
+        $songs = Song::onlyTrashed()->get();
+        if ($songs->isEmpty()) {
+            return response()->json(['message' => 'No archived songs found'], 404);
+        }
+        return response($songs, 200);
+    }
+
     /**
      * Display the specified resource.
      *

@@ -63,6 +63,16 @@ class AlbumController extends Controller
         ], 201);
     }
 
+    public function archive()
+    {
+        //
+        $albums = Album::onlyTrashed()->get();
+        if ($albums->isEmpty()) {
+            return response()->json(['message' => 'No archived albums found'], 404);
+        }
+        return response($albums, 200);
+    }
+
     /**
      * Display the specified resource.
      *

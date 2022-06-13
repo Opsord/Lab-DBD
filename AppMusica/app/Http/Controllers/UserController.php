@@ -115,7 +115,44 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required',
+                'password' => 'required',
+                'email' => 'required|regex:/^.+@.+$/i',
+                'birthday' => 'required',
+                'id_subscription' => 'required|integer'
+            ]
+        );
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        if($user == NULL){
+            return response()->json([
+                'respuesta' => 'id de usuario invalido'
+            ]);
+        }
+
+        $subscription = Subscription::find($request->id_subscription);
+        if($subscription == NULL){
+            return response()->json([
+                'respuesta' => 'id de subscripcion invalido'
+            ]);
+        }
+
+        $user->name_user = $request->name;
+        $user->pass_user = $request->password;
+        $user->email = $request->email;
+        $user->birthday = $request->birthday;
+        $user->id_subscription = $request->id_subscription;
+        $user->save();
+        return response()->json([
+            'respuesta' => 'se ha actualizado el usuario',
+            'id' => $user->id_user,
+        ], 200);
+
     }
 
     /**
@@ -126,6 +163,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $user = User::find($id);
+        // if($user == NULL){
+        //     return response()->json([
+        //         'respuesta' => 'id de usuario invalido'
+        //     ]);
+        // }
+        // //$user->delete();
+        
+        
+        // return response()->json([
+        //     'a' => $user_role->id_user_role
+        // ], 200);
     }
 }

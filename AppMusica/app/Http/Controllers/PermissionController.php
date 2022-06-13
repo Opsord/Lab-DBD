@@ -45,6 +45,16 @@ class PermissionController extends Controller
             ]
             
         );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        if ($request->action == NULL || $request->command == NULL){
+            return response()->json([
+                'respuesta' => 'action o comando sin definir'
+            ]);
+        }
         $newpermission = new Permission();
         $newpermission->action = $request->action;
         $newpermission->command = $request->command;
@@ -90,7 +100,33 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $permission = Permission::find($id);
+
+        $validator = Validator::make(
+            $request->all(),[
+                'action' => 'required',
+                'command' => 'required'
+            ]
+            
+        );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        if ($request->action == NULL || $request->command == NULL){
+            return response()->json([
+                'respuesta' => 'action o comando sin definir'
+            ]);
+        }
+        
+        $permission->action = $request->action;
+        $permission->command = $request->command;
+        $permission->save();
+        return response()->json([
+            'respuesta' => 'se ha actualizado el permiso',
+            'id' => $permission->id_permission,
+        ], 201);
     }
 
     /**

@@ -102,7 +102,28 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::find($id);
+
+        $validator = Validator::make(
+            $request->all(),[
+                'role_name' => 'required'
+            ]
+            );
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        if($request->role_name == "admin" || $request->role_name == "user"||$request->role_name == "artist"){   
+            $role->name_role = $request->role_name;
+            $role->save();
+            return response()->json([
+                'respuesta' => 'se ha actualizado el rol',
+                'id' => $role->id_role,
+            ], 201);
+        }
+        return response()->json([
+            "respuesta" => 'rol invalido, debe ser admin, user o artist'
+        ]);
     }
 
     /**

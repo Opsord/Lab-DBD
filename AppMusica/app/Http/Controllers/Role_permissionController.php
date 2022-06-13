@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role_permission;
+use App\Models\Permission;
+use App\Models\Role;
+use Illuminate\Support\Facades\Validator;
 class Role_permissionController extends Controller
 {
     /**
@@ -13,7 +16,11 @@ class Role_permissionController extends Controller
      */
     public function index()
     {
-        //
+        $role_permission = Role_permission::all();
+        if ($role_permission->isEmpty()){
+            return response()->json([]);
+        }
+        return response($role_permission, 200);
     }
 
     /**
@@ -34,9 +41,39 @@ class Role_permissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $newrole_permission = new Role_permission();
 
+        $validator = Validator::make(
+            $request->all(), [
+                'id_role' =>  'required|integer',
+                'id_permission' => 'required|integer'
+            ]
+            );
+            if($validator->fails()){
+                return response($validator->errors(), 400);
+            }
+            $role = Role::find($request->id_role);
+            $permission = Permission::find($request->id_permission);
+
+            if($role == NULL){
+                return response()->json([
+                    'respuesta' => 'id de rol invalido'
+                ]);
+            }
+            if($permission == NULL){
+                return response()->json([
+                    'respuesta' => 'id de permiso invalido'
+            ]);
+            }
+
+            $newrole_permission->id_role = $request->role;
+            $newrole_permission->id_permission = $request->permission;
+            $newrole_permission->save();
+            return response()->json([
+                'respuesta' => 'se ha creado una nueva tupla rol-permiso',
+                'id' => $newrole_permission->id_role_permission,
+            ], 201);
+    }
     /**
      * Display the specified resource.
      *
@@ -45,7 +82,11 @@ class Role_permissionController extends Controller
      */
     public function show($id)
     {
-        //
+        $role_permission = Role_permission::find($id);
+        if(empty($role_permission)){
+            return response()->json([]);
+        }
+        return response($role_permission, 200);
     }
 
     /**
@@ -68,7 +109,38 @@ class Role_permissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role_permission = Role_permission::find($id);
+
+        $validator = Validator::make(
+            $request->all(), [
+                'id_role' =>  'required|integer',
+                'id_permission' => 'required|integer'
+            ]
+            );
+            if($validator->fails()){
+                return response($validator->errors(), 400);
+            }
+            $role = Role::find($request->id_role);
+            $permission = Permission::find($request->id_permission);
+
+            if($role == NULL){
+                return response()->json([
+                    'respuesta' => 'id de rol invalido'
+                ]);
+            }
+            if($permission == NULL){
+                return response()->json([
+                    'respuesta' => 'id de permiso invalido'
+            ]);
+            }
+
+            $role_permission->id_role = $request->role;
+            $role_permission->id_permission = $request->permission;
+            $role_permission->save();
+            return response()->json([
+                'respuesta' => 'se ha actualizado la tupla rol-permiso',
+                'id' => $role_permission->id_role_permission,
+            ], 201);
     }
 
     /**

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User_role;
+use App\Models\User;
+use App\Models\Role;
+use Illuminate\Support\Facades\Validator;
 class User_roleController extends Controller
 {
     /**
@@ -38,7 +41,39 @@ class User_roleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newuser_role = new User_role();
+        $validator = Validator::make(
+            $request->all(),[
+                'id_user' => 'required|integer',
+                'id_role' => 'required|integer'
+            ]
+            );
+            if($validator->fails()){
+                return response($validator->errors(), 400);
+            }
+
+            $user = User::find($request->id_user);
+            $role = Role::find($request->id_role);
+            if($user == NULL){
+                return response()->json([
+                    'respuesta' => 'id de usuario invalido'
+                ]);
+            }
+
+            if($role == NULL){
+                return response()->json([
+                    'respuesta' => 'id de rol invalido'
+                ]);
+            }
+
+            $newuser_role->id_user = $request->user;
+            $newuser_role->id_role = $request->role;
+            $newuser_role->save();
+            return response()->json([
+                'respuesta' => 'se ha creado una nueva tupla user-role',
+                'id' => $newuser_role->id_user_role,
+            ], 201);
+
     }
 
     /**
@@ -76,7 +111,38 @@ class User_roleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user_role = User_role::find($id);
+        $validator = Validator::make(
+            $request->all(),[
+                'id_user' => 'required|integer',
+                'id_role' => 'required|integer'
+            ]
+            );
+            if($validator->fails()){
+                return response($validator->errors(), 400);
+            }
+
+            $user = User::find($request->id_user);
+            $role = Role::find($request->id_role);
+            if($user == NULL){
+                return response()->json([
+                    'respuesta' => 'id de usuario invalido'
+                ]);
+            }
+
+            if($role == NULL){
+                return response()->json([
+                    'respuesta' => 'id de rol invalido'
+                ]);
+            }
+
+            $user_role->id_user = $request->user;
+            $user_role->id_role = $request->role;
+            $user_role->save();
+            return response()->json([
+                'respuesta' => 'se ha actualizado la tupla user-role',
+                'id' => $user_role->id_user_role,
+            ], 201);
     }
 
     /**

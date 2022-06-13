@@ -21,21 +21,34 @@ Route::get('/', function () {
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
 Route::post('/user/create', 'App\Http\Controllers\UserController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\UserController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\UserController@destroy');
 
 Route::get('/permission/{id}', 'App\Http\Controllers\PermissionController@show');
 Route::get('/permissions', 'App\Http\Controllers\PermissionController@index');
 Route::post('/permission/create', 'App\Http\Controllers\PermissionController@store');
+Route::put('/permission_update/{id}', 'App\Http\Controllers\PermissionController@update');
 
 Route::get('/users_users', 'App\Http\Controllers\User_userController@index');
 Route::get('/user_user/{id}', 'App\Http\Controllers\User_userController@show');
 Route::post('/user_user/create', 'App\Http\Controllers\User_userController@store');
+Route::put('/user_user_update/{id}', 'App\Http\Controllers\User_userController@update');
 
 Route::get('/users_roles', 'App\Http\Controllers\User_roleController@index');
 Route::get('/user_role/{id}', 'App\Http\Controllers\User_roleController@show');
+Route::post('/user_role/create', 'App\Http\Controllers\User_roleController@store');
+Route::put('/user_role_update/{id}', 'App\Http\Controllers\User_roleController@update');
 
 Route::get('/roles', 'App\Http\Controllers\RoleController@index');
 Route::get('/role/{id}', 'App\Http\Controllers\RoleController@show');
 Route::post('/role/create', 'App\Http\Controllers\RoleController@store');
+Route::put('/role_update/{id}', 'App\Http\Controllers\RoleController@update');
+
+
+Route::get('/roles_permissions', 'App\Http\Controllers\Role_permissionController@index');
+Route::get('/role_permission/{id}', 'App\Http\Controllers\Role_permissionController@show');
+Route::post('/role_permission/create', 'App\Http\Controllers\Role_permissionController@store');
+Route::put('/role_permission_update/{id}', 'App\Http\Controllers\Role_permissionController@update');
 
 #Zelaya:
 Route::get('/distributors', 'App\Http\Controllers\DistributorController@index');

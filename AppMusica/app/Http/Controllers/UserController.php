@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
@@ -39,23 +40,43 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $newuser = new User();
+
         $validator = Validator::make(
             $request->all(),[
                 'name' => 'required',
-                'password' => 'required'
+                'password' => 'required',
+                'email' => 'required|regex:/^.+@.+$/i',
+                'birthday' => 'required',
+                'id_subscription' => 'required|integer'
+
             ]
             
         );
-        $newuser = new User();
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        $subscription = Subscription::find($request->id_subscription);
+        if($subscription == NULL){
+            return response()->json([
+                'respuesta' => 'id de subscripcion invalido'
+            ]);
+        }else{
         $newuser->name_user = $request->name;
         $newuser->pass_user = $request->password;
         $newuser->email = $request->email;
         $newuser->birthday = $request->birthday;
+        $newuser->id_subscription = $request->id_subscription;
         $newuser->save();
         return response()->json([
             'respuesta' => 'se ha creado un nuevo usuario',
             'id' => $newuser->id_user,
         ], 201);
+        }
+        
+        
     }
 
     /**

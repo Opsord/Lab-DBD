@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Role;
+
 class RoleController extends Controller
 {
     /**
@@ -28,7 +29,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+
+
     }
 
     /**
@@ -39,18 +41,30 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $newrole = new Role();
+
         $validator = Validator::make(
             $request->all(),[
-                'name_role' => 'required'
+                'role_name' => 'required'
             ]
-        );
-        $newrole = new Role();
-        $newrole->name_role = $request->name_role;
-        $newrole->save();
+            );
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        if($request->role_name == "admin" || $request->role_name == "user"||$request->role_name == "artist"){   
+            $newrole->name_role = $request->role_name;
+            $newrole->save();
+            return response()->json([
+                'respuesta' => 'se ha creado un nuevo rol',
+                'id' => $newrole->id_role,
+            ], 201);
+        }
         return response()->json([
-            'respuesta' => 'se ha creado un nuevo rol',
-            'id' => $newrole->id_role,
-        ], 201);
+            "respuesta" => 'rol invalido, debe ser admin, user o artist'
+        ]);
+
+        
     }
 
     /**

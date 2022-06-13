@@ -28,6 +28,7 @@ Route::post('/permission/create', 'App\Http\Controllers\PermissionController@sto
 
 Route::get('/users_users', 'App\Http\Controllers\User_userController@index');
 Route::get('/user_user/{id}', 'App\Http\Controllers\User_userController@show');
+Route::post('/user_user/create', 'App\Http\Controllers\User_userController@store');
 
 Route::get('/users_roles', 'App\Http\Controllers\User_roleController@index');
 Route::get('/user_role/{id}', 'App\Http\Controllers\User_roleController@show');

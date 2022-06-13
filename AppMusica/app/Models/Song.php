@@ -25,4 +25,12 @@ class Song extends Model
     public function song_server(){
         return $this->hasMany('App\Models\Song_server');
     }
+
+    public function like(){
+        return $this->hasMany('App\Models\Like');
+    }
+
+    public function song_playlist(){
+        return $this->hasMany('App\Models\Song_playlist');
+    }
 }

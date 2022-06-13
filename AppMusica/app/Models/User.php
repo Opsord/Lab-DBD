@@ -25,4 +25,12 @@ class User extends Model
     public function subscription(){
         return $this->belongsTo('App\Models\Subscription');
     }
+
+    public function like(){
+        return $this->hasMany('App\Models\Like');
+    }
+
+    public function user_playlist(){
+        return $this->hasMany('App\Models\User_playlist');
+    }
 }

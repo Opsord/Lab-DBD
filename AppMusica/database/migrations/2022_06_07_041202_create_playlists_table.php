@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->id('id_playlist');
             $table->string('name_playlist');
-            $table->string('state');
+            $table->boolean('public_state');
             
             $table->timestamps();
         });

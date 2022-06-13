@@ -20,10 +20,21 @@ Route::get('/', function () {
 #Ijurra
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
+Route::post('/user/create', 'App\Http\Controllers\UserController@store');
+
 Route::get('/permission/{id}', 'App\Http\Controllers\PermissionController@show');
 Route::get('/permissions', 'App\Http\Controllers\PermissionController@index');
-Route::post('/user/create', 'App\Http\Controllers\UserController@store');
+
 Route::post('/permission/create', 'App\Http\Controllers\PermissionController@store');
+
+Route::get('/users_users', 'App\Http\Controllers\User_userController@index');
+Route::get('/user_user/{id}', 'App\Http\Controllers\User_userController@show');
+
+Route::get('/users_roles', 'App\Http\Controllers\User_roleController@index');
+Route::get('/user_role/{id}', 'App\Http\Controllers\User_roleController@show');
+
+Route::get('/roles', 'App\Http\Controllers\RoleController@index');
+Route::get('/role/{id}', 'App\Http\Controllers\RoleController@show');
 
 #Zelaya:
 Route::get('/distributors', 'App\Http\Controllers\DistributorController@index');

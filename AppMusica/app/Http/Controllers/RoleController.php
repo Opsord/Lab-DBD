@@ -13,7 +13,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+        if ($roles->isEmpty()){
+            return response()->json([]);
+        }
+        return response($roles, 200);
     }
 
     /**
@@ -45,7 +49,11 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::find($id);
+        if(empty($role)){
+            return response()->json([]);
+        }
+        return response($role, 200);
     }
 
     /**

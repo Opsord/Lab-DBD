@@ -13,7 +13,11 @@ class User_roleController extends Controller
      */
     public function index()
     {
-        //
+        $users_role = User_role::all();
+        if ($users_role->isEmpty()){
+            return response()->json([]);
+        }
+        return response($users_role, 200);
     }
 
     /**
@@ -45,7 +49,11 @@ class User_roleController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_role = User_role::find($id);
+        if(empty($user_role)){
+            return response()->json([]);
+        }
+        return response($user_role, 200);
     }
 
     /**

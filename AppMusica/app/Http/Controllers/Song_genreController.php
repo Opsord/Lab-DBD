@@ -97,6 +97,29 @@ class Song_genreController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validador = Validator::make(
+            $request->all(),[
+                'song' => 'required',
+                'genre' => 'required',
+            ]
+        );
+
+        if ($validador->fails()) {
+            return response()->json(['message' => errors()], 400);
+        }
+
+        $song_genre = Song_genre::find($id);
+        if (!$song_genre) {
+            return response()->json(['message' => 'Song_genre not found'], 404);
+        }
+
+        $song_genre->song = $request->song;
+        $song_genre->genre = $request->genre;
+        $song_genre->save();
+
+        return response()->json([
+            'respuesta' => 'interseccion song_genre actualizada',
+        ]);
     }
 
     /**
@@ -108,5 +131,15 @@ class Song_genreController extends Controller
     public function destroy($id)
     {
         //
+        $song_genre = Song_genre::find($id);
+        if (!$song_genre) {
+            return response()->json(['message' => 'Song_genre not found'], 404);
+        }
+
+        $song_genre->delete();
+
+        return response()->json([
+            'respuesta' => 'interseccion song_genre eliminada',
+        ]);
     }
 }

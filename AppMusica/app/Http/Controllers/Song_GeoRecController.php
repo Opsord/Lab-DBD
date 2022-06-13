@@ -98,6 +98,29 @@ class Song_GeoRecController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validador = Validator::make(
+            $request->all(),[
+                'song' => 'required',
+                'restricted_to' => 'required',
+            ]
+        );
+
+        if ($validador->fails()) {
+            return response()->json(['error' => $validador->errors()], 400);
+        }
+
+        $song_georec = Song_GeoRec::find($id);
+        if (!$song_georec) {
+            return response()->json(['message' => 'Song_georec not found'], 404);
+        }
+
+        $song_georec->song = $request->song;
+        $song_georec->restricted_to = $request->restricted_to;
+        $song_georec->save();
+
+        return response()->json([
+            'respuesta' => 'interseccion song_georec actualizado',
+        ]);
     }
 
     /**

@@ -100,6 +100,32 @@ class AlbumController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_album' => 'required',
+                'release_date' => 'required',
+                'distributed_by' => 'required',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()], 400);
+        }
+
+        $album = Album::find($id);
+        if (!$album) {
+            return response()->json(['message' => 'Album not found'], 404);
+        }
+
+        $album->name_album = $request->name_album;
+        $album->release_date = $request->release_date;
+        $album->distributed_by = $request->distributed_by;
+        $album->save();
+
+        return response()->json([
+            'respuesta' => 'album actualizado',
+            'id' => $album->id_album,
+        ], 200);
     }
 
     /**
@@ -111,5 +137,17 @@ class AlbumController extends Controller
     public function destroy($id)
     {
         //
+        $album = Album::find($id);
+        if (!$album) {
+            return response()->json(['message' => 'Album not found'], 404);
+        }
+
+        $album->delete();
+        
+        return response()->json([
+            'respuesta' => 'album eliminado',
+            'id' => $album->id_album,
+        ], 200);
+
     }
 }

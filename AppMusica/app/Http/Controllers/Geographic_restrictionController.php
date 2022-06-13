@@ -95,6 +95,28 @@ class Geographic_restrictionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_geographic_restriction' => 'required',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        $geographic_restriction = Geographic_restriction::find($id);
+        if (!$geographic_restriction) {
+            return response()->json(['message' => 'Geographic_restriction not found'], 404);
+        }
+
+        $geographic_restriction->name_geographic_restriction = $request->name_geographic_restriction;
+        $geographic_restriction->save();
+
+        return response()->json([
+            'respuesta' => 'restriccion geografica actualizada',
+            'id' => $geographic_restriction->id_geographic_restriction,
+        ], 200);
     }
 
     /**
@@ -106,5 +128,16 @@ class Geographic_restrictionController extends Controller
     public function destroy($id)
     {
         //
+        $geographic_restriction = Geographic_restriction::find($id);
+        if (!$geographic_restriction) {
+            return response()->json(['message' => 'Geographic_restriction not found'], 404);
+        }
+
+        $geographic_restriction->delete();
+
+        return response()->json([
+            'respuesta' => 'restriccion geografica eliminada',
+            'id' => $geographic_restriction->id_geographic_restriction,
+        ], 200);
     }
 }

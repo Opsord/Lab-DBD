@@ -49,6 +49,10 @@ class DistributorController extends Controller
             ]
         );
 
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()], 400);
+        }
+
         $newdistributor = new Distributor();
         $newdistributor->name_distributor = $request->name_distributor;
         $newdistributor->save();
@@ -96,6 +100,27 @@ class DistributorController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_distributor' => 'required',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['message' => $validator->errors()], 400);
+        }
+
+        $distributor = Distributor::find($id);
+        if (!$distributor) {
+            return response()->json(['message' => 'Distributor not found'], 404);
+        }
+
+        $distributor->name_distributor = $request->name_distributor;
+        $distributor->save();
+
+        return response()->json([
+            'respuesta' => 'distribuidor actualizado',
+            'id' => $distributor->id_distributor, 200]);
     }
 
     /**
@@ -107,5 +132,16 @@ class DistributorController extends Controller
     public function destroy($id)
     {
         //
+        $distributor = Distributor::find($id);
+        if (!$distributor) {
+            return response()->json(['message' => 'Distributor not found'], 404);
+        }
+
+        $distributor->delete();
+
+        return response()->json([
+            'respuesta' => 'distribuidor eliminado',
+            'id' => $distributor->id_distributor,
+        ], 200);
     }
 }

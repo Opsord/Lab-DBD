@@ -96,6 +96,28 @@ class GenreController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_genre' => 'required',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Error validating request'], 400);
+        }
+
+        $genre = Genre::find($id);
+        if (!$genre) {
+            return response()->json(['message' => errors()], 404);
+        }
+
+        $genre->name_genre = $request->name_genre;
+        $genre->save();
+
+        return response()->json([
+            'respuesta' => 'genero actualizado',
+            'id' => $genre->id_genre,
+        ], 200);
     }
 
     /**
@@ -107,5 +129,16 @@ class GenreController extends Controller
     public function destroy($id)
     {
         //
+        $genre = Genre::find($id);
+        if (!$genre) {
+            return response()->json(['message' => 'Genre not found'], 404);
+        }
+
+        $genre->delete();
+
+        return response()->json([
+            'respuesta' => 'genero eliminado',
+            'id' => $genre->id_genre,
+        ], 200);
     }
 }

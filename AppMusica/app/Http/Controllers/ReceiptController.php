@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Receipt;
+use App\Models\Payment_method;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReceiptController extends Controller
 {
@@ -39,22 +42,35 @@ class ReceiptController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newReceipt = new Receipt();
+        
         $validator = Validator::make(
             $request->all(),[
-                'amount' => 'required'
+                'amount' => 'required',
+                'used_method' => 'required|integer'
             ]
             
         );
-        $newReceipt = new Receipt();
-        $newReceipt->amount = $request->amount;
-        //como se hace con las llaves foraneas? asdada
 
-        $newReceipt->save();
-        return response()->json([
-            'respuesta' => 'se ha creado una nueva boleta de pago',
-            'id' => $newReceipt->id_receipt,
-        ], 201);
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+        
+        $PayMeth = Payment_method::find($request->used_method);
+
+        if($PayMeth == NULL){
+            return response()->json([
+                'respuesta' => 'id de metodo de pago invalido'
+            ]);
+        }else{
+            $newReceipt->amount = $request->amount;
+            $newReceipt->used_method = $request->used_method;
+            $newReceipt->save();
+            return response()->json([
+                'respuesta' => 'se ha creado una nueva boleta de pago',
+                'id' => $newReceipt->id_receipt,
+            ], 201);
+        }
     }
 
     /**
@@ -94,6 +110,41 @@ class ReceiptController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $receipt = Receipt::find($id);
+        
+        $validator = Validator::make(
+            $request->all(),[
+                'amount' => 'required',
+                'used_method' => 'required|integer'
+            ]
+            
+        );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+        
+        if($receipt == NULL){
+            return response()->json([
+                'respuesta' => 'id de la boleta invalido'
+            ]);
+        }
+
+        $PayMeth = Payment_method::find($request->used_method);
+
+        if($PayMeth == NULL){
+            return response()->json([
+                'respuesta' => 'id de metodo de pago invalido'
+            ]);
+        }else{
+            $receipt->amount = $request->amount;
+            $receipt->used_method = $request->used_method;
+            $receipt->save();
+            return response()->json([
+                'respuesta' => 'se ha actualizado la boleta de pago',
+                'id' => $receipt->id_receipt,
+            ], 200);
+        }
     }
 
     /**

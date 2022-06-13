@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Server;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ServerController extends Controller
 {
@@ -46,6 +48,11 @@ class ServerController extends Controller
             ]
             
         );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
         $newserver = new Server();
         $newserver->name_server = $request->name;
         $newserver->ubicacion = $request->ubicacion;
@@ -93,6 +100,33 @@ class ServerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $server = Server::find($id);
+
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required',
+                'ubicacion' => 'required'
+            ]
+            
+        );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+        
+        if($server == NULL){
+            return response()->json([
+                'respuesta' => 'id de servidor invalido'
+            ]);
+        }
+
+        $server->name_server = $request->name;
+        $server->ubicacion = $request->ubicacion;
+        $server->save();
+        return response()->json([
+            'respuesta' => 'se han actualizado los datos del servidor',
+            'id' => $server->id_server,
+        ], 200);
     }
 
     /**

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment_method;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class Payment_methodController extends Controller
 {
@@ -50,6 +52,11 @@ class Payment_methodController extends Controller
             ]
             
         );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
         $newPayMeth = new Payment_method();
         $newPayMeth->card_alias = $request->alias;
         $newPayMeth->card_holder = $request->holder;
@@ -100,6 +107,40 @@ class Payment_methodController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $PayMeth = Payment_method::find($id);
+
+        $validator = Validator::make(
+            $request->all(),[
+                'alias' => 'required',
+                'holder' => 'required',
+                'card_number' => 'required',
+                'date' => 'required',
+                'security_code' => 'required'
+            ]
+            
+        );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+        
+        if($PayMeth == NULL){
+            return response()->json([
+                'respuesta' => 'id del metodo de pago es invalido'
+            ]);
+        }
+
+        $PayMeth->card_alias = $request->alias;
+        $PayMeth->card_holder = $request->holder;
+        $PayMeth->card_number = $request->number;
+        $PayMeth->expiration_date = $request->date;
+        $PayMeth->security_code = $request->security_code;
+        $PayMeth->save();
+        return response()->json([
+            'respuesta' => 'se ha actualizado el metodo de pago',
+            'id' => $PayMeth->id_method,
+        ], 200);
     }
 
     /**

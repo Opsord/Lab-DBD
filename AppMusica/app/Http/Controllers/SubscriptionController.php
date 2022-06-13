@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subscription;
+use App\Models\Payment_method;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SubscriptionController extends Controller
 {
@@ -40,25 +43,40 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         //
+
+        $newSubs = new Payment_method();
+
         $validator = Validator::make(
             $request->all(),[
                 'state' => 'required',
                 'start_date' => 'required',
-                'end_date' => 'required'
+                'end_date' => 'required',
+                'payment_method' => 'required|integer'
             ]
             
         );
-        $newSubs = new Payment_method();
-        $newSubs->state = $request->state;
-        $newSubs->start_date = $request->start_date;
-        $newSubs->end_date = $request->end_date;
-        //como se hace con las llaves foraneas? asdada
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        $payMeth = Payment_method::find($request->payment_method);
+        if($payMeth == NULL){
+            return response()->json([
+                'respuesta' => 'id del metodo de pago invalido'
+            ]);
+        }else{
         
-        $newSubs->save();
-        return response()->json([
-            'respuesta' => 'se ha creado una nueva subscripción',
-            'id' => $newSubs->id_subscription,
-        ], 201);
+            $newSubs->state = $request->state;
+            $newSubs->start_date = $request->start_date;
+            $newSubs->end_date = $request->end_date;
+            $newSubs->payment_method = $request->payment_method;
+            $newSubs->save();
+            return response()->json([
+                'respuesta' => 'se ha creado una nueva subscripción',
+                'id' => $newSubs->id_subscription,
+            ], 201);
+        }
     }
 
     /**
@@ -98,6 +116,45 @@ class SubscriptionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $subscription = Payment_method::find($id);
+
+        $validator = Validator::make(
+            $request->all(),[
+                'state' => 'required',
+                'start_date' => 'required',
+                'end_date' => 'required',
+                'payment_method' => 'required|integer'
+            ]
+            
+        );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        if($subscription == NULL){
+            return response()->json([
+                'respuesta' => 'id de subscripción invalido'
+            ]);
+        }
+
+        $payMeth = Payment_method::find($request->payment_method);
+        if($payMeth == NULL){
+            return response()->json([
+                'respuesta' => 'id del metodo de pago invalido'
+            ]);
+        }else{
+        
+            $subscription->state = $request->state;
+            $subscription->start_date = $request->start_date;
+            $subscription->end_date = $request->end_date;
+            $subscription->payment_method = $request->payment_method;
+            $subscription->save();
+            return response()->json([
+                'respuesta' => 'se ha actualizado una nueva subscripción',
+                'id' => $subscription->id_subscription,
+            ], 200);
+        }
     }
 
     /**

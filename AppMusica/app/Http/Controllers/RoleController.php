@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Role;
 class RoleController extends Controller
 {
@@ -38,7 +39,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),[
+                'name_role' => 'required'
+            ]
+        );
+        $newrole = new Role();
+        $newrole->name_role = $request->name_role;
+        $newrole->save();
+        return response()->json([
+            'respuesta' => 'se ha creado un nuevo rol',
+            'id' => $newrole->id_role,
+        ], 201);
     }
 
     /**

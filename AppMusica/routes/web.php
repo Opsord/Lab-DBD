@@ -24,7 +24,6 @@ Route::post('/user/create', 'App\Http\Controllers\UserController@store');
 
 Route::get('/permission/{id}', 'App\Http\Controllers\PermissionController@show');
 Route::get('/permissions', 'App\Http\Controllers\PermissionController@index');
-
 Route::post('/permission/create', 'App\Http\Controllers\PermissionController@store');
 
 Route::get('/users_users', 'App\Http\Controllers\User_userController@index');
@@ -35,6 +34,7 @@ Route::get('/user_role/{id}', 'App\Http\Controllers\User_roleController@show');
 
 Route::get('/roles', 'App\Http\Controllers\RoleController@index');
 Route::get('/role/{id}', 'App\Http\Controllers\RoleController@show');
+Route::post('/role/create', 'App\Http\Controllers\RoleController@store');
 
 #Zelaya:
 Route::get('/distributors', 'App\Http\Controllers\DistributorController@index');

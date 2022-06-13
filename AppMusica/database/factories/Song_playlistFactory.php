@@ -17,7 +17,8 @@ class Song_playlistFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_song'=> Song::all()->random()->id_song,
+            'id_playlist'=> Playlist::all->random()->id_playlist
         ];
     }
 }

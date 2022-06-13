@@ -17,7 +17,8 @@ class LikeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_user'=> User::all()->random()->id_user,
+            'id_song'=> Song::all()->random()->id_song
         ];
     }
 }

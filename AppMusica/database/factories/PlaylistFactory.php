@@ -18,7 +18,7 @@ class PlaylistFactory extends Factory
     {
         return [
             'name_playlist' => $this->faker->word,
-            'state' => $this->faker->word,
+            'public_state' => $this->faker->boolval
         ];
     }
 }

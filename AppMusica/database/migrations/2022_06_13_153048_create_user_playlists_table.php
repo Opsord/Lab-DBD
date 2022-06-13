@@ -14,11 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_playlists', function (Blueprint $table) {
+
             $table->id('id_user_playlist');
+
             $table->unsignedBigInteger('id_user')->nullable();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id_user')->on('users');
+
             $table->unsignedBigInteger('id_playlist')->nullable();
-            $table->foreign('id_playlist')->references('id')->on('playlists');
+            $table->foreign('id_playlist')->references('id_playlist')->on('playlists');
+
             $table->timestamps();
         });
     }

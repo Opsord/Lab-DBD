@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name_country');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,5 +31,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('geographic_restrictions');
+
+        $table->dropSoftDeletes();
     }
 };

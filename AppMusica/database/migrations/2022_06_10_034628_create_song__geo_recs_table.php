@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('restricted_to')->references('id_country')->on('geographic_restrictions');
             
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -35,5 +36,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('song__geo_recs');
+
+        $table->dropSoftDeletes();
     }
 };

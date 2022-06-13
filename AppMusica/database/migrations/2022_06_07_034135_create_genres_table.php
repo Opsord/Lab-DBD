@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name_genre');
             
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,5 +31,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('genres');
+
+        $table->dropSoftDeletes();
     }
 };

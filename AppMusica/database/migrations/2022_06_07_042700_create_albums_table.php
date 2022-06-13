@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('distributed_by')->references('id_distributor')->on('distributors');
             
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -34,5 +35,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('albums');
+
+        $table->dropSoftDeletes();
     }
 };

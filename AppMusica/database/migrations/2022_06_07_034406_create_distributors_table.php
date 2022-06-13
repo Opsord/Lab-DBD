@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('name_distributor');
             
             $table->timestamps();
+            $table->softDeletes();
+            
         });
     }
 
@@ -30,5 +32,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('distributors');
+
+        $table->dropSoftDeletes();
     }
 };

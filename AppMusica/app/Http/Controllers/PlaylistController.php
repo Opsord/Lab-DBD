@@ -58,6 +58,16 @@ class PlaylistController extends Controller
         ], 201);
     }
 
+    public function archive()
+    {
+        //
+        $playlists = Playlist::onlyTrashed()->get();
+        if ($playlists->isEmpty()) {
+            return response()->json(['message' => 'No archived playlist found'], 404);
+        }
+        return response($playlists, 200);
+    }
+
     /**
      * Display the specified resource.
      *

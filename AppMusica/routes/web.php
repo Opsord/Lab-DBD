@@ -135,23 +135,27 @@ Route::delete('/user_delete/{id}', 'App\Http\Controllers\Song_serverController@d
 Route::get('/users', 'App\Http\Controllers\LikeController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\LikeController@show');
 Route::post('/user/create', 'App\Http\Controllers\LikeController@store');
+Route::get('/distributors/archive', 'App\Http\Controllers\LikeController@archive');
 Route::put('/user_update/{id}', 'App\Http\Controllers\LikeController@update');
 Route::delete('/user_delete/{id}', 'App\Http\Controllers\LikeController@destroy');
 
 Route::get('/users', 'App\Http\Controllers\PlaylistController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\PlaylistController@show');
 Route::post('/user/create', 'App\Http\Controllers\PlaylistController@store');
+Route::get('/distributors/archive', 'App\Http\Controllers\PlaylistController@archive');
 Route::put('/user_update/{id}', 'App\Http\Controllers\PlaylistController@update');
 Route::delete('/user_delete/{id}', 'App\Http\Controllers\PlaylistController@destroy');
 
 Route::get('/users', 'App\Http\Controllers\Song_playlistController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\Song_playlistController@show');
 Route::post('/user/create', 'App\Http\Controllers\Song_playlistController@store');
+Route::get('/distributors/archive', 'App\Http\Controllers\Song_playlistController@archive');
 Route::put('/user_update/{id}', 'App\Http\Controllers\Song_playlistController@update');
 Route::delete('/user_delete/{id}', 'App\Http\Controllers\Song_playlistController@destroy');
 
 Route::get('/users', 'App\Http\Controllers\User_playlistController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\User_playlistController@show');
 Route::post('/user/create', 'App\Http\Controllers\User_playlistController@store');
+Route::get('/distributors/archive', 'App\Http\Controllers\User_playlistController@archive');
 Route::put('/user_update/{id}', 'App\Http\Controllers\User_playlistController@update');
 Route::delete('/user_delete/{id}', 'App\Http\Controllers\User_playlistController@destroy');

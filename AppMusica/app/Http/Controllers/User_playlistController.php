@@ -78,6 +78,16 @@ class User_playlistController extends Controller
         }
     }
 
+    public function archive()
+    {
+        //
+        $users_playlist = User_playlist::onlyTrashed()->get();
+        if ($users_playlist->isEmpty()) {
+            return response()->json(['message' => 'No archived user_playlist found'], 404);
+        }
+        return response($users_playlist, 200);
+    }
+
     /**
      * Display the specified resource.
      *

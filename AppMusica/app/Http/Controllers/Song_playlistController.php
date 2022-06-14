@@ -75,6 +75,16 @@ class Song_playlistController extends Controller
         }
     }
 
+    public function archive()
+    {
+        //
+        $songs_playlist = Song_playlist::onlyTrashed()->get();
+        if ($songs_playlist->isEmpty()) {
+            return response()->json(['message' => 'No archived song_playlist found'], 404);
+        }
+        return response($songs_playlist, 200);
+    }
+
     /**
      * Display the specified resource.
      *

@@ -76,6 +76,16 @@ class LikeController extends Controller
 
     }
 
+    public function archive()
+    {
+        //
+        $likes = Like::onlyTrashed()->get();
+        if ($likes->isEmpty()) {
+            return response()->json(['message' => 'No archived like found'], 404);
+        }
+        return response($like, 200);
+    }
+
     /**
      * Display the specified resource.
      *

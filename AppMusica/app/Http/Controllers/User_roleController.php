@@ -153,6 +153,26 @@ class User_roleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user_role = User_role::find($id);
+        if (!$user_role) {
+            return response()->json(['message' => 'User_role not found'], 404);
+        }
+
+        $user_role->delete();
+
+        return response() -> json([
+            'message' => 'User_role deleted',
+            'id ' => $user_role->id_user_role
+        ], 200);
+    }
+
+    public function archive()
+    {
+        
+        $user_role = User_role::onlyTrashed()->get();
+        if ($user_role->isEmpty()) {
+            return response()->json(['message' => 'No archived User_role found'], 404);
+        }
+        return response($user_role, 200);
     }
 }

@@ -137,6 +137,26 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permission = Permission::find($id);
+        if (!$permission) {
+            return response()->json(['message' => 'permission not found'], 404);
+        }
+
+        $permission->delete();
+
+        return response() -> json([
+            'message' => 'permission deleted',
+            'id ' => $permission->id_permission
+        ], 200);
+    }
+
+    public function archive()
+    {
+        
+        $permission = Permssion::onlyTrashed()->get();
+        if ($permission->isEmpty()) {
+            return response()->json(['message' => 'No Permission found'], 404);
+        }
+        return response($permission, 200);
     }
 }

@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-#Ijurra
+
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
@@ -29,30 +29,39 @@ Route::delete('/user/delete/{id}', 'App\Http\Controllers\UserController@destroy'
 Route::get('/permission/{id}', 'App\Http\Controllers\PermissionController@show');
 Route::get('/permissions', 'App\Http\Controllers\PermissionController@index');
 Route::post('/permission/create', 'App\Http\Controllers\PermissionController@store');
-Route::put('/permission_update/{id}', 'App\Http\Controllers\PermissionController@update');
+Route::get('/permissions/archive', 'App\Http\Controllers\PermissionController@archive');
+Route::put('/permission/update/{id}', 'App\Http\Controllers\PermissionController@update');
+Route::delete('/permission/delete/{id}', 'App\Http\Controllers\PermissionController@destroy');
 
 Route::get('/users_users', 'App\Http\Controllers\User_userController@index');
 Route::get('/user_user/{id}', 'App\Http\Controllers\User_userController@show');
 Route::post('/user_user/create', 'App\Http\Controllers\User_userController@store');
-Route::put('/user_user_update/{id}', 'App\Http\Controllers\User_userController@update');
+Route::get('/user_user/archive', 'App\Http\Controllers\User_userController@archive');
+Route::put('/user_user/update/{id}', 'App\Http\Controllers\User_userController@update');
+Route::delete('/user_user/delete/{id}', 'App\Http\Controllers\User_userController@destroy');
 
 Route::get('/users_roles', 'App\Http\Controllers\User_roleController@index');
 Route::get('/user_role/{id}', 'App\Http\Controllers\User_roleController@show');
 Route::post('/user_role/create', 'App\Http\Controllers\User_roleController@store');
-Route::put('/user_role_update/{id}', 'App\Http\Controllers\User_roleController@update');
+Route::get('/user_role/archive', 'App\Http\Controllers\User_roleController@archive');
+Route::put('/user_role/update/{id}', 'App\Http\Controllers\User_roleController@update');
+Route::delete('/user_role/delete/{id}', 'App\Http\Controllers\User_roleController@destroy');
 
 Route::get('/roles', 'App\Http\Controllers\RoleController@index');
 Route::get('/role/{id}', 'App\Http\Controllers\RoleController@show');
 Route::post('/role/create', 'App\Http\Controllers\RoleController@store');
-Route::put('/role_update/{id}', 'App\Http\Controllers\RoleController@update');
-
+Route::get('/role/archive', 'App\Http\Controllers\RoleController@archive');
+Route::put('/role/update/{id}', 'App\Http\Controllers\RoleController@update');
+Route::delete('/user/delete/{id}', 'App\Http\Controllers\RoleController@destroy');
 
 Route::get('/roles_permissions', 'App\Http\Controllers\Role_permissionController@index');
 Route::get('/role_permission/{id}', 'App\Http\Controllers\Role_permissionController@show');
 Route::post('/role_permission/create', 'App\Http\Controllers\Role_permissionController@store');
-Route::put('/role_permission_update/{id}', 'App\Http\Controllers\Role_permissionController@update');
+Route::get('/role_permission/archive', 'App\Http\Controllers\Role_permissionController@archive');
+Route::put('/role_permission/update/{id}', 'App\Http\Controllers\Role_permissionController@update');
+Route::delete('/role_permission/delete/{id}', 'App\Http\Controllers\Role_permissionController@destroy');
 
-#Zelaya:
+
 Route::get('/distributors', 'App\Http\Controllers\DistributorController@index');
 Route::get('/distributor/{id}', 'App\Http\Controllers\DistributorController@show');
 Route::post('/distributor/create', 'App\Http\Controllers\DistributorController@store');
@@ -102,7 +111,7 @@ Route::get('/song_georecs/archive', 'App\Http\Controllers\Song_georecController@
 Route::put('/song_georec/update/{id}', 'App\Http\Controllers\Song_georecController@update');
 Route::delete('/song_georec/delete/{id}', 'App\Http\Controllers\Song_georecController@destroy');
 
-#Valero
+
 Route::get('/subscriptions', 'App\Http\Controllers\SubscriptionController@index');
 Route::get('/subscription/{id}', 'App\Http\Controllers\SubscriptionController@show');
 Route::post('/subscription/create', 'App\Http\Controllers\SubscriptionController@store');
@@ -138,7 +147,7 @@ Route::get('/song_servers/archive', 'App\Http\Controllers\Song_serverController@
 Route::put('/song_server/update/{id}', 'App\Http\Controllers\Song_serverController@update');
 Route::delete('/song_server/delete/{id}', 'App\Http\Controllers\Song_serverController@destroy');
 
-#Haristoy
+
 Route::get('/likes', 'App\Http\Controllers\LikeController@index');
 Route::get('/like/{id}', 'App\Http\Controllers\LikeController@show');
 Route::post('/like/create', 'App\Http\Controllers\LikeController@store');

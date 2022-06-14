@@ -166,8 +166,31 @@ class User_userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function archive()
+    {
+        
+        $user_user = User_user::onlyTrashed()->get();
+        if ($user_user->isEmpty()) {
+            return response()->json(['message' => 'No archived User_user found'], 404);
+        }
+        return response($user_user, 200);
+    }
+    
     public function destroy($id)
     {
-        //
+        $user_user = User_user::find($id);
+        if (!$user_user) {
+            return response()->json(['message' => 'User_user not found'], 404);
+        }
+
+        $user_user->delete();
+
+        return response() -> json([
+            'message' => 'User_user deleted',
+            'id ' => $user_user->id_user_user
+        ], 200);
     }
+
+    
 }

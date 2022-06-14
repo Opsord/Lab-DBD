@@ -134,6 +134,26 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+        if (!$role) {
+            return response()->json(['message' => 'Role not found'], 404);
+        }
+
+        $role->delete();
+
+        return response() -> json([
+            'message' => 'Role deleted',
+            'id ' => $role->id_role
+        ], 200);
+    }
+
+    public function archive()
+    {
+        
+        $role = Role::onlyTrashed()->get();
+        if ($role->isEmpty()) {
+            return response()->json(['message' => 'No archived Role found'], 404);
+        }
+        return response($role, 200);
     }
 }

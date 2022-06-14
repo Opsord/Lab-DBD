@@ -151,6 +151,26 @@ class Role_permissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role_permission = Role_permission::find($id);
+        if (!$role_permission) {
+            return response()->json(['message' => 'role_permission not found'], 404);
+        }
+
+        $role_permission->delete();
+
+        return response() -> json([
+            'message' => 'Role_permission deleted',
+            'id ' => $role_permission->id_role_permission
+        ], 200);
+    }
+
+    public function archive()
+    {
+        
+        $role_permission = Role_permission::onlyTrashed()->get();
+        if ($role_permission->isEmpty()) {
+            return response()->json(['message' => 'No archived Role_permission found'], 404);
+        }
+        return response($role_permission, 200);
     }
 }

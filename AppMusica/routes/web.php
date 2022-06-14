@@ -103,40 +103,40 @@ Route::put('/song_georec/update/{id}', 'App\Http\Controllers\Song_georecControll
 Route::delete('/song_georec/delete/{id}', 'App\Http\Controllers\Song_georecController@destroy');
 
 #Valero
-Route::get('/users', 'App\Http\Controllers\SubscriptionController@index');
-Route::get('/user/{id}', 'App\Http\Controllers\SubscriptionController@show');
-Route::post('/user/create', 'App\Http\Controllers\SubscriptionController@store');
-Route::get('/distributors/archive', 'App\Http\Controllers\SubscriptionController@archive');
-Route::put('/user_update/{id}', 'App\Http\Controllers\SubscriptionController@update');
-Route::delete('/user_delete/{id}', 'App\Http\Controllers\SubscriptionController@destroy');
+Route::get('/subscriptions', 'App\Http\Controllers\SubscriptionController@index');
+Route::get('/subscription/{id}', 'App\Http\Controllers\SubscriptionController@show');
+Route::post('/subscription/create', 'App\Http\Controllers\SubscriptionController@store');
+Route::get('/subscription/archive', 'App\Http\Controllers\SubscriptionController@archive');
+Route::put('/subscription/update/{id}', 'App\Http\Controllers\SubscriptionController@update');
+Route::delete('/subscription/delete/{id}', 'App\Http\Controllers\SubscriptionController@destroy');
 
-Route::get('/users', 'App\Http\Controllers\Payment_methodController@index');
-Route::get('/user/{id}', 'App\Http\Controllers\Payment_methodController@show');
-Route::post('/user/create', 'App\Http\Controllers\Payment_methodController@store');
-Route::get('/distributors/archive', 'App\Http\Controllers\Payment_methodController@archive');
-Route::put('/user_update/{id}', 'App\Http\Controllers\Payment_methodController@update');
-Route::delete('/user_delete/{id}', 'App\Http\Controllers\Payment_methodController@destroy');
+Route::get('/payment_methods', 'App\Http\Controllers\Payment_methodController@index');
+Route::get('/payment_methods/{id}', 'App\Http\Controllers\Payment_methodController@show');
+Route::post('/payment_methods/create', 'App\Http\Controllers\Payment_methodController@store');
+Route::get('/payment_methods/archive', 'App\Http\Controllers\Payment_methodController@archive');
+Route::put('/payment_methods/update/{id}', 'App\Http\Controllers\Payment_methodController@update');
+Route::delete('/payment_methods/delete/{id}', 'App\Http\Controllers\Payment_methodController@destroy');
 
-Route::get('/users', 'App\Http\Controllers\ReceiptController@index');
-Route::get('/user/{id}', 'App\Http\Controllers\ReceiptController@show');
-Route::post('/user/create', 'App\Http\Controllers\ReceiptController@store');
-Route::get('/distributors/archive', 'App\Http\Controllers\ReceiptController@archive');
-Route::put('/user_update/{id}', 'App\Http\Controllers\ReceiptController@update');
-Route::delete('/user_delete/{id}', 'App\Http\Controllers\ReceiptController@destroy');
+Route::get('/receipts', 'App\Http\Controllers\ReceiptController@index');
+Route::get('/receipts/{id}', 'App\Http\Controllers\ReceiptController@show');
+Route::post('/receipts/create', 'App\Http\Controllers\ReceiptController@store');
+Route::get('/receipts/archive', 'App\Http\Controllers\ReceiptController@archive');
+Route::put('/receipts/update/{id}', 'App\Http\Controllers\ReceiptController@update');
+Route::delete('/receipts/delete/{id}', 'App\Http\Controllers\ReceiptController@destroy');
 
-Route::get('/users', 'App\Http\Controllers\ServerController@index');
-Route::get('/user/{id}', 'App\Http\Controllers\ServerController@show');
-Route::post('/user/create', 'App\Http\Controllers\ServerController@store');
-Route::get('/distributors/archive', 'App\Http\Controllers\ServerController@archive');
-Route::put('/user_update/{id}', 'App\Http\Controllers\ServerController@update');
-Route::delete('/user_delete/{id}', 'App\Http\Controllers\ServerController@destroy');
+Route::get('/servers', 'App\Http\Controllers\ServerController@index');
+Route::get('/server/{id}', 'App\Http\Controllers\ServerController@show');
+Route::post('/server/create', 'App\Http\Controllers\ServerController@store');
+Route::get('/server/archive', 'App\Http\Controllers\ServerController@archive');
+Route::put('/server/update/{id}', 'App\Http\Controllers\ServerController@update');
+Route::delete('/server/delete/{id}', 'App\Http\Controllers\ServerController@destroy');
 
-Route::get('/users', 'App\Http\Controllers\Song_serverController@index');
-Route::get('/user/{id}', 'App\Http\Controllers\Song_serverController@show');
-Route::post('/user/create', 'App\Http\Controllers\Song_serverController@store');
-Route::get('/distributors/archive', 'App\Http\Controllers\Song_serverController@archive');
-Route::put('/user_update/{id}', 'App\Http\Controllers\Song_serverController@update');
-Route::delete('/user_delete/{id}', 'App\Http\Controllers\Song_serverController@destroy');
+Route::get('/song_servers', 'App\Http\Controllers\Song_serverController@index');
+Route::get('/song_server/{id}', 'App\Http\Controllers\Song_serverController@show');
+Route::post('/song_server/create', 'App\Http\Controllers\Song_serverController@store');
+Route::get('/song_server/archive', 'App\Http\Controllers\Song_serverController@archive');
+Route::put('/song_server/update/{id}', 'App\Http\Controllers\Song_serverController@update');
+Route::delete('/song_server/delete/{id}', 'App\Http\Controllers\Song_serverController@destroy');
 
 #Haristoy
 Route::get('/users', 'App\Http\Controllers\LikeController@index');

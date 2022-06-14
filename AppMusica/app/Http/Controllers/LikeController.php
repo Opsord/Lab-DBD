@@ -14,6 +14,12 @@ class LikeController extends Controller
     public function index()
     {
         //
+        $likes = Like::all();
+        if($likes->isEmpty()){
+            return response()->json(['message'=>'No likes found'], 404);
+        }
+        return response($likes, 200);
+
     }
 
     /**
@@ -35,6 +41,39 @@ class LikeController extends Controller
     public function store(Request $request)
     {
         //
+        $newLike = new Like();
+
+        $validator = Validator::make(
+            $request->all(),[
+                'id_song' => 'required|integer',
+                'id_user' => 'required|integer'
+            ]
+        );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        $Song = Song::find($request->song);
+        $User = User::find($request->user);
+        if($Song == NULL){
+           return response()->json([
+                'respuesta' => 'id de la canción invalido' 
+           ]);
+        }else if($User == NULL){
+            return response()->json([
+                'respuesta' => 'id del usuario invalido'
+            ]);
+        }else{
+            $newLike->id_song = $request->id_song;
+            $newLike->id_user = $request->id_user;
+            $newLike->save();
+            return repose()->json([
+                'respuesta' => 'Se ha creado un like',
+                'id' => $newLike-> id_like,
+            ], 201);
+        }
+
     }
 
     /**
@@ -46,6 +85,11 @@ class LikeController extends Controller
     public function show($id)
     {
         //
+        $like = Like::find($id);
+        if(empty($like)){
+            return response()->json([]);
+        }
+        return response($like, 200);
     }
 
     /**
@@ -69,6 +113,42 @@ class LikeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $like = Like::find($id);
+        $validator = Validator::make(
+            $request->all(),[
+                'id_song' => 'required|integer',
+                'id_user' => 'required|integer'
+            ]
+        );
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        if($like == NULL){
+            return response()->json([
+                'respuesta' => 'id de like invalido'
+            ]);
+        }
+
+        $song = Song::find($request->id_song);
+        $user = User::find($request->id_user);
+        if($song == NULL){
+            return response()->json([
+                'respuesta' => 'id de canción invalido'
+            ]);
+        }else if($user == NULL){
+            return response()->json([
+                'respuesta' => 'id de usuario invalido'
+            ]);
+        }
+
+        $like->id_song = $request->id_song;
+        $like->id_user = $request->id_user;
+        $like->save();
+        return response()->json([
+            'respuesta' => 'se ha actualizado like',
+            'id' => $like->id_like,
+        ], 200);
     }
 
     /**

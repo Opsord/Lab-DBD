@@ -130,3 +130,28 @@ Route::get('/user/{id}', 'App\Http\Controllers\Song_serverController@show');
 Route::post('/user/create', 'App\Http\Controllers\Song_serverController@store');
 Route::put('/user_update/{id}', 'App\Http\Controllers\Song_serverController@update');
 Route::delete('/user_delete/{id}', 'App\Http\Controllers\Song_serverController@destroy');
+
+#Haristoy
+Route::get('/users', 'App\Http\Controllers\LikeController@index');
+Route::get('/user/{id}', 'App\Http\Controllers\LikeController@show');
+Route::post('/user/create', 'App\Http\Controllers\LikeController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\LikeController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\LikeController@destroy');
+
+Route::get('/users', 'App\Http\Controllers\PlaylistController@index');
+Route::get('/user/{id}', 'App\Http\Controllers\PlaylistController@show');
+Route::post('/user/create', 'App\Http\Controllers\PlaylistController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\PlaylistController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\PlaylistController@destroy');
+
+Route::get('/users', 'App\Http\Controllers\Song_playlistController@index');
+Route::get('/user/{id}', 'App\Http\Controllers\Song_playlistController@show');
+Route::post('/user/create', 'App\Http\Controllers\Song_playlistController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\Song_playlistController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\Song_playlistController@destroy');
+
+Route::get('/users', 'App\Http\Controllers\User_playlistController@index');
+Route::get('/user/{id}', 'App\Http\Controllers\User_playlistController@show');
+Route::post('/user/create', 'App\Http\Controllers\User_playlistController@store');
+Route::put('/user_update/{id}', 'App\Http\Controllers\User_playlistController@update');
+Route::delete('/user_delete/{id}', 'App\Http\Controllers\User_playlistController@destroy');

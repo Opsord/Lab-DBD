@@ -14,6 +14,11 @@ class PlaylistController extends Controller
     public function index()
     {
         //
+        $playlists  = Playlist::all();
+        if($playlist->isEmpty()){
+            return response()->json(['message'=>'No playlists  found'], 404);
+        }
+        return response($playlists, 200);
     }
 
     /**
@@ -35,6 +40,22 @@ class PlaylistController extends Controller
     public function store(Request $request)
     {
         //
+        $newPlaylist = new Playlist();
+
+        $validator = Validator::make(
+            $request->all(),[
+                'name_playlist' => 'required',
+                'public_state' => 'required',
+            ]
+        );
+
+        $newPlaylist->name_playlist = $require->name_playlist;
+        $newPlaylist->public_state = $require->public_state;
+        $newPlaylist->save();
+        return response()->json([
+            'respuesta' => 'Se creo una nueva Playlist',
+            'id' => $newPlaylist->id_playlist
+        ], 201);
     }
 
     /**
@@ -46,6 +67,11 @@ class PlaylistController extends Controller
     public function show($id)
     {
         //
+        $playlist = Playlist::find($id);
+        if(empty($playlist)){
+            return response()->json([]);
+        }
+        return response($playlist, 200);
     }
 
     /**
@@ -69,6 +95,30 @@ class PlaylistController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $playlist = Playlist::find($id);
+        $validator = Validator::make(
+            $request->all(),[
+                'name_playlist' => 'required',
+                'public_state' => 'required'
+            ]
+        );
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        if($playlist == NULL){
+            return response()->json([
+                'respuesta' => 'id de playlist invalido'
+            ]);
+        }
+
+        $playlist->name_playlist = $request->name_playlist;
+        $playlist->public_state = $request->public_state;
+        $user_playlist->save();
+        return response()->json([
+            'respuesta' => 'se ha actualizado playlist',
+            'id' => $playlist->id_playlist,
+        ], 200);
     }
 
     /**

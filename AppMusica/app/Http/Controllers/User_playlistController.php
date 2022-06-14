@@ -177,5 +177,18 @@ class User_playlistController extends Controller
     public function destroy($id)
     {
         //
+        $userPlay = User_playlist::find($id);
+        if(!$userPlay){
+            return response()->json([
+                'respuesta' => 'id de interseccion user_playlist invalido'
+            ], 404);
+        }
+
+        $userPlay->delete();
+
+        return response()->json([
+            'respuesta' => 'interseccion user_playlist eliminada',
+            'id' => $userPlay->id_user_playlist,
+        ], 200);
     }
 }

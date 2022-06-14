@@ -169,5 +169,18 @@ class Song_playlistController extends Controller
     public function destroy($id)
     {
         //
+        $songPlay = Song_playlist::find($id);
+        if(!$songPlay){
+            return response()->json([
+                'respuesta' => 'id de interseccion song_playlist invalido'
+            ], 404);
+        }
+
+        $songPlay->delete();
+
+        return response()->json([
+            'respuesta' => 'interseccion song_playlist eliminada',
+            'id' => $songPlay->id_song_playlist,
+        ], 200);
     }
 }

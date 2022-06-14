@@ -140,5 +140,18 @@ class PlaylistController extends Controller
     public function destroy($id)
     {
         //
+        $Playlist = Playlist::find($id);
+        if(!$Playlist){
+            return response()->json([
+                'respuesta' => 'id de playlist invalido'
+            ], 404);
+        }
+
+        $Playlist->delete();
+
+        return response()->json([
+            'respuesta' => 'playlist eliminada',
+            'id' => $Playlist->id_playlist,
+        ], 200);
     }
 }

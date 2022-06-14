@@ -106,7 +106,7 @@ Route::delete('/song_georec/delete/{id}', 'App\Http\Controllers\Song_georecContr
 Route::get('/subscriptions', 'App\Http\Controllers\SubscriptionController@index');
 Route::get('/subscription/{id}', 'App\Http\Controllers\SubscriptionController@show');
 Route::post('/subscription/create', 'App\Http\Controllers\SubscriptionController@store');
-Route::get('/subscription/archive', 'App\Http\Controllers\SubscriptionController@archive');
+Route::get('/subscriptions/archive', 'App\Http\Controllers\SubscriptionController@archive');
 Route::put('/subscription/update/{id}', 'App\Http\Controllers\SubscriptionController@update');
 Route::delete('/subscription/delete/{id}', 'App\Http\Controllers\SubscriptionController@destroy');
 
@@ -127,14 +127,14 @@ Route::delete('/receipts/delete/{id}', 'App\Http\Controllers\ReceiptController@d
 Route::get('/servers', 'App\Http\Controllers\ServerController@index');
 Route::get('/server/{id}', 'App\Http\Controllers\ServerController@show');
 Route::post('/server/create', 'App\Http\Controllers\ServerController@store');
-Route::get('/server/archive', 'App\Http\Controllers\ServerController@archive');
+Route::get('/servers/archive', 'App\Http\Controllers\ServerController@archive');
 Route::put('/server/update/{id}', 'App\Http\Controllers\ServerController@update');
 Route::delete('/server/delete/{id}', 'App\Http\Controllers\ServerController@destroy');
 
 Route::get('/song_servers', 'App\Http\Controllers\Song_serverController@index');
 Route::get('/song_server/{id}', 'App\Http\Controllers\Song_serverController@show');
 Route::post('/song_server/create', 'App\Http\Controllers\Song_serverController@store');
-Route::get('/song_server/archive', 'App\Http\Controllers\Song_serverController@archive');
+Route::get('/song_servers/archive', 'App\Http\Controllers\Song_serverController@archive');
 Route::put('/song_server/update/{id}', 'App\Http\Controllers\Song_serverController@update');
 Route::delete('/song_server/delete/{id}', 'App\Http\Controllers\Song_serverController@destroy');
 

@@ -79,6 +79,15 @@ class UserController extends Controller
         
     }
 
+
+    public function archive()
+    {
+        $users = User::onlyTrashed()->get();
+        if ($users->isEmpty()){
+            return response()->json(['message' => 'No archived users found'], 404);
+        }
+        return response($users, 200);
+    }
     /**
      * Display the specified resource.
      *
@@ -163,17 +172,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // $user = User::find($id);
-        // if($user == NULL){
-        //     return response()->json([
-        //         'respuesta' => 'id de usuario invalido'
-        //     ]);
-        // }
-        // //$user->delete();
-        
-        
-        // return response()->json([
-        //     'a' => $user_role->id_user_role
-        // ], 200);
-    }
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $user->delete();
+
+        return response() -> json([
+            'message' => 'User deleted',
+            'id ' => $user->id_user
+        ], 200);
+       }
 }

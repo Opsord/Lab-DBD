@@ -18,11 +18,13 @@ Route::get('/', function () {
 });
 
 #Ijurra
+
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
 Route::post('/user/create', 'App\Http\Controllers\UserController@store');
-Route::put('/user_update/{id}', 'App\Http\Controllers\UserController@update');
-Route::delete('/user_delete/{id}', 'App\Http\Controllers\UserController@destroy');
+Route::get('/users/archive', 'App\Http\Controllers\UserController@archive');
+Route::put('/user/update/{id}', 'App\Http\Controllers\UserController@update');
+Route::delete('/user/delete/{id}', 'App\Http\Controllers\UserController@destroy');
 
 Route::get('/permission/{id}', 'App\Http\Controllers\PermissionController@show');
 Route::get('/permissions', 'App\Http\Controllers\PermissionController@index');

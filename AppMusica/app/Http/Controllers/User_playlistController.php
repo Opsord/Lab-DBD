@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User_playlist;
+use App\Models\User;
+use App\Models\Playlist;
+
 use Illuminate\Http\Request;
 
 class User_playlistController extends Controller
@@ -14,11 +18,11 @@ class User_playlistController extends Controller
     public function index()
     {
         //
-        $Users_playlist = User_playlist::all();
-        if(Users_playlist->isEmpty()){
+        $users_playlist = User_playlist::all();
+        if($users_playlist->isEmpty()){
             return response()->json(['message'=> 'No Users_playlist found'], 404);
         }
-        return response($Users_playlist);
+        return response($users_playlist);
 
     }
 

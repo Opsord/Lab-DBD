@@ -24,6 +24,8 @@ return new class extends Migration
             $table->foreign('payment_method')->references('id_method')->on('payment_methods');
 
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->foreign('id_server')->references('id_server')->on('servers');
             
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

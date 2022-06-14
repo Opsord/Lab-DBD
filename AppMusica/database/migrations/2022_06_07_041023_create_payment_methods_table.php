@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('security_code');
 
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

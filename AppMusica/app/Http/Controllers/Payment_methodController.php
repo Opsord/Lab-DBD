@@ -70,6 +70,17 @@ class Payment_methodController extends Controller
         ], 201);
     }
 
+
+    public function archive()
+    {
+        //
+        $Payment_method = Payment_method::onlyTrashed()->get();
+        if ($Payment_method->isEmpty()) {
+            return response()->json(['message' => 'No archived Payment_methods found'], 404);
+        }
+        return response($Payment_method, 200);
+    }
+
     /**
      * Display the specified resource.
      *

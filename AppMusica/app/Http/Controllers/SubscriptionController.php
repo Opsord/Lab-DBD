@@ -79,6 +79,18 @@ class SubscriptionController extends Controller
         }
     }
 
+
+    public function archive()
+    {
+        //
+        $Subscriptions = Subscription::onlyTrashed()->get();
+        if ($Subscriptions->isEmpty()) {
+            return response()->json(['message' => 'No archived Subscriptions found'], 404);
+        }
+        return response($Subscriptions, 200);
+    }
+
+
     /**
      * Display the specified resource.
      *

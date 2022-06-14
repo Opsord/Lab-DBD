@@ -82,6 +82,19 @@ class Song_serverController extends Controller
         }
     }
 
+
+
+    public function archive()
+    {
+        //
+        $SongServ = Song_server::onlyTrashed()->get();
+        if ($SongServ->isEmpty()) {
+            return response()->json(['message' => 'No archived Song_Servers found'], 404);
+        }
+        return response($SongServ, 200);
+    }
+
+
     /**
      * Display the specified resource.
      *

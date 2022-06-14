@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('ubicacion');
              // a discutir 
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

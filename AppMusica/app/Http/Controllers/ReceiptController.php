@@ -73,6 +73,18 @@ class ReceiptController extends Controller
         }
     }
 
+
+    public function archive()
+    {
+        //
+        $Receipt = Receipt::onlyTrashed()->get();
+        if ($Receipt->isEmpty()) {
+            return response()->json(['message' => 'No archived Receipts found'], 404);
+        }
+        return response($Receipt, 200);
+    }
+
+
     /**
      * Display the specified resource.
      *

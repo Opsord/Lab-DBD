@@ -63,6 +63,16 @@ class ServerController extends Controller
         ], 201);
     }
 
+    public function archive()
+    {
+        //
+        $Server = Server::onlyTrashed()->get();
+        if ($Server->isEmpty()) {
+            return response()->json(['message' => 'No archived Servers found'], 404);
+        }
+        return response($Server, 200);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -79,6 +89,7 @@ class ServerController extends Controller
         return response($Server);
     }
 
+    
     /**
      * Show the form for editing the specified resource.
      *

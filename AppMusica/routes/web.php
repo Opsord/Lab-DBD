@@ -111,18 +111,18 @@ Route::put('/subscription/update/{id}', 'App\Http\Controllers\SubscriptionContro
 Route::delete('/subscription/delete/{id}', 'App\Http\Controllers\SubscriptionController@destroy');
 
 Route::get('/payment_methods', 'App\Http\Controllers\Payment_methodController@index');
-Route::get('/payment_methods/{id}', 'App\Http\Controllers\Payment_methodController@show');
-Route::post('/payment_methods/create', 'App\Http\Controllers\Payment_methodController@store');
+Route::get('/payment_method/{id}', 'App\Http\Controllers\Payment_methodController@show');
+Route::post('/payment_method/create', 'App\Http\Controllers\Payment_methodController@store');
 Route::get('/payment_methods/archive', 'App\Http\Controllers\Payment_methodController@archive');
-Route::put('/payment_methods/update/{id}', 'App\Http\Controllers\Payment_methodController@update');
-Route::delete('/payment_methods/delete/{id}', 'App\Http\Controllers\Payment_methodController@destroy');
+Route::put('/payment_method/update/{id}', 'App\Http\Controllers\Payment_methodController@update');
+Route::delete('/payment_method/delete/{id}', 'App\Http\Controllers\Payment_methodController@destroy');
 
 Route::get('/receipts', 'App\Http\Controllers\ReceiptController@index');
-Route::get('/receipts/{id}', 'App\Http\Controllers\ReceiptController@show');
-Route::post('/receipts/create', 'App\Http\Controllers\ReceiptController@store');
+Route::get('/receipt/{id}', 'App\Http\Controllers\ReceiptController@show');
+Route::post('/receipt/create', 'App\Http\Controllers\ReceiptController@store');
 Route::get('/receipts/archive', 'App\Http\Controllers\ReceiptController@archive');
-Route::put('/receipts/update/{id}', 'App\Http\Controllers\ReceiptController@update');
-Route::delete('/receipts/delete/{id}', 'App\Http\Controllers\ReceiptController@destroy');
+Route::put('/receipt/update/{id}', 'App\Http\Controllers\ReceiptController@update');
+Route::delete('/receipt/delete/{id}', 'App\Http\Controllers\ReceiptController@destroy');
 
 Route::get('/servers', 'App\Http\Controllers\ServerController@index');
 Route::get('/server/{id}', 'App\Http\Controllers\ServerController@show');

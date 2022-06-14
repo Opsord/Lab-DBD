@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Song;
+use App\Models\Genre;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

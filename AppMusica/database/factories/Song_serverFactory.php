@@ -1,7 +1,8 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\Song;
+use App\Models\Server;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

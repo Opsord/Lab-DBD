@@ -1,7 +1,8 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\Song;
+use App\Models\Playlist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,7 @@ class Song_playlistFactory extends Factory
     {
         return [
             'id_song'=> Song::all()->random()->id_song,
-            'id_playlist'=> Playlist::all->random()->id_playlist
+            'id_playlist'=> Playlist::all()->random()->id_playlist
         ];
     }
 }

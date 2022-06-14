@@ -44,7 +44,7 @@ class SubscriptionController extends Controller
     {
         //
 
-        $newSubs = new Payment_method();
+        $newSubs = new Subscription();
 
         $validator = Validator::make(
             $request->all(),[
@@ -116,7 +116,7 @@ class SubscriptionController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $subscription = Payment_method::find($id);
+        $subscription = Subscription::find($id);
 
         $validator = Validator::make(
             $request->all(),[
@@ -166,5 +166,16 @@ class SubscriptionController extends Controller
     public function destroy($id)
     {
         //
+        $subscription = Subscription::find($id);
+        if (!$subscription) {
+            return response()->json(['message' => 'subscription not found'], 404);
+        }
+
+        $subscription->delete();
+
+        return response()->json([
+            'respuesta' => 'subscripcion eliminada',
+            'id' => $subscription->id_subscription,
+        ],200);
     }
 }

@@ -138,5 +138,17 @@ class ServerController extends Controller
     public function destroy($id)
     {
         //
+        $server = Server::find($id);
+
+        if (!$server) {
+            return response()->json(['message' => 'server not found'], 404);
+        }
+
+        $server->delete();
+
+        return response()->json([
+            'respuesta' => 'servidor eliminado',
+            'id' => $server->id_server,
+        ], 200);
     }
 }

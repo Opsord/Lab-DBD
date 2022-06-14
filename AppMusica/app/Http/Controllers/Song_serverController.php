@@ -172,5 +172,18 @@ class Song_serverController extends Controller
     public function destroy($id)
     {
         //
+        $songServ = Song_server::find($id);
+        if(!$songServ){
+            return response()->json([
+                'respuesta' => 'id de interseccion song_server invalido'
+            ], 404);
+        }
+
+        $songServ->delete();
+
+        return response()->json([
+            'respuesta' => 'interseccion song_server eliminada',
+            'id' => $songServ->id_song_server,
+        ], 200);
     }
 }

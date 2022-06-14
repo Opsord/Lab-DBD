@@ -152,5 +152,17 @@ class Payment_methodController extends Controller
     public function destroy($id)
     {
         //
+        $PayMeth = Payment_method::find($id);
+
+        if (!$PayMeth) {
+            return response()->json(['message' => 'PaymentMethod not found'], 404);
+        }
+
+        $PayMeth->delete();
+
+        return response()->json([
+            'respuesta' => 'metodo de pago eliminado',
+            'id' => $PayMeth->id_method,
+        ], 200);
     }
 }

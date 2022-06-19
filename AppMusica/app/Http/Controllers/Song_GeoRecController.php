@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song_GeoRec;
-
+use App\Models\Song;
+use App\Models\Geographic_restriction;
 use illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -45,11 +46,22 @@ class Song_GeoRecController extends Controller
         //
         $validator = Validator::make(
             $request->all(),[
-                'song' => 'required',
-                'restricted_to' => 'required',
+                'song' => 'required|integer',
+                'restricted_to' => 'required|integer',
             ]
         );
-
+        $song = Song::find($request->song);
+        $restricted = Geographic_restriction::find($request->restricted_to);
+        if($song == NULL){
+            return response()->json([
+                'respuesta' => 'id de cancion invalido'
+            ]);
+        }
+        if($restricted == NULL){
+            return response()->json([
+                'respuesta' => 'id de pais invalido'
+            ]);
+        }
         $newsong_georec = new Song_GeoRec();
         $newsong_georec->song = $request->song;
         $newsong_georec->restricted_to = $request->restricted_to;

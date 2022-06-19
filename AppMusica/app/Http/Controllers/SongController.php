@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
-
-use illuminate\Support\Facades\Validator;
+use App\Models\Album;
+use App\Models\Genre;
+use App\Models\Geographic_restriction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SongController extends Controller
 {
@@ -47,22 +49,51 @@ class SongController extends Controller
             $request->all(),[
                 'name_song' => 'required',
                 'duration' => 'required',
-                'id_album' => 'required',
-                'id_genre' => 'required',
+                'explicit' => 'required|string',
+                'id_album' => 'required|integer',
+                'id_genre' => 'required|integer',
+                'id_country' => 'required|integer'
             ]
         );
 
         $newsong = new Song();
-        $newsong->name_song = $request->name_song;
-        $newsong->duration = $request->duration;
-        $newsong->id_album = $request->id_album;
-        $newsong->id_genre = $request->id_genre;
-        $newsong->save();
+        $album = Album::find($request->id_album);
+        $genre = Genre::find($request->id_genre);
+        $country = Geographic_restriction::find($request->id_country);
+        if($album == NULL){
+            return response()->json([
+                'respuesta' => 'id de album invalido'
+            ]);
+        }
+        if($genre == NULL){
+            return response()->json([
+                'respuesta' => 'id de genero invalido'
+            ]);
+        }
+        if($country == NULL){
+            return response()->json([
+                'respuesta' => 'id de pais invalido'
+            ]);
+        }
+        if ($request->explicit == "true" || $request->explicit == "false"){
+            $newsong->name_song = $request->name_song;
+            $newsong->duration = $request->duration;
+            $newsong->is_explicit = $request->explicit; 
+            $newsong->album = $request->id_album;
+            $newsong->genre = $request->id_genre;
+            $newsong->country = $request->id_country;
+            $newsong->save();
 
-        return response()->json([
-            'respuesta' => 'nueva cancion creada',
-            'id' => $newsong->id_song,
-        ], 201);
+            return response()->json([
+                'respuesta' => 'nueva cancion creada',
+                'id' => $newsong->id_song,
+            ], 201);
+        }else{
+            return response()->json([
+                'respuesta' => 'explicit debe ser true o false'
+            ]);
+        }
+        
     }
 
     public function archive()
@@ -159,7 +190,7 @@ class SongController extends Controller
         $song->delete();
 
         return response()->json([
-            'message' => 'Song soft deleted',
+            'respuesta' => 'cancion eliminada',
             'id' => $song->id_song,
         ], 200);
     }

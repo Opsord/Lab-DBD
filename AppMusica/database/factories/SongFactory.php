@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Song;
 use App\Models\Album;
+use App\Models\Genre;
+use App\Models\Geographic_restriction;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,8 +25,9 @@ class SongFactory extends Factory
             'name_song' => $this->faker->word,
             'duration' => $this->faker->time($format = 'H:i:s', $max = '00:05:00'),
             'is_explicit' => $this->faker->boolean($chanceOfGettingTrue = 50),
-
             'album' => Album::all() -> random() -> id_album,
+            'genre' => Genre::all() -> random() -> id_genre,
+            'country' => Geographic_restriction::all() -> random() -> id_country,
         ];
     }
 }

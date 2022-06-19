@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('public_state');
             
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,5 +32,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('playlists');
+
+        $table->dropSoftDeletes();
     }
 };

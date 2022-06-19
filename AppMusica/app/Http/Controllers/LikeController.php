@@ -174,16 +174,15 @@ class LikeController extends Controller
     {
         //
         $Like = Like::find($id);
+
         if(!$Like){
-            return response()->json([
-                'respuesta' => 'id de like invalido'
-            ], 404);
+            return response()->json(['message' => 'Like not found'], 404);
         }
 
         $Like->delete();
 
         return response()->json([
-            'respuesta' => 'like eliminado',
+            'message' => 'Like soft deleted',
             'id' => $Like->id_like,
         ], 200);
     }

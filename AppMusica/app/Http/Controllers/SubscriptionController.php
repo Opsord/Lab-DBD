@@ -181,13 +181,13 @@ class SubscriptionController extends Controller
         //
         $subscription = Subscription::find($id);
         if (!$subscription) {
-            return response()->json(['message' => 'subscription not found'], 404);
+            return response()->json(['message' => 'Subscription not found'], 404);
         }
 
         $subscription->delete();
 
         return response()->json([
-            'respuesta' => 'subscripcion eliminada',
+            'message' => 'Subsctription soft deleted',
             'id' => $subscription->id_subscription,
         ],200);
     }

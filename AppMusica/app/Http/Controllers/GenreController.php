@@ -141,6 +141,7 @@ class GenreController extends Controller
     {
         //
         $genre = Genre::find($id);
+
         if (!$genre) {
             return response()->json(['message' => 'Genre not found'], 404);
         }
@@ -148,7 +149,7 @@ class GenreController extends Controller
         $genre->delete();
 
         return response()->json([
-            'respuesta' => 'genero eliminado',
+            'message' => 'Genre soft deleted',
             'id' => $genre->id_genre,
         ], 200);
     }

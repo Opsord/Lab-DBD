@@ -189,14 +189,14 @@ class Song_serverController extends Controller
         $songServ = Song_server::find($id);
         if(!$songServ){
             return response()->json([
-                'respuesta' => 'id de interseccion song_server invalido'
+                'message' => 'Song_server intersection not found'
             ], 404);
         }
 
         $songServ->delete();
 
         return response()->json([
-            'respuesta' => 'interseccion song_server eliminada',
+            'message' => 'Song_server intersection soft deleted',
             'id' => $songServ->id_song_server,
         ], 200);
     }

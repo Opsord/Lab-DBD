@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('id_playlist')->references('id_playlist')->on('playlists');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -35,5 +36,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('song_playlists');
+
+        $table->dropSoftDeletes();
     }
 };

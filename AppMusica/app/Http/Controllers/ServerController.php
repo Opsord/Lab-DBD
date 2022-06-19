@@ -159,7 +159,7 @@ class ServerController extends Controller
         $server->delete();
 
         return response()->json([
-            'respuesta' => 'servidor eliminado',
+            'message' => 'Server soft deleted',
             'id' => $server->id_server,
         ], 200);
     }

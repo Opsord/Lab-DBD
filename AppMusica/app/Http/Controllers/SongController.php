@@ -159,7 +159,7 @@ class SongController extends Controller
         $song->delete();
 
         return response()->json([
-            'respuesta' => 'cancion eliminada',
+            'message' => 'Song soft deleted',
             'id' => $song->id_song,
         ], 200);
     }

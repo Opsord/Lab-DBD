@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    
 });
-
-
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
@@ -67,7 +66,9 @@ Route::get('/distributor/{id}', 'App\Http\Controllers\DistributorController@show
 Route::post('/distributor/create', 'App\Http\Controllers\DistributorController@store');
 Route::get('/distributors/archive', 'App\Http\Controllers\DistributorController@archive');
 Route::put('/distributor/update/{id}', 'App\Http\Controllers\DistributorController@update');
+
 Route::delete('/distributor/delete/{id}', 'App\Http\Controllers\DistributorController@destroy');
+Route::delete('/distributor/force-delete/{id}', 'App\Http\Controllers\DistributorController@hardDelete');
 
 Route::get('/albums', 'App\Http\Controllers\AlbumController@index');
 Route::get('/album/{id}', 'App\Http\Controllers\AlbumController@show');

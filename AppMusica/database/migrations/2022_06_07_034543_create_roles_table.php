@@ -17,6 +17,7 @@ return new class extends Migration
             
             $table->id('id_role');
             $table->string('name_role');
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,5 +31,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('roles');
+
+        $table->dropSoftDeletes();
     }
 };

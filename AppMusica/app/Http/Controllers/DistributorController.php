@@ -149,7 +149,24 @@ class DistributorController extends Controller
         $distributor->delete();
 
         return response()->json([
-            'respuesta' => 'distribuidor eliminado',
+            'message' => 'Distributor soft deleted',
+            'id' => $distributor->id_distributor,
+        ], 200);
+    }
+
+    public function hardDelete($id)
+    {
+        //
+        Distributor::find($id)->withTrashed()->forceDelete();
+
+        if (!$distributor) {
+            return response()->json(['message' => 'Distributor not found'], 404);
+        }
+
+        //$distributor->forceDelete();
+
+        return response()->json([
+            'respuesta' => 'Distributor hard deleted',
             'id' => $distributor->id_distributor,
         ], 200);
     }

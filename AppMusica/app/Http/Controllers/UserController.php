@@ -181,7 +181,7 @@ class UserController extends Controller
         $user->delete();
 
         return response() -> json([
-            'message' => 'User deleted',
+            'message' => 'User soft deleted',
             'id ' => $user->id_user
         ], 200);
        }

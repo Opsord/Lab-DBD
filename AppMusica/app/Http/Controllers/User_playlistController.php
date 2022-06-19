@@ -181,14 +181,14 @@ class User_playlistController extends Controller
         $userPlay = User_playlist::find($id);
         if(!$userPlay){
             return response()->json([
-                'respuesta' => 'id de interseccion user_playlist invalido'
+                'message' => 'User_playlist intersection not found'
             ], 404);
         }
 
         $userPlay->delete();
 
         return response()->json([
-            'respuesta' => 'interseccion user_playlist eliminada',
+            'message' => 'User_playlist intersection soft deleted',
             'id' => $userPlay->id_user_playlist,
         ], 200);
     }

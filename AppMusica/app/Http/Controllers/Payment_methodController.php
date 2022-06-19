@@ -173,7 +173,7 @@ class Payment_methodController extends Controller
         $PayMeth->delete();
 
         return response()->json([
-            'respuesta' => 'metodo de pago eliminado',
+            'message' => 'PaymentMethod soft deleted',
             'id' => $PayMeth->id_method,
         ], 200);
     }

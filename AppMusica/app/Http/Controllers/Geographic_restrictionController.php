@@ -140,6 +140,7 @@ class Geographic_restrictionController extends Controller
     {
         //
         $geographic_restriction = Geographic_restriction::find($id);
+
         if (!$geographic_restriction) {
             return response()->json(['message' => 'Geographic_restriction not found'], 404);
         }
@@ -147,7 +148,7 @@ class Geographic_restrictionController extends Controller
         $geographic_restriction->delete();
 
         return response()->json([
-            'respuesta' => 'restriccion geografica eliminada',
+            'message' => 'Geographic_restriction soft deleted',
             'id' => $geographic_restriction->id_geographic_restriction,
         ], 200);
     }

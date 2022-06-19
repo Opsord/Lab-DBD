@@ -143,5 +143,16 @@ class Song_GeoRecController extends Controller
     public function destroy($id)
     {
         //
+        $song_georec = Song_GeoRec::find($id);
+
+        if (!$song_georec) {
+            return response()->json(['message' => 'Song_georec intersection not found'], 404);
+        }
+
+        $song_georec->delete();
+
+        return response()->json([
+            'message' => 'Song_georec intersection soft deleted',
+        ]);
     }
 }

@@ -144,13 +144,13 @@ class Song_genreController extends Controller
         //
         $song_genre = Song_genre::find($id);
         if (!$song_genre) {
-            return response()->json(['message' => 'Song_genre not found'], 404);
+            return response()->json(['message' => 'Song_genre intersection not found'], 404);
         }
 
         $song_genre->delete();
 
         return response()->json([
-            'respuesta' => 'interseccion song_genre eliminada',
+            'message' => 'Song_genre intersection soft deleted',
         ]);
     }
 }

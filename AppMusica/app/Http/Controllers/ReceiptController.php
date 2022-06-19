@@ -170,14 +170,15 @@ class ReceiptController extends Controller
     {
         //
         $receipt = Receipt::find($id);
+
         if (!$receipt) {
-            return response()->json(['message' => 'receipt not found'], 404);
+            return response()->json(['message' => 'Receipt not found'], 404);
         }
 
         $receipt->delete();
 
         return response()->json([
-            'respuesta' => 'boleta eliminada',
+            'message' => 'Receipt soft deleted',
             'id' => $receipt->id_receipt,
         ], 200);
     }

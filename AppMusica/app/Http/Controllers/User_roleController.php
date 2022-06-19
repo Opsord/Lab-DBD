@@ -163,7 +163,7 @@ class User_roleController extends Controller
         $user_role->delete();
 
         return response() -> json([
-            'message' => 'User_role deleted',
+            'message' => 'User_role soft deleted',
             'id ' => $user_role->id_user_role
         ], 200);
     }

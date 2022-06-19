@@ -147,7 +147,7 @@ class PermissionController extends Controller
         $permission->delete();
 
         return response() -> json([
-            'message' => 'permission deleted',
+            'message' => 'Permission soft deleted',
             'id ' => $permission->id_permission
         ], 200);
     }

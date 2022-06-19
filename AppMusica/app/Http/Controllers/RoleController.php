@@ -136,6 +136,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $role = Role::find($id);
+
         if (!$role) {
             return response()->json(['message' => 'Role not found'], 404);
         }
@@ -143,7 +144,7 @@ class RoleController extends Controller
         $role->delete();
 
         return response() -> json([
-            'message' => 'Role deleted',
+            'message' => 'Role soft deleted',
             'id ' => $role->id_role
         ], 200);
     }

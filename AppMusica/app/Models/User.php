@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Model
 {
     use HasFactory, SoftDeletes;
+    
     protected $primaryKey = 'id_user';
 
     public function user_role(){

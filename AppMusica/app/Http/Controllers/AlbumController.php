@@ -148,6 +148,7 @@ class AlbumController extends Controller
     {
         //
         $album = Album::find($id);
+        
         if (!$album) {
             return response()->json(['message' => 'Album not found'], 404);
         }
@@ -155,7 +156,7 @@ class AlbumController extends Controller
         $album->delete();
         
         return response()->json([
-            'respuesta' => 'album eliminado',
+            'respuesta' => 'Album soft deleted',
             'id' => $album->id_album,
         ], 200);
 

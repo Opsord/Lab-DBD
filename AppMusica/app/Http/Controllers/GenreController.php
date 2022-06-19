@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genre;
-use illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User_role;
 use App\Models\User;
 use App\Models\Role;
+
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+
 class User_roleController extends Controller
 {
     /**

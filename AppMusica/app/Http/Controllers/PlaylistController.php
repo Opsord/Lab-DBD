@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Playlist;
+
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller

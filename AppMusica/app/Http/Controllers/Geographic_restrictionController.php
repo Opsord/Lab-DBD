@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Geographic_restriction;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class Geographic_restrictionController extends Controller

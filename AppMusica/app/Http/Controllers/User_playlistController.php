@@ -6,6 +6,7 @@ use App\Models\User_playlist;
 use App\Models\User;
 use App\Models\Playlist;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class User_playlistController extends Controller

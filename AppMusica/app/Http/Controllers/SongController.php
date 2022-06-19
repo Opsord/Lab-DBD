@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
-use illuminate\Support\Facades\Validator;
 
+use illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class SongController extends Controller

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Role_permission;
 use App\Models\Permission;
 use App\Models\Role;
+
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+
 class Role_permissionController extends Controller
 {
     /**

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Server;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class ServerController extends Controller
 {

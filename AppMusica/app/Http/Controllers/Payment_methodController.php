@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment_method;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class Payment_methodController extends Controller
 {

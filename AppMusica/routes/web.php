@@ -51,7 +51,7 @@ Route::get('/role/{id}', 'App\Http\Controllers\RoleController@show');
 Route::post('/role/create', 'App\Http\Controllers\RoleController@store');
 Route::get('/role/archive', 'App\Http\Controllers\RoleController@archive');
 Route::put('/role/update/{id}', 'App\Http\Controllers\RoleController@update');
-Route::delete('/user/delete/{id}', 'App\Http\Controllers\RoleController@destroy');
+Route::delete('/role/delete/{id}', 'App\Http\Controllers\RoleController@destroy');
 
 Route::get('/roles_permissions', 'App\Http\Controllers\Role_permissionController@index');
 Route::get('/role_permission/{id}', 'App\Http\Controllers\Role_permissionController@show');

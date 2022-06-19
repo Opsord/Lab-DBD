@@ -35,28 +35,28 @@ Route::delete('/permission/delete/{id}', 'App\Http\Controllers\PermissionControl
 Route::get('/users_users', 'App\Http\Controllers\User_userController@index');
 Route::get('/user_user/{id}', 'App\Http\Controllers\User_userController@show');
 Route::post('/user_user/create', 'App\Http\Controllers\User_userController@store');
-Route::get('/user_user/archive', 'App\Http\Controllers\User_userController@archive');
+Route::get('/user_users/archive', 'App\Http\Controllers\User_userController@archive');
 Route::put('/user_user/update/{id}', 'App\Http\Controllers\User_userController@update');
 Route::delete('/user_user/delete/{id}', 'App\Http\Controllers\User_userController@destroy');
 
 Route::get('/users_roles', 'App\Http\Controllers\User_roleController@index');
 Route::get('/user_role/{id}', 'App\Http\Controllers\User_roleController@show');
 Route::post('/user_role/create', 'App\Http\Controllers\User_roleController@store');
-Route::get('/user_role/archive', 'App\Http\Controllers\User_roleController@archive');
+Route::get('/user_roles/archive', 'App\Http\Controllers\User_roleController@archive');
 Route::put('/user_role/update/{id}', 'App\Http\Controllers\User_roleController@update');
 Route::delete('/user_role/delete/{id}', 'App\Http\Controllers\User_roleController@destroy');
 
 Route::get('/roles', 'App\Http\Controllers\RoleController@index');
 Route::get('/role/{id}', 'App\Http\Controllers\RoleController@show');
 Route::post('/role/create', 'App\Http\Controllers\RoleController@store');
-Route::get('/role/archive', 'App\Http\Controllers\RoleController@archive');
+Route::get('/roles/archive', 'App\Http\Controllers\RoleController@archive');
 Route::put('/role/update/{id}', 'App\Http\Controllers\RoleController@update');
 Route::delete('/role/delete/{id}', 'App\Http\Controllers\RoleController@destroy');
 
 Route::get('/roles_permissions', 'App\Http\Controllers\Role_permissionController@index');
 Route::get('/role_permission/{id}', 'App\Http\Controllers\Role_permissionController@show');
 Route::post('/role_permission/create', 'App\Http\Controllers\Role_permissionController@store');
-Route::get('/role_permission/archive', 'App\Http\Controllers\Role_permissionController@archive');
+Route::get('/role_permissions/archive', 'App\Http\Controllers\Role_permissionController@archive');
 Route::put('/role_permission/update/{id}', 'App\Http\Controllers\Role_permissionController@update');
 Route::delete('/role_permission/delete/{id}', 'App\Http\Controllers\Role_permissionController@destroy');
 
@@ -163,16 +163,16 @@ Route::get('/playlists/archive', 'App\Http\Controllers\PlaylistController@archiv
 Route::put('/playlist/update/{id}', 'App\Http\Controllers\PlaylistController@update');
 Route::delete('/playlist/delete/{id}', 'App\Http\Controllers\PlaylistController@destroy');
 
-Route::get('/songs_playlist', 'App\Http\Controllers\Song_playlistController@index');
+Route::get('/songs_playlists', 'App\Http\Controllers\Song_playlistController@index');
 Route::get('/song_playlist/{id}', 'App\Http\Controllers\Song_playlistController@show');
 Route::post('/song_playlist/create', 'App\Http\Controllers\Song_playlistController@store');
-Route::get('/songs_playlist/archive', 'App\Http\Controllers\Song_playlistController@archive');
+Route::get('/songs_playlists/archive', 'App\Http\Controllers\Song_playlistController@archive');
 Route::put('/song_playlist/update/{id}', 'App\Http\Controllers\Song_playlistController@update');
 Route::delete('/song_playlist/delete/{id}', 'App\Http\Controllers\Song_playlistController@destroy');
 
-Route::get('/users_playlist', 'App\Http\Controllers\User_playlistController@index');
+Route::get('/users_playlists', 'App\Http\Controllers\User_playlistController@index');
 Route::get('/user_playlist/{id}', 'App\Http\Controllers\User_playlistController@show');
 Route::post('/user_playlist/create', 'App\Http\Controllers\User_playlistController@store');
-Route::get('/users_playlist/archive', 'App\Http\Controllers\User_playlistController@archive');
+Route::get('/users_playlists/archive', 'App\Http\Controllers\User_playlistController@archive');
 Route::put('/user_playlist/update/{id}', 'App\Http\Controllers\User_playlistController@update');
 Route::delete('/user_playlist/delete/{id}', 'App\Http\Controllers\User_playlistController@destroy');

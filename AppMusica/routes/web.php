@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome2');
     
 });
 
@@ -176,3 +176,6 @@ Route::post('/user_playlist/create', 'App\Http\Controllers\User_playlistControll
 Route::get('/users_playlists/archive', 'App\Http\Controllers\User_playlistController@archive');
 Route::put('/user_playlist/update/{id}', 'App\Http\Controllers\User_playlistController@update');
 Route::delete('/user_playlist/delete/{id}', 'App\Http\Controllers\User_playlistController@destroy');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

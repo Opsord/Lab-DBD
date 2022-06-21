@@ -16,17 +16,17 @@
         </div>
         <div class="menu">
           <a href="/" class="d-block text-light p-3"><ion-icon class="lead" name="logo-soundcloud"></ion-icon> Inicio</a>
-          <a href="#" class="d-block text-light p-3"><i class="bi bi-music-note-beamed lead"></i> Biblioteca</a>
-          <a href="#" class="d-block text-light p-3"><i class="bi bi-person-circle lead"></i> Perfil</a>
-          <a href="#" class="d-block text-light p-3"><i class="bi bi-gear lead"></i></ion-icon> Opciones</a>
-          <a href="/dashboard" class="d-block text-light p-3"><i class="bi bi-card-list lead"></i></ion-icon> Dashboard</a>
+          <a href="#" class="d-block text-light p-3"><i class="bi bi-music-note-beamed lead"></i> Canciones</a>
+          <a href="/users" class="d-block text-light p-3"><i class="bi bi-person-circle lead"></i> Usuarios</a>
+          <a href="#" class="d-block text-light p-3"><i class="bi bi-music-note lead"></i> Generos</a>
+          <a href="/dashboard" class="d-block text-light p-3"><i class="bi bi-wallet2 lead"></i> Subscripciones</a>
           
         </div>
 
 
       </div>
       <div id="content">
-        @yield('content')
+        @yield('dashcontent')
       </div>
     </div>
 

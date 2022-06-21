@@ -20,7 +20,7 @@ class UserController extends Controller
         if ($users->isEmpty()){
             return response()->json([]);
         }
-        return response($users, 200);
+        return view('users')->with('users', $users);
     }
 
     /**

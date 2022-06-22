@@ -18,7 +18,7 @@ class Geographic_restrictionController extends Controller
     {
         //
         $geographic_restrictions = Geographic_restriction::all();
-        if ($geographic_restrictions->isEmpty()) {
+        if (empty($geographic_restrictions)) {
             return response()->json(['message' => 'No geographic_restrictions found'], 404);
         }
         return response($geographic_restrictions, 200);
@@ -64,7 +64,7 @@ class Geographic_restrictionController extends Controller
     {
         //
         $geographic_restrictions = Geographic_restriction::onlyTrashed()->get();
-        if ($geographic_restrictions->isEmpty()) {
+        if (empty($geographic_restrictions)) {
             return response()->json(['message' => 'No geographic_restrictions found'], 404);
         }
         return response($geographic_restrictions, 200);
@@ -79,7 +79,7 @@ class Geographic_restrictionController extends Controller
     {
         //
         $geographic_restriction = Geographic_restriction::find($id);
-        if (!$geographic_restriction) {
+        if (empty($geographic_restriction)) {
             return response()->json(['message' => 'Geographic_restriction not found'], 404);
         }
         return response($geographic_restriction, 200);
@@ -117,7 +117,7 @@ class Geographic_restrictionController extends Controller
         }
 
         $geographic_restriction = Geographic_restriction::find($id);
-        if (!$geographic_restriction) {
+        if (empty($geographic_restriction)) {
             return response()->json(['message' => 'Geographic_restriction not found'], 404);
         }
 
@@ -126,7 +126,7 @@ class Geographic_restrictionController extends Controller
 
         return response()->json([
             'respuesta' => 'restriccion geografica actualizada',
-            'id' => $geographic_restriction->id_geographic_restriction,
+            'id' => $geographic_restriction->id_geographic_restriction
         ], 200);
     }
 
@@ -139,17 +139,24 @@ class Geographic_restrictionController extends Controller
     public function destroy($id)
     {
         //
-        $geographic_restriction = Geographic_restriction::find($id);
+        $geographic_restriction = Geographic_restriction::withTrashed() -> find($id);
 
-        if (!$geographic_restriction) {
+        if (empty($geographic_restriction)) {
             return response()->json(['message' => 'Geographic_restriction not found'], 404);
         }
-
-        $geographic_restriction->delete();
-
-        return response()->json([
-            'message' => 'Geographic_restriction soft deleted',
-            'id' => $geographic_restriction->id_geographic_restriction,
-        ], 200);
+        
+        if ($geographic_restriction -> trashed()) {
+            $geographic_restriction -> forceDelete();
+            return response()->json([
+                'message' => 'Geographic_restriction hard deleted',
+                'id' => $geographic_restriction->id_geographic_restriction
+                ], 200);
+        } else {
+            $geographic_restriction -> delete();
+            return response()->json([
+                'message' => 'Geographic_restriction soft deleted',
+                'id' => $geographic_restriction->id_geographic_restriction
+                ], 200);
+        }
     }
 }

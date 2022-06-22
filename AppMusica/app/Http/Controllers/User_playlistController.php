@@ -20,8 +20,8 @@ class User_playlistController extends Controller
     {
         //
         $users_playlist = User_playlist::all();
-        if($users_playlist->isEmpty()){
-            return response()->json(['message'=> 'No Users_playlist found'], 404);
+        if(empty($users_playlist)){
+            return response()->json(['message'=> 'No Users_playlist intersections found'], 404);
         }
         return response($users_playlist);
 
@@ -87,8 +87,8 @@ class User_playlistController extends Controller
     {
         //
         $users_playlist = User_playlist::onlyTrashed()->get();
-        if ($users_playlist->isEmpty()) {
-            return response()->json(['message' => 'No archived user_playlist found'], 404);
+        if (empty($users_playlist)) {
+            return response()->json(['message' => 'No archived user_playlist intersection found'], 404);
         }
         return response($users_playlist, 200);
     }
@@ -104,7 +104,7 @@ class User_playlistController extends Controller
         //
         $user_playlist = User_playlist::find($id);
         if(empty($user_playlist)){
-            return response()->json([]);
+            return response()->json(['message'=> 'No user_playlist intersection found'], 404);
         }
         return response($user_playlist, 200);
     }
@@ -178,18 +178,25 @@ class User_playlistController extends Controller
     public function destroy($id)
     {
         //
-        $userPlay = User_playlist::find($id);
-        if(!$userPlay){
+        $userPlay = User_playlist::withTrashed() -> find($id);
+        if(empty($userPlay)) {
             return response()->json([
                 'message' => 'User_playlist intersection not found'
             ], 404);
         }
 
-        $userPlay->delete();
-
-        return response()->json([
-            'message' => 'User_playlist intersection soft deleted',
-            'id' => $userPlay->id_user_playlist,
-        ], 200);
+        if ($userPlay->trashed()) {
+            $userPlay->forceDelete();
+            return response()->json([
+                'message' => 'User_playlist intersection hard deleted',
+                'id' => $user_playlist->id_user_playlist
+            ], 200);
+        } else {
+            $userPlay->delete();
+            return response()->json([
+                'message' => 'User_playlist intersection soft deleted',
+                'id' => $user_playlist->id_user_playlist
+            ], 200);
+        }
     }
 }

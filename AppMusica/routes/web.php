@@ -70,9 +70,7 @@ Route::get('/distributor/{id}', 'App\Http\Controllers\DistributorController@show
 Route::post('/distributor/create', 'App\Http\Controllers\DistributorController@store');
 Route::get('/distributors/archive', 'App\Http\Controllers\DistributorController@archive');
 Route::put('/distributor/update/{id}', 'App\Http\Controllers\DistributorController@update');
-
 Route::delete('/distributor/delete/{id}', 'App\Http\Controllers\DistributorController@destroy');
-Route::delete('/distributor/force-delete/{id}', 'App\Http\Controllers\DistributorController@hardDelete');
 
 Route::get('/albums', 'App\Http\Controllers\AlbumController@index');
 Route::get('/album/{id}', 'App\Http\Controllers\AlbumController@show');
@@ -180,6 +178,6 @@ Route::post('/user_playlist/create', 'App\Http\Controllers\User_playlistControll
 Route::get('/users_playlists/archive', 'App\Http\Controllers\User_playlistController@archive');
 Route::put('/user_playlist/update/{id}', 'App\Http\Controllers\User_playlistController@update');
 Route::delete('/user_playlist/delete/{id}', 'App\Http\Controllers\User_playlistController@destroy');
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -18,10 +18,10 @@ return new class extends Migration
             $table->id('id_song_server');
 
             $table->unsignedBigInteger('id_song')->nullable();
-            $table->foreign('id_song')->references('id_song')->on('songs');
+            $table->foreign('id_song')->references('id_song')->on('songs') ->onDelete('cascade') ->onUpdate('cascade');
 
             $table->unsignedBigInteger('id_server')->nullable();
-            $table->foreign('id_server')->references('id_server')->on('servers');
+            $table->foreign('id_server')->references('id_server')->on('servers') ->onDelete('cascade') ->onUpdate('cascade');
             
             $table->timestamps();
             $table->softDeletes();

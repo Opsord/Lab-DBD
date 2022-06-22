@@ -17,7 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-        if ($roles->isEmpty()){
+        if (empty($roles)){
             return response()->json([]);
         }
         return response($roles, 200);
@@ -135,25 +135,32 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::find($id);
+        $role = Role::withTrashed() -> find($id);
 
-        if (!$role) {
+        if (empty($role)) {
             return response()->json(['message' => 'Role not found'], 404);
         }
 
-        $role->delete();
-
-        return response() -> json([
-            'message' => 'Role soft deleted',
-            'id ' => $role->id_role
-        ], 200);
+        if ($role -> trashed()) {
+            $role -> forceDelete();
+            return response()->json([
+                'message' => 'Role hard deleted',
+                'id' => $role->id_role
+                ], 204);
+        } else {
+            $role -> delete();
+            return response()->json([
+                'message' => 'Role soft deleted',
+                'id' => $role->id_role
+                ], 204);
+        }
     }
 
     public function archive()
     {
         
         $role = Role::onlyTrashed()->get();
-        if ($role->isEmpty()) {
+        if (empty($role)) {
             return response()->json(['message' => 'No archived Role found'], 404);
         }
         return response($role, 200);

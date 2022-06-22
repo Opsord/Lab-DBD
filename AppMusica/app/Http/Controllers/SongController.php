@@ -6,8 +6,9 @@ use App\Models\Song;
 use App\Models\Album;
 use App\Models\Genre;
 use App\Models\Geographic_restriction;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class SongController extends Controller
 {
@@ -20,7 +21,7 @@ class SongController extends Controller
     {
         //
         $songs = Song::all();
-        if ($songs->isEmpty()) {
+        if (empty($songs)) {
             return response()->json(['message' => 'No songs found'], 404);
         }
         return response($songs, 200);
@@ -100,7 +101,7 @@ class SongController extends Controller
     {
         //
         $songs = Song::onlyTrashed()->get();
-        if ($songs->isEmpty()) {
+        if (empty($songs)) {
             return response()->json(['message' => 'No archived songs found'], 404);
         }
         return response($songs, 200);
@@ -116,7 +117,7 @@ class SongController extends Controller
     {
         //
         $song = Song::find($id);
-        if (!$song) {
+        if (empty($song)) {
             return response()->json(['message' => 'Song not found'], 404);
         }
         return response($song, 200);
@@ -157,7 +158,7 @@ class SongController extends Controller
         }
 
         $song = Song::find($id);
-        if (!$song) {
+        if (empty($song)) {
             return response()->json(['message' => 'Song not found'], 404);
         }
 
@@ -182,16 +183,23 @@ class SongController extends Controller
     public function destroy($id)
     {
         //
-        $song = Song::find($id);
-        if (!$song) {
+        $song = Song::withTrashed() -> find($id);
+        if (empty($song)) {
             return response()->json(['message' => 'Song not found'], 404);
         }
 
-        $song->delete();
-
-        return response()->json([
-            'respuesta' => 'cancion eliminada',
-            'id' => $song->id_song,
-        ], 200);
+        if ($song->trashed()) {
+            $song->forceDelete();
+            return response()->json([
+                'respuesta' => 'Song hard deleted',
+                'id' => $song->id_song,
+            ], 200);
+        } else {
+            $song->delete();
+            return response()->json([
+                'respuesta' => 'Song soft deleted',
+                'id' => $song->id_song,
+            ], 200);
+        }
     }
 }

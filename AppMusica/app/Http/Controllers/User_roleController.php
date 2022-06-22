@@ -19,7 +19,7 @@ class User_roleController extends Controller
     public function index()
     {
         $users_role = User_role::all();
-        if ($users_role->isEmpty()){
+        if (empty($users_role)){
             return response()->json([]);
         }
         return response($users_role, 200);
@@ -156,23 +156,30 @@ class User_roleController extends Controller
     public function destroy($id)
     {
         $user_role = User_role::find($id);
-        if (!$user_role) {
-            return response()->json(['message' => 'User_role not found'], 404);
+        if (empty($user_role)) {
+            return response()->json(['message' => 'User_role intersection not found'], 404);
         }
 
-        $user_role->delete();
-
-        return response() -> json([
-            'message' => 'User_role soft deleted',
-            'id ' => $user_role->id_user_role
-        ], 200);
+        if ($user_role -> trashed()) {
+            $user_role -> forceDelete();
+            return response()->json([
+                'message' => 'User_role intersection hard deleted',
+                'id' => $user_role->id_user_role,
+                ], 200);
+        } else {
+            $user_role -> delete();
+            return response()->json([
+                'message' => 'User_role intersection soft deleted',
+                'id' => $user_role->id_user_role,
+                ], 200);
+        }
     }
 
     public function archive()
     {
         
         $user_role = User_role::onlyTrashed()->get();
-        if ($user_role->isEmpty()) {
+        if (empty($user_role)) {
             return response()->json(['message' => 'No archived User_role found'], 404);
         }
         return response($user_role, 200);

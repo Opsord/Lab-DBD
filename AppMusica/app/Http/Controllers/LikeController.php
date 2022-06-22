@@ -18,7 +18,7 @@ class LikeController extends Controller
     {
         //
         $likes = Like::all();
-        if($likes->isEmpty()){
+        if(empty($likes)) {
             return response()->json(['message'=>'No likes found'], 404);
         }
         return response($likes, 200);
@@ -83,7 +83,7 @@ class LikeController extends Controller
     {
         //
         $likes = Like::onlyTrashed()->get();
-        if ($likes->isEmpty()) {
+        if (empty($likes))  {
             return response()->json(['message' => 'No archived like found'], 404);
         }
         return response($like, 200);
@@ -99,7 +99,7 @@ class LikeController extends Controller
     {
         //
         $like = Like::find($id);
-        if(empty($like)){
+        if(empty($like)) {
             return response()->json([]);
         }
         return response($like, 200);
@@ -173,17 +173,24 @@ class LikeController extends Controller
     public function destroy($id)
     {
         //
-        $Like = Like::find($id);
+        $Like = Like::trashed() -> find($id);
 
-        if(!$Like){
+        if(empty($Like)) {
             return response()->json(['message' => 'Like not found'], 404);
         }
 
-        $Like->delete();
-
-        return response()->json([
-            'message' => 'Like soft deleted',
-            'id' => $Like->id_like,
-        ], 200);
+        if ($like -> trashed()) {
+            $like -> forceDelete();
+            return response()->json([
+                'message' => 'Like hard deleted',
+                'id' => $like->id_like
+                ], 200);
+        } else {
+            $like -> delete();
+            return response()->json([
+                'message' => 'Like soft deleted',
+                'id' => $like->id_like
+                ], 200);
+        }
     }
 }

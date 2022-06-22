@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('amount');
 
             $table->unsignedBigInteger('used_method')->nullable();
-            $table->foreign('used_method')->references('id_method')->on('payment_methods');
+            $table->foreign('used_method')->references('id_method')->on('payment_methods') ->onDelete('cascade') ->onUpdate('cascade');
 
             $table->timestamps();
             $table->softDeletes();

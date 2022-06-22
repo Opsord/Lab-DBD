@@ -21,13 +21,13 @@ return new class extends Migration
             $table->string('is_explicit');
 
             $table->unsignedBigInteger('album')->nullable();
-            $table->foreign('album')->references('id_album')->on('albums');
+            $table->foreign('album')->references('id_album')->on('albums') ->onDelete('cascade') ->onUpdate('cascade');
 
             $table->unsignedBigInteger('country')->nullable();
-            $table->foreign('country')->references('id_country')->on('geographic_restrictions');
+            $table->foreign('country')->references('id_country')->on('geographic_restrictions') ->onDelete('cascade')->onUpdate('cascade');
 
             $table->unsignedBigInteger('genre')->nullable();
-            $table->foreign('genre')->references('id_genre')->on('genres');
+            $table->foreign('genre')->references('id_genre')->on('genres') ->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
             $table->softDeletes();

@@ -18,7 +18,7 @@ class GenreController extends Controller
     {
         //
         $genres = Genre::all();
-        if ($genres->isEmpty()) {
+        if (empty($genres)) {
             return response()->json(['message' => 'No genres found'], 404);
         }
         return response($genres, 200);
@@ -54,8 +54,8 @@ class GenreController extends Controller
         $newgenre->save();
         
         return response()->json([
-            'respuesta' => 'nuevo genero creado',
-            'id' => $newgenre->id_genre,
+            'respuesta' => 'New genre created',
+            'id' => $newgenre->id_genre
         ], 201);
     }
 
@@ -63,7 +63,7 @@ class GenreController extends Controller
     {
         //
         $genres = Genre::onlyTrashed()->get();
-        if ($genres->isEmpty()) {
+        if (empty($genres)) {
             return response()->json(['message' => 'No archived genres found'], 404);
         }
         return response($genres, 200);
@@ -80,7 +80,7 @@ class GenreController extends Controller
     {
         //
         $genre = Genre::find($id);
-        if (!$genre) {
+        if (empty($genre)) {
             return response()->json(['message' => 'Genre not found'], 404);
         }
         return response($genre, 200);
@@ -126,8 +126,8 @@ class GenreController extends Controller
         $genre->save();
 
         return response()->json([
-            'respuesta' => 'genero actualizado',
-            'id' => $genre->id_genre,
+            'respuesta' => 'Genre updated',
+            'id' => $genre->id_genre
         ], 200);
     }
 
@@ -140,17 +140,24 @@ class GenreController extends Controller
     public function destroy($id)
     {
         //
-        $genre = Genre::find($id);
+        $genre = Genre::withTrashed() -> find($id);
 
-        if (!$genre) {
+        if (empty($genre)) {
             return response()->json(['message' => 'Genre not found'], 404);
         }
 
-        $genre->delete();
-
-        return response()->json([
-            'message' => 'Genre soft deleted',
-            'id' => $genre->id_genre,
-        ], 200);
+        if ($genre -> trashed()) {
+            $genre -> forceDelete();
+            return response()->json([
+                'message' => 'Genre hard deleted',
+                'id' => $genre->id_genre
+            ], 200);
+        } else {
+            $genre -> delete();
+            return response()->json([
+                'message' => 'Genre soft deleted',
+                'id' => $genre->id_genre
+            ], 200);
+        }
     }
 }

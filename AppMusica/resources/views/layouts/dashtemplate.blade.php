@@ -16,7 +16,7 @@
         </div>
         <div class="menu">
           <a href="/" class="d-block text-light p-3"><ion-icon class="lead" name="logo-soundcloud"></ion-icon> Inicio</a>
-          <a href="#" class="d-block text-light p-3"><i class="bi bi-music-note-beamed lead"></i> Canciones</a>
+          <a href="/songs" class="d-block text-light p-3"><i class="bi bi-music-note-beamed lead"></i> Canciones</a>
           <a href="/users" class="d-block text-light p-3"><i class="bi bi-person-circle lead"></i> Usuarios</a>
           <a href="#" class="d-block text-light p-3"><i class="bi bi-music-note lead"></i> Generos</a>
           <a href="/dashboard" class="d-block text-light p-3"><i class="bi bi-wallet2 lead"></i> Subscripciones</a>
@@ -29,6 +29,7 @@
         @yield('dashcontent')
       </div>
     </div>
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

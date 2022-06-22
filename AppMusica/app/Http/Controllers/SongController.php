@@ -23,7 +23,7 @@ class SongController extends Controller
         if ($songs->isEmpty()) {
             return response()->json(['message' => 'No songs found'], 404);
         }
-        return response($songs, 200);
+        return view('song')->with('songs', $songs);
     }
 
     /**

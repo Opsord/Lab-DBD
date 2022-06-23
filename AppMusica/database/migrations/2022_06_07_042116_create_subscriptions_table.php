@@ -20,8 +20,8 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
 
-            $table->unsignedBigInteger('payment_method')->nullable();
-            $table->foreign('payment_method')->references('id_method')->on('payment_methods') ->onDelete('cascade') ->onUpdate('cascade');
+            $table->unsignedBigInteger('payment_method')->unasigned()->nullable();
+            $table->foreign('payment_method')->references('id_method')->on('payment_methods') ->onDelete('set null') ->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
 

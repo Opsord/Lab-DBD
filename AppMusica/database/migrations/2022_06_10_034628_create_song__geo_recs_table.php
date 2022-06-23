@@ -17,11 +17,11 @@ return new class extends Migration
             
             $table->id('id_song_gr');
 
-            $table->unsignedBigInteger('song')->nullable();
-            $table->foreign('song')->references('id_song')->on('songs') ->onDelete('cascade') ->onUpdate('cascade');
+            $table->unsignedBigInteger('song')->unasigned()->nullable();
+            $table->foreign('song')->references('id_song')->on('songs') ->onDelete('set null') ->onUpdate('cascade');
 
-            $table->unsignedBigInteger('restricted_to')->nullable();
-            $table->foreign('restricted_to')->references('id_country')->on('geographic_restrictions') ->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('restricted_to')->unasigned()->nullable();
+            $table->foreign('restricted_to')->references('id_country')->on('geographic_restrictions') ->onDelete('set null')->onUpdate('cascade');
             
             $table->timestamps();
             $table->softDeletes();

@@ -17,11 +17,11 @@ return new class extends Migration
             
             $table->id('id_role_permission');
 
-            $table->unsignedBigInteger('id_role')->nullable();
-            $table->foreign('id_role')->references('id_role')->on('roles') ->onDelete('cascade') ->onUpdate('cascade');
+            $table->unsignedBigInteger('id_role')->unasigned()->nullable();
+            $table->foreign('id_role')->references('id_role')->on('roles') ->onDelete('set null') ->onUpdate('cascade');
 
-            $table->unsignedBigInteger('id_permission')->nullable();
-            $table->foreign('id_permission')->references('id_permission')->on('permissions') ->onDelete('cascade') ->onUpdate('cascade');
+            $table->unsignedBigInteger('id_permission')->unasigned()->nullable();
+            $table->foreign('id_permission')->references('id_permission')->on('permissions') ->onDelete('set null') ->onUpdate('cascade');
 
             $table->timestamps();
             $table->softDeletes();

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id('id_receipt');
             $table->integer('amount');
 
-            $table->unsignedBigInteger('used_method')->nullable();
-            $table->foreign('used_method')->references('id_method')->on('payment_methods') ->onDelete('cascade') ->onUpdate('cascade');
+            $table->unsignedBigInteger('used_method')->unasigned()->nullable();
+            $table->foreign('used_method')->references('id_method')->on('payment_methods') ->onDelete('set null') ->onUpdate('cascade');
 
             $table->timestamps();
             $table->softDeletes();

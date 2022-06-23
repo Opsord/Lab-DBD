@@ -20,14 +20,14 @@ return new class extends Migration
             $table->time('duration');
             $table->string('is_explicit');
 
-            $table->unsignedBigInteger('album')->nullable();
-            $table->foreign('album')->references('id_album')->on('albums') ->onDelete('cascade') ->onUpdate('cascade');
+            $table->unsignedBigInteger('album')->unasigned()->nullable();
+            $table->foreign('album')->references('id_album')->on('albums') ->onDelete('set null') ->onUpdate('cascade');
 
-            $table->unsignedBigInteger('country')->nullable();
-            $table->foreign('country')->references('id_country')->on('geographic_restrictions') ->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('country')->unasigned()->nullable();
+            $table->foreign('country')->references('id_country')->on('geographic_restrictions') ->onDelete('set null')->onUpdate('cascade');
 
-            $table->unsignedBigInteger('genre')->nullable();
-            $table->foreign('genre')->references('id_genre')->on('genres') ->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('genre')->unasigned()->nullable();
+            $table->foreign('genre')->references('id_genre')->on('genres') ->onDelete('set null')->onUpdate('cascade');
 
             $table->timestamps();
             $table->softDeletes();

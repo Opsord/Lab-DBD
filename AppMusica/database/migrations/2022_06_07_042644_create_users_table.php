@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('birthday');
 
-            $table->unsignedBigInteger('id_subscription')->nullable();
-            $table->foreign('id_subscription')->references('id_subscription')->on('subscriptions') ->onDelete('cascade') ->onUpdate('cascade');
+            $table->unsignedBigInteger('id_subscription')->unasigned()->nullable();
+            $table->foreign('id_subscription')->references('id_subscription')->on('subscriptions') ->onDelete('set null') ->onUpdate('cascade');
 
             $table->timestamps();
             $table->softDeletes();

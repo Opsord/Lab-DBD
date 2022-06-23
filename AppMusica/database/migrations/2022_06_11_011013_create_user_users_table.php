@@ -17,11 +17,11 @@ return new class extends Migration
 
             $table->id('id_user_user');
 
-            $table->unsignedBigInteger('id_user')->nullable();
-            $table->foreign('id_user')->references('id_user')->on('users') ->onDelete('cascade') ->onUpdate('cascade');
+            $table->unsignedBigInteger('id_user')->unasigned()->nullable();
+            $table->foreign('id_user')->references('id_user')->on('users') ->onDelete('set null') ->onUpdate('cascade');
 
-            $table->unsignedBigInteger('id_user2')->nullable();
-            $table->foreign('id_user2')->references('id_user')->on('users') ->onDelete('cascade') ->onUpdate('cascade');
+            $table->unsignedBigInteger('id_user2')->unasigned()->nullable();
+            $table->foreign('id_user2')->references('id_user')->on('users') ->onDelete('set null') ->onUpdate('cascade');
             
             $table->timestamps();
             $table->softDeletes();

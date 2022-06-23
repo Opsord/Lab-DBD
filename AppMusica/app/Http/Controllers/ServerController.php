@@ -18,7 +18,7 @@ class ServerController extends Controller
     {
         //
         $Servers = Server::all();
-        if ($Servers->isEmpty()) {
+        if (empty($Servers)) {
             return response()->json(['message' => 'No Servers found'], 404);
         }
         return response($Servers);
@@ -68,7 +68,7 @@ class ServerController extends Controller
     {
         //
         $Server = Server::onlyTrashed()->get();
-        if ($Server->isEmpty()) {
+        if (empty($Server)) {
             return response()->json(['message' => 'No archived Servers found'], 404);
         }
         return response($Server, 200);
@@ -84,7 +84,7 @@ class ServerController extends Controller
     {
         //
         $Server = Server::find($id);
-        if (!$Server) {
+        if (empty($Server)) {
             return response()->json(['message' => 'Server not found'], 404);
         }
         return response($Server);
@@ -150,17 +150,24 @@ class ServerController extends Controller
     public function destroy($id)
     {
         //
-        $server = Server::find($id);
+        $server = Server::withTrashed() -> find($id);
 
-        if (!$server) {
-            return response()->json(['message' => 'server not found'], 404);
+        if (empty($server)) {
+            return response()->json(['message' => 'Server not found'], 404);
         }
 
-        $server->delete();
-
-        return response()->json([
-            'message' => 'Server soft deleted',
-            'id' => $server->id_server,
-        ], 200);
+        if ($server -> trashed()) {
+            $server -> forceDelete();
+            return response()->json([
+                'respuesta' => 'Server hard deleted',
+                'id' => $server->id_server,
+            ], 200);
+        } else {
+            $server -> delete();
+            return response()->json([
+                'respuesta' => 'Server soft deleted',
+                'id' => $server->id_server,
+            ], 200);
+        }
     }
 }

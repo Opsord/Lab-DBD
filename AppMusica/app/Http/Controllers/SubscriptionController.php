@@ -19,7 +19,7 @@ class SubscriptionController extends Controller
     {
         //
         $Subscriptions = Subscription::all();
-        if ($Subscriptions->isEmpty()) {
+        if (empty($Subscriptions)) {
             return response()->json(['message' => 'No Subscriptions found'], 404);
         }
         return response($Subscriptions);
@@ -85,7 +85,7 @@ class SubscriptionController extends Controller
     {
         //
         $Subscriptions = Subscription::onlyTrashed()->get();
-        if ($Subscriptions->isEmpty()) {
+        if (empty($Subscriptions)) {
             return response()->json(['message' => 'No archived Subscriptions found'], 404);
         }
         return response($Subscriptions, 200);
@@ -102,7 +102,7 @@ class SubscriptionController extends Controller
     {
         //
         $Subscription = Subscription::find($id);
-        if (!$Subscription) {
+        if (empty($Subscription)) {
             return response()->json(['message' => 'Subscription not found'], 404);
         }
         return response($Subscription);
@@ -179,16 +179,23 @@ class SubscriptionController extends Controller
     public function destroy($id)
     {
         //
-        $subscription = Subscription::find($id);
-        if (!$subscription) {
+        $subscription = Subscription::withTrashed() -> find($id);
+        if (empty($subscription)) {
             return response()->json(['message' => 'Subscription not found'], 404);
         }
 
-        $subscription->delete();
-
-        return response()->json([
-            'message' => 'Subsctription soft deleted',
-            'id' => $subscription->id_subscription,
-        ],200);
+        if ($subscription->trashed()) {
+            $subscription->forceDelete();
+            return response()->json([
+                'respuesta' => 'Subscription hard deleted',
+                'id' => $subscription->id_subscription,
+            ], 200);
+        } else {
+            $subscription->delete();
+            return response()->json([
+                'respuesta' => 'Subscription soft deleted',
+                'id' => $subscription->id_subscription,
+            ], 200);
+        }
     }
 }

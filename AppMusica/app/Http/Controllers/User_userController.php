@@ -18,7 +18,7 @@ class User_userController extends Controller
     public function index()
     {
         $users_users = User_user::all();
-        if ($users_users->isEmpty()){
+        if (empty($users_users)){
             return response()->json([]);
         }
         return response($users_users, 200);
@@ -94,7 +94,7 @@ class User_userController extends Controller
     {
         $user_user = User_user::find($id);
         if(empty($user_user)){
-            return response()->json([]);
+            return response()->json(['respuesta' => 'User_user intersection not found']);
         }
         return response($user_user, 200);
     }
@@ -173,7 +173,7 @@ class User_userController extends Controller
     {
         
         $user_user = User_user::onlyTrashed()->get();
-        if ($user_user->isEmpty()) {
+        if (empty($user_user)) {
             return response()->json(['message' => 'No archived User_user found'], 404);
         }
         return response($user_user, 200);
@@ -181,18 +181,23 @@ class User_userController extends Controller
     
     public function destroy($id)
     {
-        $user_user = User_user::find($id);
-        if (!$user_user) {
+        $user_user = User_user::withTrashed() -> find($id);
+        if (empty($user_user)) {
             return response()->json(['message' => 'User_user not found'], 404);
         }
 
-        $user_user->delete();
-
-        return response() -> json([
-            'message' => 'User_user soft deleted',
-            'id ' => $user_user->id_user_user
-        ], 200);
-    }
-
-    
+        if ($user_user->trashed()) {
+            $user_user->forceDelete();
+            return response()->json([
+                'message' => 'User_user hard deleted',
+                'id' => $user_user->id_user_user,
+                ], 200);
+        } else {
+            $user_user->delete();
+            return response()->json([
+                'message' => 'User_user soft deleted',
+                'id' => $user_user->id_user_user,
+                ], 200);
+        }
+    }   
 }

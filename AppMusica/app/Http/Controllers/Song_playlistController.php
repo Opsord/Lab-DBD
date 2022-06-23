@@ -18,7 +18,7 @@ class Song_playlistController extends Controller
     {
         //
         $song_playlists = Song_playlist::all();
-        if($song_playlist->isEmpty()){
+        if(empty($song_playlist)){
             return response()->json(['message'=>'No song_playlists found'], 404);
         }
         return response($song_playlist, 200);
@@ -82,7 +82,7 @@ class Song_playlistController extends Controller
     {
         //
         $songs_playlist = Song_playlist::onlyTrashed()->get();
-        if ($songs_playlist->isEmpty()) {
+        if (empty($songs_playlist)) {
             return response()->json(['message' => 'No archived song_playlist found'], 404);
         }
         return response($songs_playlist, 200);
@@ -172,17 +172,24 @@ class Song_playlistController extends Controller
     public function destroy($id)
     {
         //
-        $songPlay = Song_playlist::find($id);
+        $songPlay = Song_playlist::withTrashed() -> find($id);
 
-        if(!$songPlay){
+        if(empty($songPlay)) {
             return response()->json(['message' => 'Song_playlist intersection not found'], 404);
         }
 
-        $songPlay->delete();
-
-        return response()->json([
-            'message' => 'Song_playlist intersection soft deleted',
-            'id' => $songPlay->id_song_playlist,
-        ], 200);
+        if ($songPlay->trashed()) {
+            $songPlay->forceDelete();
+            return response()->json([
+                'message' => 'Song_playlist intersection hard deleted',
+                'id' => $songPlay->id_song_playlist,
+                ], 200);
+        } else {
+            $songPlay->delete();
+            return response()->json([
+                'message' => 'Song_playlist intersection soft deleted',
+                'id' => $songPlay->id_song_playlist,
+                ], 200);
+        }
     }
 }

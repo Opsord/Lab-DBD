@@ -18,7 +18,7 @@ class PlaylistController extends Controller
     {
         //
         $playlists  = Playlist::all();
-        if($playlist->isEmpty()){
+        if(empty($playlist)){
             return response()->json(['message'=>'No playlists  found'], 404);
         }
         return response($playlists, 200);
@@ -65,7 +65,7 @@ class PlaylistController extends Controller
     {
         //
         $playlists = Playlist::onlyTrashed()->get();
-        if ($playlists->isEmpty()) {
+        if (empty($playlists)) {
             return response()->json(['message' => 'No archived playlist found'], 404);
         }
         return response($playlists, 200);
@@ -143,18 +143,25 @@ class PlaylistController extends Controller
     public function destroy($id)
     {
         //
-        $Playlist = Playlist::find($id);
+        $Playlist = Playlist::withTrashed() -> find($id);
         
-        if(!$Playlist){
+        if(empty($Playlist)) {
             return response()->json([
                 'respuesta' => 'Playlist not found'], 404);
         }
 
-        $Playlist->delete();
-
-        return response()->json([
-            'respuesta' => 'Playlist soft deleted',
-            'id' => $Playlist->id_playlist,
-        ], 200);
+        if ($Playlist->trashed()) {
+            $Playlist->forceDelete();
+            return response()->json([
+                'respuesta' => 'Playlist hard deleted',
+                'id' => $playlist->id_playlist
+                ], 200);
+        } else {
+            $Playlist->delete();
+            return response()->json([
+                'respuesta' => 'Playlist soft deleted',
+                'id' => $playlist->id_playlist
+                ], 200);
+        }
     }
 }

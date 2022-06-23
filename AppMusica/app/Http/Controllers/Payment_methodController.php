@@ -18,7 +18,7 @@ class Payment_methodController extends Controller
     {
         //
         $Payment_methods = Payment_method::all();
-        if ($Payment_methods->isEmpty()) {
+        if (empty($Payment_methods)) {
             return response()->json(['message' => 'No Payment_methods found'], 404);
         }
         return response($Payment_methods);
@@ -76,7 +76,7 @@ class Payment_methodController extends Controller
     {
         //
         $Payment_method = Payment_method::onlyTrashed()->get();
-        if ($Payment_method->isEmpty()) {
+        if (empty($Payment_method)) {
             return response()->json(['message' => 'No archived Payment_methods found'], 404);
         }
         return response($Payment_method, 200);
@@ -92,7 +92,7 @@ class Payment_methodController extends Controller
     {
         //
         $Payment_method = Payment_method::find($id);
-        if (!$Payment_method) {
+        if (empty($Payment_method)) {
             return response()->json(['message' => 'Payment method not found'], 404);
         }
         return response($Payment_method);
@@ -151,7 +151,7 @@ class Payment_methodController extends Controller
         $PayMeth->save();
         return response()->json([
             'respuesta' => 'se ha actualizado el metodo de pago',
-            'id' => $PayMeth->id_method,
+            'id' => $PayMeth->id_method
         ], 200);
     }
 
@@ -164,17 +164,23 @@ class Payment_methodController extends Controller
     public function destroy($id)
     {
         //
-        $PayMeth = Payment_method::find($id);
+        $PayMeth = Payment_method::withTrashed() -> find($id);
 
-        if (!$PayMeth) {
+        if (empty($PayMeth)) {
             return response()->json(['message' => 'PaymentMethod not found'], 404);
         }
-
-        $PayMeth->delete();
-
-        return response()->json([
-            'message' => 'PaymentMethod soft deleted',
-            'id' => $PayMeth->id_method,
-        ], 200);
+        if ($PayMeth -> trashed()) {
+            $PayMeth -> forceDelete();
+            return response()->json([
+                'message' => 'Payment method hard deleted',
+                'id' => $PayMeth->id_method
+            ], 200);
+        } else {
+            $PayMeth -> delete();
+            return response()->json([
+                'message' => 'Payment method soft deleted',
+                'id' => $PayMeth->id_method
+            ], 200);
+        }
     }
 }

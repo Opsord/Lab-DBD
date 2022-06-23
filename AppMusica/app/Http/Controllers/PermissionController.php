@@ -17,7 +17,7 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::all();
-        if ($permissions->isEmpty()){
+        if (empty($permissions)){
             return response()->json([]);
         }
         return response($permissions, 200);
@@ -63,7 +63,7 @@ class PermissionController extends Controller
         $newpermission->save();
         return response()->json([
             'respuesta' => 'se ha creado un nuevo permiso',
-            'id' => $newpermission->id_permission,
+            'id' => $newpermission->id_permission
         ], 201);
     }
 
@@ -127,8 +127,8 @@ class PermissionController extends Controller
         $permission->save();
         return response()->json([
             'respuesta' => 'se ha actualizado el permiso',
-            'id' => $permission->id_permission,
-        ], 201);
+            'id' => $permission->id_permission
+            ], 201);
     }
 
     /**
@@ -139,24 +139,31 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        $permission = Permission::find($id);
-        if (!$permission) {
-            return response()->json(['message' => 'permission not found'], 404);
+        $permission = Permission::withTrashed() -> find($id);
+        if (emtpy($permission)) {
+            return response()->json(['message' => 'Permission not found'], 404);
         }
 
-        $permission->delete();
-
-        return response() -> json([
-            'message' => 'Permission soft deleted',
-            'id ' => $permission->id_permission
-        ], 200);
+        if ($permission -> trashed()) {
+            $permission -> forceDelete();
+            return response()->json([
+                'message' => 'Permission hard deleted',
+                'id' => $permission->id_permission
+                ], 204);
+        } else {
+            $permission -> delete();
+            return response()->json([
+                'message' => 'Permission soft deleted',
+                'id' => $permission->id_permission
+                ], 204);
+        }
     }
 
     public function archive()
     {
         
         $permission = Permssion::onlyTrashed()->get();
-        if ($permission->isEmpty()) {
+        if (empty($permission)) {
             return response()->json(['message' => 'No Permission found'], 404);
         }
         return response($permission, 200);

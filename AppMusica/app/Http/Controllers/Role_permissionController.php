@@ -19,7 +19,7 @@ class Role_permissionController extends Controller
     public function index()
     {
         $role_permission = Role_permission::all();
-        if ($role_permission->isEmpty()){
+        if (empty($role_permission)){
             return response()->json([]);
         }
         return response($role_permission, 200);
@@ -153,25 +153,32 @@ class Role_permissionController extends Controller
      */
     public function destroy($id)
     {
-        $role_permission = Role_permission::find($id);
+        $role_permission = Role_permission::withTrashed() -> find($id);
         
-        if (!$role_permission) {
+        if (empty($role_permission)) {
             return response()->json(['message' => 'Role_permission intersection not found'], 404);
         }
 
-        $role_permission->delete();
-
-        return response() -> json([
-            'message' => 'Role_permission intersection soft deleted',
-            'id ' => $role_permission->id_role_permission
-        ], 200);
+        if ($role_permission->trashed()) {
+            $role_permission->forceDelete();
+            return response()->json([
+                'message' => 'Role_permission intersection hard deleted',
+                'id' => $role_permission->id_role_permission
+                ], 200);
+        } else {
+            $role_permission->delete();
+            return response()->json([
+                'message' => 'Role_permission intersection soft deleted',
+                'id' => $role_permission->id_role_permission
+                ], 200);
+        }
     }
 
     public function archive()
     {
         
         $role_permission = Role_permission::onlyTrashed()->get();
-        if ($role_permission->isEmpty()) {
+        if (empty($role_permission)) {
             return response()->json(['message' => 'No archived Role_permission intersection found'], 404);
         }
         return response($role_permission, 200);

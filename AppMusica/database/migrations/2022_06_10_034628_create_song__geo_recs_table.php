@@ -18,10 +18,10 @@ return new class extends Migration
             $table->id('id_song_gr');
 
             $table->unsignedBigInteger('song')->nullable();
-            $table->foreign('song')->references('id_song')->on('songs');
+            $table->foreign('song')->references('id_song')->on('songs') ->onDelete('cascade') ->onUpdate('cascade');
 
             $table->unsignedBigInteger('restricted_to')->nullable();
-            $table->foreign('restricted_to')->references('id_country')->on('geographic_restrictions');
+            $table->foreign('restricted_to')->references('id_country')->on('geographic_restrictions') ->onDelete('cascade')->onUpdate('cascade');
             
             $table->timestamps();
             $table->softDeletes();

@@ -18,8 +18,8 @@ class Song_genreController extends Controller
     {
         //
         $song_genres = Song_genre::all();
-        if ($song_genres->isEmpty()) {
-            return response()->json(['message' => 'No song_genres found'], 404);
+        if (empty($song_genres)) {
+            return response()->json(['message' => 'No song_genres intersections found'], 404);
         }
         return response($song_genres, 200);
     }
@@ -56,7 +56,7 @@ class Song_genreController extends Controller
         $newsong_genre->save();
 
         return response()->json([
-            'respuesta' => 'nuevo interseccion song_genre creado',
+            'message' => 'nuevo interseccion song_genre creado',
         ]);
     }
 
@@ -65,7 +65,7 @@ class Song_genreController extends Controller
     {
         //
         $song_genres = Song_genre::onlyTrashed()->get();
-        if ($song_genres->isEmpty()) {
+        if (empty($song_genres)) {
             return response()->json(['message' => 'No archived song_genres found'], 404);
         }
         return response($song_genres, 200);
@@ -81,8 +81,8 @@ class Song_genreController extends Controller
     {
         //
         $song_genre = Song_genre::find($id);
-        if (!$song_genre) {
-            return response()->json(['message' => 'Song_genre not found'], 404);
+        if (empty($song_genre)) {
+            return response()->json(['message' => 'Song_genre intersection not found'], 404);
         }
         return response($song_genre, 200);
     }
@@ -120,7 +120,7 @@ class Song_genreController extends Controller
         }
 
         $song_genre = Song_genre::find($id);
-        if (!$song_genre) {
+        if (empty($song_genre)) {
             return response()->json(['message' => 'Song_genre not found'], 404);
         }
 
@@ -129,7 +129,7 @@ class Song_genreController extends Controller
         $song_genre->save();
 
         return response()->json([
-            'respuesta' => 'interseccion song_genre actualizada',
+            'message' => 'interseccion song_genre actualizada',
         ]);
     }
 
@@ -142,15 +142,23 @@ class Song_genreController extends Controller
     public function destroy($id)
     {
         //
-        $song_genre = Song_genre::find($id);
-        if (!$song_genre) {
+        $song_genre = Song_genre::withTrashed() -> find($id);
+        if (empty($song_genre)) {
             return response()->json(['message' => 'Song_genre intersection not found'], 404);
         }
 
-        $song_genre->delete();
-
-        return response()->json([
-            'message' => 'Song_genre intersection soft deleted',
-        ]);
+        if ($song_genre->trashed()) {
+            $song_genre->forceDelete();
+            return response()->json([
+                'message' => 'Song_genre intersection hard deleted',
+                'id' => $song_genre->$id_song_genre
+                ]);
+        } else {
+            $song_genre->delete();
+            return response()->json([
+                'message' => 'Song_genre intersection soft deleted',
+                'id' => $song_genre->$id_song_genre
+                ]);
+        }
     }
 }

@@ -20,7 +20,7 @@ class Song_serverController extends Controller
     {
         //
         $SongServs = Song_server::all();
-        if ($SongServs->isEmpty()) {
+        if (empty($SongServs)) {
             return response()->json(['message' => 'No Song servers found'], 404);
         }
         return response($SongServs);
@@ -89,7 +89,7 @@ class Song_serverController extends Controller
     {
         //
         $SongServ = Song_server::onlyTrashed()->get();
-        if ($SongServ->isEmpty()) {
+        if (empty($SongServ)) {
             return response()->json(['message' => 'No archived Song_Servers found'], 404);
         }
         return response($SongServ, 200);
@@ -106,8 +106,8 @@ class Song_serverController extends Controller
     {
         //
         $SongServ = Song_server::find($id);
-        if (!$SongServ) {
-            return response()->json(['message' => 'Song Server not found'], 404);
+        if (empty($SongServ)) {
+            return response()->json(['message' => 'Song Server intersection not found'], 404);
         }
         return response($SongServ);
     }
@@ -186,18 +186,24 @@ class Song_serverController extends Controller
     public function destroy($id)
     {
         //
-        $songServ = Song_server::find($id);
-        if(!$songServ){
+        $songServ = Song_server::withTrashed() -> find($id);
+        if(empty($songServ)) {
             return response()->json([
                 'message' => 'Song_server intersection not found'
             ], 404);
         }
-
-        $songServ->delete();
-
-        return response()->json([
-            'message' => 'Song_server intersection soft deleted',
-            'id' => $songServ->id_song_server,
-        ], 200);
+        if($songServ->trashed()){
+            $songServ->forceDelete();
+            return response()->json([
+                'message' => 'Song_server intersection hard deleted',
+                'id' => $songServ->id_song_server
+            ], 200);
+        } else {
+            $songServ->delete();
+            return response()->json([
+                'message' => 'Song_server intersection soft deleted',
+                'id' => $songServ->id_song_server
+            ], 200);
+        }
     }
 }

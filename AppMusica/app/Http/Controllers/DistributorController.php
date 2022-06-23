@@ -18,20 +18,10 @@ class DistributorController extends Controller
     {
         //
         $distributors = Distributor::all();
-        if ($distributors->isEmpty()) {
+        if (empty($distributors)) {
             return response()->json(['message' => 'No distributors found'], 404);
         }
         return response($distributors, 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -57,16 +47,16 @@ class DistributorController extends Controller
         $newdistributor->name_distributor = $request->name_distributor;
         $newdistributor->save();
         
-        return response()->json([
-            'respuesta' => 'nuevo distribuidor creado',
-            'id' => $newdistributor->id_distributor,
+        return response()->json([ 
+            'respuesta' => 'New distributor created',
+            'id' => $newdistributor->id_distributor
         ], 201);
     }
 
     public function archive()
     {
         $distributors = Distributor::onlyTrashed()->get();
-        if ($distributors->isEmpty()) {
+        if (empty($distributors)) {
             return response()->json(['message' => 'No archived distributors found'], 404);
         }
         return response($distributors, 200);
@@ -82,21 +72,10 @@ class DistributorController extends Controller
     {
         //
         $distributor = Distributor::find($id);
-        if (!$distributor) {
+        if (empty($distributor)) {
             return response()->json(['message' => 'Distributor not found'], 404);
         }
         return response($distributor, 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -120,7 +99,7 @@ class DistributorController extends Controller
         }
 
         $distributor = Distributor::find($id);
-        if (!$distributor) {
+        if (empty($distributor)) {
             return response()->json(['message' => 'Distributor not found'], 404);
         }
 
@@ -128,7 +107,7 @@ class DistributorController extends Controller
         $distributor->save();
 
         return response()->json([
-            'respuesta' => 'distribuidor actualizado',
+            'respuesta' => 'Distributor updated',
             'id' => $distributor->id_distributor, 200]);
     }
 
@@ -141,33 +120,24 @@ class DistributorController extends Controller
     public function destroy($id)
     {
         //
-        $distributor = Distributor::find($id);
-        if (!$distributor) {
+        $distributor = Distributor::withTrashed() -> find($id);
+
+        if(empty($distributor)) {
             return response()->json(['message' => 'Distributor not found'], 404);
         }
 
-        $distributor->delete();
-
-        return response()->json([
-            'message' => 'Distributor soft deleted',
-            'id' => $distributor->id_distributor,
-        ], 200);
-    }
-
-    public function hardDelete($id)
-    {
-        //
-        Distributor::find($id)->withTrashed()->forceDelete();
-
-        if (!$distributor) {
-            return response()->json(['message' => 'Distributor not found'], 404);
+        if ($distributor -> trashed()){
+            $distributor -> forceDelete();
+            return response()->json([
+                'message' => 'Distributor hard deleted',
+                'id' => $distributor->id_distributor
+            ], 200);
+        } else {
+            $distributor -> delete();
+            return response()->json([
+                'message' => 'Distributor soft deleted',
+                'id' => $distributor->id_distributor
+            ], 200);
         }
-
-        //$distributor->forceDelete();
-
-        return response()->json([
-            'respuesta' => 'Distributor hard deleted',
-            'id' => $distributor->id_distributor,
-        ], 200);
     }
 }

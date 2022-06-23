@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        if ($users->isEmpty()){
+        if (empty($users)){
             return response()->json([]);
         }
         return view('users')->with('users', $users);
@@ -84,7 +84,7 @@ class UserController extends Controller
     public function archive()
     {
         $users = User::onlyTrashed()->get();
-        if ($users->isEmpty()){
+        if (empty($users)){
             return response()->json(['message' => 'No archived users found'], 404);
         }
         return response($users, 200);
@@ -100,7 +100,7 @@ class UserController extends Controller
         //
         $user = User::find($id);
         if(empty($user)){
-            return response()->json([]);
+            return response()->json(['message' => 'User not found'], 404);
         }
         return response($user, 200);
     }
@@ -173,16 +173,23 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        if (!$user) {
+        $user = User::withTrashed() -> find($id);
+        if (empty($user)) {
             return response()->json(['message' => 'User not found'], 404);
         }
 
-        $user->delete();
-
-        return response() -> json([
-            'message' => 'User soft deleted',
-            'id ' => $user->id_user
-        ], 200);
-       }
+        if ($user->trashed()) {
+            $user->forceDelete();
+            return response()->json([
+                'message' => 'User hard deleted',
+                'id' => $user->id_user
+                ], 200);
+        } else {
+            $user->delete();
+            return response()->json([
+                'message' => 'User soft deleted',
+                'id' => $user->id_user
+                ], 200);
+        }
+    }
 }

@@ -18,10 +18,10 @@ return new class extends Migration
             $table->id('id_user_role');
 
             $table->unsignedBigInteger('id_user')->nullable();
-            $table->foreign('id_user')->references('id_user')->on('users');
+            $table->foreign('id_user')->references('id_user')->on('users') ->onDelete('cascade') ->onUpdate('cascade');
 
             $table->unsignedBigInteger('id_role')->nullable();
-            $table->foreign('id_role')->references('id_role')->on('roles');
+            $table->foreign('id_role')->references('id_role')->on('roles') ->onDelete('cascade') ->onUpdate('cascade');
             
             $table->timestamps();
             $table->softDeletes();

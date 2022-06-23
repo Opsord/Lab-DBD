@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Song_GeoRec;
 use App\Models\Song;
 use App\Models\Geographic_restriction;
+
 use illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class Song_GeoRecController extends Controller
     {
         //
         $song_georecs = Song_GeoRec::all();
-        if ($song_georecs->isEmpty()) {
+        if (empty($song_georecs)) {
             return response()->json(['message' => 'No song_georecs found'], 404);
         }
         return response($song_georecs, 200);
@@ -78,7 +79,7 @@ class Song_GeoRecController extends Controller
     {
         //
         $georecs = GeoRec::onlyTrashed()->get();
-        if ($georecs->isEmpty()) {
+        if (empty($georecs)) {
             return response()->json(['message' => 'No archived georecs found'], 404);
         }
         return response($georecs, 200);
@@ -94,7 +95,7 @@ class Song_GeoRecController extends Controller
     {
         //
         $song_georec = Song_GeoRec::find($id);
-        if (!$song_georec) {
+        if (empty($song_georec)) {
             return response()->json(['message' => 'Song_georec not found'], 404);
         }
         return response($song_georec, 200);
@@ -155,16 +156,24 @@ class Song_GeoRecController extends Controller
     public function destroy($id)
     {
         //
-        $song_georec = Song_GeoRec::find($id);
+        $song_georec = Song_GeoRec::withTrashed() -> find($id);
 
-        if (!$song_georec) {
+        if (empty($song_georec)) {
             return response()->json(['message' => 'Song_georec intersection not found'], 404);
         }
 
-        $song_georec->delete();
-
-        return response()->json([
-            'message' => 'Song_georec intersection soft deleted',
-        ]);
+        if ($song_georec -> trashed()) {
+            $song_georec -> forceDelete();
+            return response()->json([
+                'respuesta' => 'Song_georec intersection hard deleted',
+                'id' => $song_georec -> $id_song_georec
+                ]);
+        } else {
+            $song_georec -> delete();
+            return response()->json([
+                'respuesta' => 'Song_georec intersection soft deleted',
+                'id' => $song_georec -> $id_song_georec
+                ]);
+        }
     }
 }

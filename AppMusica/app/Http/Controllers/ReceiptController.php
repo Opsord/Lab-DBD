@@ -18,11 +18,11 @@ class ReceiptController extends Controller
     public function index()
     {
         //
-        $Receipts = Receipt::all();
-        if ($Receipts->isEmpty()) {
+        $receipts = Receipt::all();
+        if ($receipts->isEmpty()) {
             return response()->json(['message' => 'No Receipts found'], 404);
         }
-        return response($Receipts);
+        return response($receipts);
     }
 
     /**
@@ -79,10 +79,10 @@ class ReceiptController extends Controller
     {
         //
         $Receipt = Receipt::onlyTrashed()->get();
-        if ($Receipt->isEmpty()) {
-            return response()->json(['message' => 'No archived Receipts found'], 404);
+        if (empty($receipt)) {
+            return sponse()->json(['message' => 'No archived Receipts found'], 404);
         }
-        return response($Receipt, 200);
+        return response($receipt, 200);
     }
 
 
@@ -95,11 +95,11 @@ class ReceiptController extends Controller
     public function show($id)
     {
         //
-        $Receipt = Receipt::find($id);
-        if (!$Receipt) {
+        $receipt = Receipt::find($id);
+        if (empty($receipt)) {
             return response()->json(['message' => 'Receipt not found'], 404);
         }
-        return response($Receipt);
+        return response($receipt);
     }
 
     /**
@@ -169,17 +169,24 @@ class ReceiptController extends Controller
     public function destroy($id)
     {
         //
-        $receipt = Receipt::find($id);
+        $receipt = Receipt::withTrashed() -> find($id);
 
-        if (!$receipt) {
+        if (empty($receipt)) {
             return response()->json(['message' => 'Receipt not found'], 404);
         }
 
-        $receipt->delete();
-
-        return response()->json([
-            'message' => 'Receipt soft deleted',
-            'id' => $receipt->id_receipt,
-        ], 200);
+        if ($receipt->trashed()) {
+            $receipt->forceDelete();
+            return response()->json([
+                'message' => 'Receipt hard deleted',
+                'id' => $receipt->id_receipt
+                ], 200);
+        } else {
+            $receipt->delete();
+            return response()->json([
+                'message' => 'Receipt soft archived',
+                'id' => $receipt->id_receipt
+                ], 200);
+        }
     }
 }

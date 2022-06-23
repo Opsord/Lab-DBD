@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('release_date');
 
             $table->unsignedBigInteger('distributed_by')->nullable();
-            $table->foreign('distributed_by')->references('id_distributor')->on('distributors');
+            $table->foreign('distributed_by')->references('id_distributor')->on('distributors') ->onDelete('cascade')->onUpdate('cascade');
             
             $table->timestamps();
             $table->softDeletes();

@@ -18,7 +18,7 @@ class AlbumController extends Controller
     {
         //
         $albums = Album::all();
-        if ($albums->isEmpty()) {
+        if (empty($albums)) {
             return response()->json(['message' => 'No albums found'], 404);
         }
         return response($albums, 200);
@@ -47,7 +47,7 @@ class AlbumController extends Controller
             $request->all(),[
                 'name_album' => 'required',
                 'release_date' => 'required',
-                #'distributed_by' => 'required',
+                'distributed_by' => 'required'
             ]
         );
 
@@ -58,7 +58,7 @@ class AlbumController extends Controller
         $newalbum->save();
 
         return response()->json([
-            'respuesta' => 'nuevo album creado',
+            'respuesta' => 'New album created',
             'id' => $newalbum->id_album,
         ], 201);
     }
@@ -67,7 +67,7 @@ class AlbumController extends Controller
     {
         //
         $albums = Album::onlyTrashed()->get();
-        if ($albums->isEmpty()) {
+        if (empty($albums)) {
             return response()->json(['message' => 'No archived albums found'], 404);
         }
         return response($albums, 200);
@@ -83,7 +83,7 @@ class AlbumController extends Controller
     {
         //
         $album = Album::find($id);
-        if (!$album) {
+        if (empty($album)) {
             return response()->json(['message' => 'Album not found'], 404);
         }
         return response($album, 200);
@@ -114,7 +114,7 @@ class AlbumController extends Controller
             $request->all(),[
                 'name_album' => 'required',
                 'release_date' => 'required',
-                'distributed_by' => 'required',
+                'distributed_by' => 'required'
             ]
         );
 
@@ -123,7 +123,7 @@ class AlbumController extends Controller
         }
 
         $album = Album::find($id);
-        if (!$album) {
+        if (empty($album)) {
             return response()->json(['message' => 'Album not found'], 404);
         }
 
@@ -133,8 +133,8 @@ class AlbumController extends Controller
         $album->save();
 
         return response()->json([
-            'respuesta' => 'album actualizado',
-            'id' => $album->id_album,
+            'respuesta' => 'Album updated',
+            'id' => $album->id_album
         ], 200);
     }
 
@@ -147,18 +147,24 @@ class AlbumController extends Controller
     public function destroy($id)
     {
         //
-        $album = Album::find($id);
+        $album = Album::withTrashed() -> find($id);
         
-        if (!$album) {
+        if (empty($album)) {
             return response()->json(['message' => 'Album not found'], 404);
         }
 
-        $album->delete();
-        
-        return response()->json([
-            'respuesta' => 'Album soft deleted',
-            'id' => $album->id_album,
-        ], 200);
-
+        if ($album -> trashed()) {
+            $album -> forceDelete();
+            return response()->json([
+                'message' => 'Album hard deleted',
+                'id' => $album->id_albums
+            ], 200);
+        } else {
+            $album -> delete();
+            return response()->json([
+                'message' => 'Album soft deleted',
+                'id' => $album->id_album
+                ], 200);
+        }
     }
 }

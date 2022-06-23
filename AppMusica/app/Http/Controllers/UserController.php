@@ -71,10 +71,7 @@ class UserController extends Controller
         $newuser->birthday = $request->birthday;
         $newuser->id_subscription = $request->id_subscription;
         $newuser->save();
-        return response()->json([
-            'respuesta' => 'se ha creado un nuevo usuario',
-            'id' => $newuser->id_user,
-        ], 201);
+        return back();
         }
         
         

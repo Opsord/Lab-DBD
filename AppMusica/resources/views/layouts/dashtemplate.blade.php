@@ -25,7 +25,7 @@
 
 
       </div>
-      <div id="content">
+      <div class="container-fluid">
         @yield('dashcontent')
       </div>
     </div>

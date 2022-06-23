@@ -183,10 +183,7 @@ class UserController extends Controller
                 ], 200);
         } else {
             $user->delete();
-            return response()->json([
-                'message' => 'User soft deleted',
-                'id' => $user->id_user
-                ], 200);
+            return back();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 @section('dashcontent')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1>Usuarios Registrados</h1>
+        <h1 class="text-light">Usuarios Registrados</h1>
         <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal"
             data-bs-target="#usermodal">
             Agregar Usuario
@@ -50,6 +50,7 @@
                 <td>Email</td>
                 <td>birthday</td>
                 <td>Subscription</td>
+                <td></td>
             </tr>
         </thead>
         <tbody class="text-light">
@@ -61,6 +62,12 @@
                     <td>{{ $usuario->email }}</td>
                     <td>{{ $usuario->birthday }}</td>
                     <td>{{ $usuario->id_subscription }}</td>
+                    <td>
+                        <form action="{{url("user/delete")}}/{{$usuario->id_user}}" method="post">
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-circle"></i></button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

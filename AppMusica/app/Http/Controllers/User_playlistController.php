@@ -89,8 +89,9 @@ class User_playlistController extends Controller
         $users_playlist = User_playlist::onlyTrashed()->get();
         if (empty($users_playlist)) {
             return response()->json(['message' => 'No archived user_playlist intersection found'], 404);
+        } else {
+            return response($users_playlist);
         }
-        return response($users_playlist, 200);
     }
 
     /**
@@ -198,5 +199,41 @@ class User_playlistController extends Controller
                 'id' => $user_playlist->id_user_playlist
             ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $userPlay = User_playlist::onlyTrashed() -> find($id);
+        if(empty($userPlay)) {
+            return response()->json([
+                'message' => 'User_playlist intersection not found'
+            ], 404);
+        }
+
+        $userPlay->restore();
+        return response()->json([
+            'message' => 'User_playlist intersection restored',
+            'id' => $user_playlist->id_user_playlist
+        ], 200);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $userPlay = User_playlist::onlyTrashed() -> get();
+        if(empty($userPlay)) {
+            return response()->json([
+                'message' => 'User_playlist intersection not found'
+            ], 404);
+        }
+
+        foreach ($userPlay as $user_playlist) {
+            $user_playlist->restore();
+        }
+
+        return response()->json([
+            'message' => 'User_playlist intersections restored'
+        ], 200);
     }
 }

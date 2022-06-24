@@ -162,7 +162,42 @@ class RoleController extends Controller
         $role = Role::onlyTrashed()->get();
         if (empty($role)) {
             return response()->json(['message' => 'No archived Role found'], 404);
+        } else {
+            return response($role, 200);
         }
-        return response($role, 200);
+    }
+
+    public function restore($id)
+    {
+        $role = Role::onlyTrashed() -> find($id);
+
+        if (empty($role)) {
+            return response()->json(['message' => 'Role not found'], 404);
+        }
+
+        if ($role -> trashed()) {
+            $role -> restore();
+            return response()->json([
+                'message' => 'Role restored',
+                'id' => $role->id_role
+                ], 204);
+        }
+    }
+
+    public function restoreAll()
+    {
+        $role = Role::onlyTrashed() -> get();
+
+        if (empty($role)) {
+            return response()->json(['message' => 'No archived Role found'], 404);
+        }
+
+        foreach ($role as $role) {
+            $role -> restore();
+        }
+
+        return response()->json([
+            'message' => 'All roles restored'
+            ], 204);
     }
 }

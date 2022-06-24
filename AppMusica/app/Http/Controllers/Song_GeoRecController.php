@@ -81,8 +81,9 @@ class Song_GeoRecController extends Controller
         $georecs = GeoRec::onlyTrashed()->get();
         if (empty($georecs)) {
             return response()->json(['message' => 'No archived georecs found'], 404);
+        } else {
+            return response($georecs, 200);
         }
-        return response($georecs, 200);
     }
 
     /**
@@ -175,5 +176,38 @@ class Song_GeoRecController extends Controller
                 'id' => $song_georec -> $id_song_georec
                 ]);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $song_georec = Song_GeoRec::onlyTrashed() -> find($id);
+
+        if (empty($song_georec)) {
+            return response()->json(['message' => 'Song_georec intersection not found'], 404);
+        }
+
+        $song_georec -> restore();
+        return response()->json([
+            'respuesta' => 'Song_georec intersection restored',
+            'id' => $song_georec -> $id_song_georec
+            ]);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $song_georecs = Song_GeoRec::onlyTrashed() -> get();
+
+        if (empty($song_georecs)) {
+            return response()->json(['message' => 'Song_georecs not found'], 404);
+        }
+
+        foreach ($song_georecs as $song_georec) {
+            $song_georec -> restore();
+        }
+        return response()->json([
+            'respuesta' => 'Song_georecs intersections restored'
+            ]);
     }
 }

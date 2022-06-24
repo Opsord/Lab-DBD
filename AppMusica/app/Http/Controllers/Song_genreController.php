@@ -67,8 +67,9 @@ class Song_genreController extends Controller
         $song_genres = Song_genre::onlyTrashed()->get();
         if (empty($song_genres)) {
             return response()->json(['message' => 'No archived song_genres found'], 404);
+        } else {
+            return response($song_genres, 200);
         }
-        return response($song_genres, 200);
     }
 
     /**
@@ -160,5 +161,35 @@ class Song_genreController extends Controller
                 'id' => $song_genre->$id_song_genre
                 ]);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $song_genre = Song_genre::onlyTrashed() -> find($id);
+        if (empty($song_genre)) {
+            return response()->json(['message' => 'Song_genre intersection not found'], 404);
+        }
+
+        $song_genre->restore();
+        return response()->json([
+            'message' => 'Song_genre intersection restored',
+            'id' => $song_genre->$id_song_genre
+            ]);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $song_genres = Song_genre::onlyTrashed()->get();
+        if (empty($song_genres)) {
+            return response()->json(['message' => 'No archived song_genres found'], 404);
+        }
+        foreach ($song_genres as $song_genre) {
+            $song_genre->restore();
+        }
+        return response()->json([
+            'message' => 'All song_genres intersections restored'
+            ]);
     }
 }

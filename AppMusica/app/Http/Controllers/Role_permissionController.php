@@ -180,7 +180,37 @@ class Role_permissionController extends Controller
         $role_permission = Role_permission::onlyTrashed()->get();
         if (empty($role_permission)) {
             return response()->json(['message' => 'No archived Role_permission intersection found'], 404);
+        } else {
+            return response($role_permission, 200);
         }
-        return response($role_permission, 200);
+    }
+
+    public function restore($id)
+    {
+        $role_permission = Role_permission::withTrashed() -> find($id);
+        if (empty($role_permission)) {
+            return response()->json(['message' => 'Role_permission intersection not found'], 404);
+        }
+        $role_permission->restore();
+        return response()->json([
+            'message' => 'Role_permission intersection restored',
+            'id' => $role_permission->id_role_permission
+            ], 200);
+    }
+
+    public function restoreAll()
+    {
+        $role_permission = Role_permission::onlyTrashed()->restore();
+        if (empty($role_permission)) {
+            return response()->json(['message' => 'No archived Role_permission intersection found'], 404);
+        } 
+        
+        foreach ($role_permission as $role_permission) {
+            $role_permission->restore();
+        }
+
+        return response()->json([
+            'message' => 'All Role_permission intersections restored'
+            ], 200);
     }
 }

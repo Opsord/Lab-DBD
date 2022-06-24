@@ -66,8 +66,9 @@ class Geographic_restrictionController extends Controller
         $geographic_restrictions = Geographic_restriction::onlyTrashed()->get();
         if (empty($geographic_restrictions)) {
             return response()->json(['message' => 'No geographic_restrictions found'], 404);
+        } else {
+            return response($geographic_restrictions, 200);
         }
-        return response($geographic_restrictions, 200);
     }
     /**
      * Display the specified resource.
@@ -158,5 +159,41 @@ class Geographic_restrictionController extends Controller
                 'id' => $geographic_restriction->id_geographic_restriction
                 ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $geographic_restriction = Geographic_restriction::onlyTrashed() -> find($id);
+
+        if (empty($geographic_restriction)) {
+            return response()->json(['message' => 'Geographic_restriction not found'], 404);
+        }
+
+        $geographic_restriction -> restore();
+
+        return response()->json([
+            'message' => 'Geographic_restriction restored',
+            'id' => $geographic_restriction->id_geographic_restriction
+            ], 200);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $geographic_restrictions = Geographic_restriction::onlyTrashed() -> get();
+
+        if (empty($geographic_restrictions)) {
+            return response()->json(['message' => 'No geographic_restrictions found'], 404);
+        }
+
+        foreach ($geographic_restrictions as $geographic_restriction) {
+            $geographic_restriction -> restore();
+        }
+
+        return response()->json([
+            'message' => 'All geographic_restrictions restored',
+            'georecs' => $geographic_restrictions
+            ], 200);
     }
 }

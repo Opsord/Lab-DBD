@@ -70,8 +70,9 @@ class ServerController extends Controller
         $Server = Server::onlyTrashed()->get();
         if (empty($Server)) {
             return response()->json(['message' => 'No archived Servers found'], 404);
+        } else {
+            return response($Server);
         }
-        return response($Server, 200);
     }
 
     /**
@@ -169,5 +170,35 @@ class ServerController extends Controller
                 'id' => $server->id_server,
             ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $server = Server::onlyTrashed() -> find($id);
+
+        if (empty($server)) {
+            return response()->json(['message' => 'Server not found'], 404);
+        }
+        $server -> restore();
+        return response()->json([
+            'respuesta' => 'Server restored',
+            'id' => $server->id_server,
+        ], 200);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $server = Server::onlyTrashed() -> get();
+        if (empty($server)) {
+            return response()->json(['message' => 'No archived Servers found'], 404);
+        }
+        foreach ($server as $s) {
+            $s -> restore();
+        }
+        return response()->json([
+            'respuesta' => 'All Servers restored',
+        ], 200);
     }
 }

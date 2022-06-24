@@ -78,8 +78,9 @@ class Payment_methodController extends Controller
         $Payment_method = Payment_method::onlyTrashed()->get();
         if (empty($Payment_method)) {
             return response()->json(['message' => 'No archived Payment_methods found'], 404);
+        } else {
+            return response($Payment_method);
         }
-        return response($Payment_method, 200);
     }
 
     /**
@@ -182,5 +183,37 @@ class Payment_methodController extends Controller
                 'id' => $PayMeth->id_method
             ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $PayMeth = Payment_method::withTrashed() -> find($id);
+
+        if (empty($PayMeth)) {
+            return response()->json(['message' => 'PaymentMethod not found'], 404);
+        }
+
+        $PayMeth -> restore();
+        return response()->json([
+            'message' => 'Payment method restored',
+            'id' => $PayMeth->id_method
+        ], 200);
+    }
+    
+    public function restoreAll()
+    {
+        //
+        $PayMeth = Payment_method::onlyTrashed() -> get();
+
+        if (empty($PayMeth)) {
+            return response()->json(['message' => 'PaymentMethods not found'], 404);
+        }
+
+        $PayMeth -> restore();
+        return response()->json([
+            'message' => 'Payment methods restored',
+            'payment_methods' => $PayMeth
+        ], 200);
     }
 }

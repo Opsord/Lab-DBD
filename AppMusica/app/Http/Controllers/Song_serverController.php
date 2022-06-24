@@ -91,8 +91,9 @@ class Song_serverController extends Controller
         $SongServ = Song_server::onlyTrashed()->get();
         if (empty($SongServ)) {
             return response()->json(['message' => 'No archived Song_Servers found'], 404);
+        } else {
+            return response($SongServ);
         }
-        return response($SongServ, 200);
     }
 
 
@@ -205,5 +206,41 @@ class Song_serverController extends Controller
                 'id' => $songServ->id_song_server
             ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $songServ = Song_server::onlyTrashed() -> find($id);
+        if(empty($songServ)) {
+            return response()->json([
+                'message' => 'Song_server intersection not found'
+            ], 404);
+        }
+        $songServ->restore();
+        return response()->json([
+            'message' => 'Song_server intersection restored',
+            'id' => $songServ->id_song_server
+        ], 200);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $songServ = Song_server::onlyTrashed() -> get();
+        if(empty($songServ)) {
+            return response()->json([
+                'message' => 'Song_server intersections not found'
+            ], 404);
+        }
+        
+        
+        foreach ($songServ as $songServ) {
+            $songServ->restore();
+        }
+
+        return response()->json([
+            'message' => 'Song_server intersections restored'
+        ], 200);
     }
 }

@@ -175,8 +175,9 @@ class User_userController extends Controller
         $user_user = User_user::onlyTrashed()->get();
         if (empty($user_user)) {
             return response()->json(['message' => 'No archived User_user found'], 404);
+        } else {
+            return response($user_user, 200);
         }
-        return response($user_user, 200);
     }
     
     public function destroy($id)
@@ -199,5 +200,33 @@ class User_userController extends Controller
                 'id' => $user_user->id_user_user,
                 ], 200);
         }
-    }   
+    }
+
+    public function restore($id)
+    {
+        $user_user = User_user::onlyTrashed() -> find($id);
+        if (empty($user_user)) {
+            return response()->json(['message' => 'User_user not found'], 404);
+        }
+
+        $user_user->restore();
+        return response()->json([
+            'message' => 'User_user restored',
+            'id' => $user_user->id_user_user,
+            ], 200);
+    }
+
+    public function restoreAll()
+    {
+        $user_user = User_user::onlyTrashed() -> get();
+        if (empty($user_user)) {
+            return response()->json(['message' => 'No archived User_user found'], 404);
+        }
+        foreach ($user_user as $user_user) {
+            $user_user->restore();
+        }
+        return response()->json([
+            'message' => 'All User_user restored',
+            ], 200);
+    }
 }

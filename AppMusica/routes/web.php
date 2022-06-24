@@ -76,6 +76,8 @@ Route::post('/distributor/create', 'App\Http\Controllers\DistributorController@s
 Route::get('/distributors/archive', 'App\Http\Controllers\DistributorController@archive');
 Route::put('/distributor/update/{id}', 'App\Http\Controllers\DistributorController@update');
 Route::delete('/distributor/delete/{id}', 'App\Http\Controllers\DistributorController@destroy');
+Route::post('/distributor/restore/{id}', 'App\Http\Controllers\DistributorController@restore');
+Route::post('/distributor/restoreAll', 'App\Http\Controllers\DistributorController@restoreAll');
 
 Route::get('/albums', 'App\Http\Controllers\AlbumController@index');
 Route::get('/album/{id}', 'App\Http\Controllers\AlbumController@show');

@@ -84,8 +84,9 @@ class Song_playlistController extends Controller
         $songs_playlist = Song_playlist::onlyTrashed()->get();
         if (empty($songs_playlist)) {
             return response()->json(['message' => 'No archived song_playlist found'], 404);
+        } else {
+            return response($songs_playlist, 200);
         }
-        return response($songs_playlist, 200);
     }
 
     /**
@@ -191,5 +192,39 @@ class Song_playlistController extends Controller
                 'id' => $songPlay->id_song_playlist,
                 ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $songPlay = Song_playlist::onlyTrashed() -> find($id);
+
+        if(empty($songPlay)) {
+            return response()->json(['message' => 'Song_playlist intersection not found'], 404);
+        }
+
+        $songPlay->restore();
+        return response()->json([
+            'message' => 'Song_playlist intersection restored',
+            'id' => $songPlay->id_song_playlist,
+            ], 200);
+    }
+
+    public function restoreAll()
+    {
+        //
+        Song_playlist::onlyTrashed()->get();
+
+        if (empty($songPlay)) {
+            return response()->json(['message' => 'No archived song_playlist found'], 404);
+        }
+
+        foreach ($songPlay as $song) {
+            $song->restore();
+        }
+
+        return response()->json([
+            'message' => 'All song_playlist intersetions restored',
+            ], 200);
     }
 }

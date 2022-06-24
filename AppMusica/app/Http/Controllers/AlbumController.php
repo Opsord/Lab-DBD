@@ -69,8 +69,9 @@ class AlbumController extends Controller
         $albums = Album::onlyTrashed()->get();
         if (empty($albums)) {
             return response()->json(['message' => 'No archived albums found'], 404);
+        } else {
+            return response($albums, 200);
         }
-        return response($albums, 200);
     }
 
     /**
@@ -166,5 +167,37 @@ class AlbumController extends Controller
                 'id' => $album->id_album
                 ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $album = Album::onlyTrashed() -> find($id);
+        if (empty($album)) {
+            return response()->json(['message' => 'Album not found'], 404);
+        }
+        $album -> restore();
+        return response()->json([
+            'message' => 'Album restored',
+            'id' => $album->id_album
+        ], 200);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $albums = Album::onlyTrashed() -> get();
+
+        if (empty($albums)) {
+            return response()->json(['message' => 'No archived albums found'], 404);
+        }
+        
+        foreach ($albums as $album) {
+            $album -> restore();
+        }
+        return response()->json([
+            'message' => 'Albums restored',
+            'albums' => $albums
+            ], 200);
     }
 }

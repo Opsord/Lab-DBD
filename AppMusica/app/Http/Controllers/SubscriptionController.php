@@ -87,8 +87,9 @@ class SubscriptionController extends Controller
         $Subscriptions = Subscription::onlyTrashed()->get();
         if (empty($Subscriptions)) {
             return response()->json(['message' => 'No archived Subscriptions found'], 404);
+        } else {
+            return response($Subscriptions);
         }
-        return response($Subscriptions, 200);
     }
 
 
@@ -197,5 +198,38 @@ class SubscriptionController extends Controller
                 'id' => $subscription->id_subscription,
             ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $subscription = Subscription::onlyTrashed() -> find($id);
+        if (empty($subscription)) {
+            return response()->json(['message' => 'Subscription not found'], 404);
+        }
+
+        if ($subscription->trashed()) {
+            $subscription->restore();
+            return response()->json([
+                'respuesta' => 'Subscription restored',
+                'id' => $subscription->id_subscription,
+            ], 200);
+        }
+    }
+
+    public function restoreAll()
+    {
+        //
+        $subscriptions = Subscription::onlyTrashed() -> get();
+        if (empty($subscriptions)) {
+            return response()->json(['message' => 'No Subscriptions found'], 404);
+        }
+
+        foreach ($subscriptions as $subscription) {
+            $subscription->restore();
+        }
+        return response()->json([
+            'respuesta' => 'All Subscriptions restored',
+        ], 200);
     }
 }

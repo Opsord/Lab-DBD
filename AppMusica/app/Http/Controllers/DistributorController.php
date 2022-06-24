@@ -56,12 +56,14 @@ class DistributorController extends Controller
     public function archive()
     {
         $distributors = Distributor::onlyTrashed()->get();
+
         if (empty($distributors)) {
             return response()->json(['message' => 'No archived distributors found'], 404);
+        } else {
+            return response($distributors, 200);
         }
-        return response($distributors, 200);
-
     }
+
     /**
      * Display the specified resource.
      *
@@ -139,5 +141,38 @@ class DistributorController extends Controller
                 'id' => $distributor->id_distributor
             ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        $distributor = Distributor::onlyTrashed() -> find($id);
+
+        if(empty($distributor)) {
+            return response()->json(['message' => 'Distributor not found'], 404);
+        }
+
+        $distributor -> restore();
+        return response()->json([
+            'message' => 'Distributor restored',
+            'id' => $distributor->id_distributor
+        ], 200);
+    }
+
+    public function restoreAll()
+    {
+        $distributors = Distributor::onlyTrashed() -> get();
+
+        if(empty($distributors)) {
+            return response()->json(['message' => 'No distributors found'], 404);
+        }
+        
+        foreach ($distributors as $distributor) {
+            $distributor -> restore();
+        }
+
+        return response()->json([
+            'message' => 'Distributors restored',
+            'distributors' => $distributors
+            ], 200);
     }
 }

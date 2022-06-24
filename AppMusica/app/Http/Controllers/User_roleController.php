@@ -181,7 +181,38 @@ class User_roleController extends Controller
         $user_role = User_role::onlyTrashed()->get();
         if (empty($user_role)) {
             return response()->json(['message' => 'No archived User_role found'], 404);
+        } else{
+            return response($user_role, 200);
         }
-        return response($user_role, 200);
+    }
+
+    public function restore($id)
+    {
+        $user_role = User_role::onlyTrashed()->find($id);
+        if (empty($user_role)) {
+            return response()->json(['message' => 'User_role intersection not found'], 404);
+        } else{
+            $user_role -> restore();
+            return response()->json([
+                'message' => 'User_role intersection restored',
+                'id' => $user_role->id_user_role,
+                ], 200);
+        }
+    }
+
+    public function restoreAll()
+    {
+        $user_role = User_role::onlyTrashed()->restore();
+        if (empty($user_role)) {
+            return response()->json(['message' => 'No archived User_role found'], 404);
+        } 
+
+        foreach ($user_role as $user_role) {
+            $user_role -> restore();
+        }
+
+        return response()->json([
+            'message' => 'All User_role intersections restored',
+            ], 200);
     }
 }

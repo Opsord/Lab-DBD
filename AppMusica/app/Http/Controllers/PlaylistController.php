@@ -67,8 +67,9 @@ class PlaylistController extends Controller
         $playlists = Playlist::onlyTrashed()->get();
         if (empty($playlists)) {
             return response()->json(['message' => 'No archived playlist found'], 404);
+        } else {
+            return response($playlists, 200);
         }
-        return response($playlists, 200);
     }
 
     /**
@@ -163,5 +164,37 @@ class PlaylistController extends Controller
                 'id' => $playlist->id_playlist
                 ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $Playlist = Playlist::withTrashed() -> find($id);
+        if(empty($Playlist)) {
+            return response()->json([
+                'respuesta' => 'Playlist not found'], 404);
+        }
+        $Playlist->restore();
+        return response()->json([
+            'respuesta' => 'Playlist restored',
+            'id' => $playlist->id_playlist
+            ], 200);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $Playlist = Playlist::onlyTrashed() -> get();
+        if(empty($Playlist)) {
+            return response()->json([
+                'respuesta' => 'Playlists not found'], 404);
+        }
+        foreach ($Playlist as $playlist) {
+            $playlist->restore();
+        }
+
+        return response()->json([
+            'respuesta' => 'All playlists restored'
+            ], 200);
     }
 }

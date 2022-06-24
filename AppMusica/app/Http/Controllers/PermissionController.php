@@ -165,7 +165,35 @@ class PermissionController extends Controller
         $permission = Permssion::onlyTrashed()->get();
         if (empty($permission)) {
             return response()->json(['message' => 'No Permission found'], 404);
+        } else {
+            return response($permission, 200);
         }
-        return response($permission, 200);
+    }
+
+    public function restore($id)
+    {
+        $permission = Permission::withTrashed() -> find($id);
+        if (empty($permission)) {
+            return response()->json(['message' => 'Permission not found'], 404);
+        }
+        $permission -> restore();
+        return response()->json([
+            'message' => 'Permission restored',
+            'id' => $permission->id_permission
+            ], 201);
+    }
+
+    public function restoreAll()
+    {
+        $permission = Permission::onlyTrashed() -> get();
+        if (empty($permission)) {
+            return response()->json(['message' => 'No Permissions found'], 404);
+        }
+        foreach ($permission as $perm) {
+            $perm -> restore();
+        }
+        return response()->json([
+            'message' => 'All Permissions restored'
+            ], 201);
     }
 }

@@ -65,8 +65,9 @@ class GenreController extends Controller
         $genres = Genre::onlyTrashed()->get();
         if (empty($genres)) {
             return response()->json(['message' => 'No archived genres found'], 404);
+        } else {
+            return response($genres, 200);
         }
-        return response($genres, 200);
     }
 
 
@@ -159,5 +160,41 @@ class GenreController extends Controller
                 'id' => $genre->id_genre
             ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $genre = Genre::onlyTrashed() -> find($id);
+
+        if (empty($genre)) {
+            return response()->json(['message' => 'Genre not found'], 404);
+        }
+        
+        $genre -> restore();
+        return response()->json([
+            'message' => 'Genre restored',
+            'id' => $genre->id_genre
+        ], 200);
+        
+        }
+
+    public function restoreAll()
+    {
+        //
+        $genres = Genre::onlyTrashed() -> get();
+
+        if (empty($genres)) {
+            return response()->json(['message' => 'No genres found'], 404);
+        }
+
+        foreach ($genres as $genre) {
+            $genre -> restore();
+        }
+
+        return response()->json([
+            'message' => 'All genres restored',
+            'genres' => $genres
+        ], 200);
     }
 }

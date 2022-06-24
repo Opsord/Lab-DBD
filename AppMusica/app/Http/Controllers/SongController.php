@@ -103,8 +103,9 @@ class SongController extends Controller
         $songs = Song::onlyTrashed()->get();
         if (empty($songs)) {
             return response()->json(['message' => 'No archived songs found'], 404);
+        } else {
+            return response($songs, 200);
         }
-        return response($songs, 200);
     }
 
     /**
@@ -201,5 +202,35 @@ class SongController extends Controller
                 'id' => $song->id_song,
             ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $song = Song::onlyTrashed() -> find($id);
+        if (empty($song)) {
+            return response()->json(['message' => 'Song not found'], 404);
+        }
+
+        $song->restore();
+        return response()->json([
+            'respuesta' => 'Song restored',
+            'id' => $song->id_song,
+        ], 200);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $songs = Song::onlyTrashed()->get();
+        if (empty($songs)) {
+            return response()->json(['message' => 'No archived songs found'], 404);
+        }
+        foreach ($songs as $song) {
+            $song->restore();
+        }
+        return response()->json([
+            'respuesta' => 'All songs restored',
+        ], 200);
     }
 }

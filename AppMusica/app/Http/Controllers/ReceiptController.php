@@ -81,8 +81,9 @@ class ReceiptController extends Controller
         $Receipt = Receipt::onlyTrashed()->get();
         if (empty($receipt)) {
             return sponse()->json(['message' => 'No archived Receipts found'], 404);
+        } else {
+            return response($Receipt);
         }
-        return response($receipt, 200);
     }
 
 
@@ -188,5 +189,42 @@ class ReceiptController extends Controller
                 'id' => $receipt->id_receipt
                 ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $receipt = Receipt::onlyTrashed() -> find($id);
+
+        if (empty($receipt)) {
+            return response()->json(['message' => 'Receipt not found'], 404);
+        }
+
+        if ($receipt->trashed()) {
+            $receipt->restore();
+            return response()->json([
+                'message' => 'Receipt restored',
+                'id' => $receipt->id_receipt
+                ], 200);
+        }
+    }
+
+    public function restoreAll()
+    {
+        //
+        $receipt = Receipt::onlyTrashed() -> get();
+
+        if (empty($receipt)) {
+            return response()->json(['message' => 'No archived Receipts found'], 404);
+        }
+
+        foreach ($receipt as $receipt) {
+            $receipt->restore();
+        }
+
+        return response()->json([
+            'message' => 'All Receipts restored',
+            'id' => $receipt->id_receipt
+            ], 200);
     }
 }

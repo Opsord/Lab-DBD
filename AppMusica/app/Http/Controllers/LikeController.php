@@ -85,8 +85,9 @@ class LikeController extends Controller
         $likes = Like::onlyTrashed()->get();
         if (empty($likes))  {
             return response()->json(['message' => 'No archived like found'], 404);
+        } else {
+            return response($likes, 200);
         }
-        return response($like, 200);
     }
 
     /**
@@ -192,5 +193,39 @@ class LikeController extends Controller
                 'id' => $like->id_like
                 ], 200);
         }
+    }
+
+    public function restore($id)
+    {
+        //
+        $like = Like::onlyTrashed()->find($id);
+        if(empty($like)) {
+            return response()->json(['message' => 'Like not found'], 404);
+        }
+
+        $like->restore();
+
+        return response()->json([
+            'message' => 'Like restored',
+            'id' => $like->id_like
+        ], 200);
+    }
+
+    public function restoreAll()
+    {
+        //
+        $likes = Like::onlyTrashed()->get();
+        if (empty($likes))  {
+            return response()->json(['message' => 'No archived like found'], 404);
+        }
+
+        foreach ($likes as $like) {
+            $like->restore();
+        }
+
+        return response()->json([
+            'message' => 'All likes restored',
+            'likes' => $likes
+            ], 200);
     }
 }

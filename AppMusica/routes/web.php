@@ -22,6 +22,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
     
 });
+
+Route::get('/profile', function () {
+    return view('profile');
+    
+});
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
 Route::post('/user/create', 'App\Http\Controllers\UserController@store');

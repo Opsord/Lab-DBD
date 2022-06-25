@@ -18,8 +18,8 @@
           <a href="/" class="d-block text-light p-3"><ion-icon class="lead" name="logo-soundcloud"></ion-icon> Inicio</a>
           <a href="/songs" class="d-block text-light p-3"><i class="bi bi-music-note-beamed lead"></i> Canciones</a>
           <a href="/users" class="d-block text-light p-3"><i class="bi bi-person-circle lead"></i> Usuarios</a>
-          <a href="#" class="d-block text-light p-3"><i class="bi bi-music-note lead"></i> Generos</a>
-          <a href="/dashboard" class="d-block text-light p-3"><i class="bi bi-wallet2 lead"></i> Subscripciones</a>
+          <a href="/genres" class="d-block text-light p-3"><i class="bi bi-music-note lead"></i> Generos</a>
+          <a href="/subscriptions" class="d-block text-light p-3"><i class="bi bi-wallet2 lead"></i> Subscripciones</a>
           
         </div>
 

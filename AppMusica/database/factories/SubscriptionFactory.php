@@ -23,7 +23,6 @@ class SubscriptionFactory extends Factory
             'state' => $this->faker->boolean($chanceOfGettingTrue = 80),
             'start_date' => $this->faker->dateTimeThisDecade($max = 'now', $timezone = null),
             'end_date' => $this->faker->dateTimeBetween($startDate = 'now', $endDate = '+6 months', $timezone = null),
-
             'payment_method' => Payment_method::all()->random()->id_method,
         ];
     }

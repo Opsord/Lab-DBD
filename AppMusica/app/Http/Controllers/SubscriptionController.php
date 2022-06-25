@@ -22,7 +22,7 @@ class SubscriptionController extends Controller
         if (empty($Subscriptions)) {
             return response()->json(['message' => 'No Subscriptions found'], 404);
         }
-        return response($Subscriptions);
+        return view('subscription')->with('Subscriptions', $Subscriptions);
     }
 
     /**
@@ -67,16 +67,18 @@ class SubscriptionController extends Controller
                 'respuesta' => 'id del metodo de pago invalido'
             ]);
         }else{
-        
-            $newSubs->state = $request->state;
-            $newSubs->start_date = $request->start_date;
-            $newSubs->end_date = $request->end_date;
-            $newSubs->payment_method = $request->payment_method;
-            $newSubs->save();
-            return response()->json([
-                'respuesta' => 'se ha creado una nueva subscripción',
-                'id' => $newSubs->id_subscription,
-            ], 201);
+            if($request->state == "true" || $request->state == "false"){
+                if($request->state == "true"){
+                    $newSubs->state = 1;
+                }else{
+                    $newSubs->state = 0;
+                }
+                $newSubs->start_date = $request->start_date;
+                $newSubs->end_date = $request->end_date;
+                $newSubs->payment_method = $request->payment_method;
+                $newSubs->save();
+            }
+            return back();
         }
     }
 
@@ -193,10 +195,7 @@ class SubscriptionController extends Controller
             ], 200);
         } else {
             $subscription->delete();
-            return response()->json([
-                'respuesta' => 'Subscription soft deleted',
-                'id' => $subscription->id_subscription,
-            ], 200);
+            return back();
         }
     }
 

@@ -21,7 +21,7 @@ class GenreController extends Controller
         if (empty($genres)) {
             return response()->json(['message' => 'No genres found'], 404);
         }
-        return response($genres, 200);
+        return view('genre')->with('genres', $genres);
     }
 
     /**
@@ -53,10 +53,7 @@ class GenreController extends Controller
         $newgenre->name_genre = $request->name_genre;
         $newgenre->save();
         
-        return response()->json([
-            'respuesta' => 'New genre created',
-            'id' => $newgenre->id_genre
-        ], 201);
+        return back();
     }
 
     public function archive()
@@ -155,10 +152,7 @@ class GenreController extends Controller
             ], 200);
         } else {
             $genre -> delete();
-            return response()->json([
-                'message' => 'Genre soft deleted',
-                'id' => $genre->id_genre
-            ], 200);
+            return back();
         }
     }
 

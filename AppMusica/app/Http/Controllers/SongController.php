@@ -79,16 +79,17 @@ class SongController extends Controller
         if ($request->explicit == "true" || $request->explicit == "false"){
             $newsong->name_song = $request->name_song;
             $newsong->duration = $request->duration;
-            $newsong->is_explicit = $request->explicit; 
+            if($request->explicit == "true"){
+                $newsong->is_explicit = 1; 
+            }else{
+                $newsong->is_explicit = 0; 
+            }
             $newsong->album = $request->id_album;
             $newsong->genre = $request->id_genre;
             $newsong->country = $request->id_country;
             $newsong->save();
 
-            return response()->json([
-                'respuesta' => 'nueva cancion creada',
-                'id' => $newsong->id_song,
-            ], 201);
+            return back();
         }else{
             return response()->json([
                 'respuesta' => 'explicit debe ser true o false'
@@ -197,10 +198,7 @@ class SongController extends Controller
             ], 200);
         } else {
             $song->delete();
-            return response()->json([
-                'respuesta' => 'Song soft deleted',
-                'id' => $song->id_song,
-            ], 200);
+            return back();
         }
     }
 

@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
 
             $table->id('id_subscription');
-            $table->boolean('state');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('state');
+            $table->string('start_date');
+            $table->string('end_date');
 
             $table->unsignedBigInteger('payment_method')->unasigned()->nullable();
             $table->foreign('payment_method')->references('id_method')->on('payment_methods') ->onDelete('set null') ->onUpdate('cascade');

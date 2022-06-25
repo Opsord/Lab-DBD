@@ -2,38 +2,32 @@
 
 @section('dashcontent')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="text-light">Canciones</h1>
+        <h1 class="text-light">Subscripciones</h1>
         <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal"
             data-bs-target="#usermodal">
-            Agregar Cancion
+            Agregar Subscripcion
         </button>
     </div>
     <div class="modal fade" id="usermodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar Cancion</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Subcripcion</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/song/create" method="post">
+                <form action="/subscription/create" method="post">
                     <div class="modal-body">
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control" name="name_song" placeholder="Nombre de la cancion">
+                            <input type="text" class="form-control" name="state" placeholder="Estado">
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control" name="duration" placeholder="Duracion (hh:mm:ss)">
+                            <input type="text" class="form-control" name="start_date" placeholder="Fecha de inicio">
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control" name="explicit" placeholder="Restriccion etario: (true o false)">
+                            <input type="text" class="form-control" name="end_date" placeholder="Fecha de termino">
                         </div>
                         <div class="form-group mb-3">
-                            <input type="number" class="form-control" name="id_album" placeholder="id Album">
-                        </div>
-                        <div class="form-group mb-3">
-                            <input type="number" class="form-control" name="id_genre" placeholder="id Genero">
-                        </div>
-                        <div class="form-group mb-3">
-                            <input type="number" class="form-control" name="id_country" placeholder="id Pais">
+                            <input type="number" class="form-control" name="payment_method" placeholder="id de metodo de pago">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -48,27 +42,23 @@
         <thead class="text-light">
             <tr>
                 <td>ID</td>
-                <td>Namesong</td>
-                <td>duration</td>
-                <td>explicit?</td>
-                <td>album</td>
-                <td>country</td>
-                <td>genre</td>
+                <td>State</td>
+                <td>Start date</td>
+                <td>End date</td>
+                <td>Payment method</td>
                 <td></td>
             </tr>
         </thead>
         <tbody class="text-light">
-            @foreach ($songs as $cancion)
+            @foreach ($Subscriptions as $sub)
                 <tr>
-                    <td>{{ $cancion->id_song }}</td>
-                    <td>{{ $cancion->name_song }}</td>
-                    <td>{{ $cancion->duration }}</td>
-                    <td>{{ $cancion->is_explicit }}</td>
-                    <td>{{ $cancion->album }}</td>
-                    <td>{{ $cancion->country }}</td>
-                    <td>{{ $cancion->genre }}</td>
+                    <td>{{ $sub->id_subscription }}</td>
+                    <td>{{ $sub->state }}</td>
+                    <td>{{ $sub->start_date }}</td>
+                    <td>{{ $sub->end_date }}</td>
+                    <td>{{ $sub->payment_method }}</td>
                     <td>
-                        <form action="{{ url('song/delete') }}/{{ $cancion->id_song }}" method="post">
+                        <form action="{{url("subscription/delete")}}/{{$sub->id_subscription}}" method="post">
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-circle"></i></button>
                         </form>

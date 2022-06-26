@@ -84,7 +84,8 @@ class UserController extends Controller
         if (empty($users)){
             return response()->json(['message' => 'No archived users found'], 404);
         } else {
-            return response ()->json($users);
+            //return response ()->json($users);
+            return view('usertrash')->with('users', $users);
         }
     }
     /**
@@ -196,10 +197,7 @@ class UserController extends Controller
         }
 
         $user->restore();
-        return response()->json([
-            'message' => 'User restored',
-            'id' => $user->id_user
-            ], 200);
+        return back();
     }
 
     public function restoreAll()
@@ -213,8 +211,6 @@ class UserController extends Controller
             $user->restore();
         }
 
-        return response()->json([
-            'message' => 'Users restored'
-            ], 200);
+        return back();
     }
 }

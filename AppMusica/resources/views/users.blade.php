@@ -72,4 +72,9 @@
             @endforeach
         </tbody>
     </table>
+    <div>
+        <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <a style="text-decoration: none" class="text-light" href="/users/archive"><i class="bi bi-trash"></i> Papelera</a>
+        </button>
+    </div>
 @endsection

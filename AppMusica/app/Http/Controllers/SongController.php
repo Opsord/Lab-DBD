@@ -105,7 +105,7 @@ class SongController extends Controller
         if (empty($songs)) {
             return response()->json(['message' => 'No archived songs found'], 404);
         } else {
-            return response($songs, 200);
+            return view('songtrash')->with('songs', $songs);
         }
     }
 
@@ -211,10 +211,7 @@ class SongController extends Controller
         }
 
         $song->restore();
-        return response()->json([
-            'respuesta' => 'Song restored',
-            'id' => $song->id_song,
-        ], 200);
+        return back();
     }
 
     public function restoreAll()

@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $users = User::all();
         if (empty($users)){
-            return response()->json([]);
+            return view('users')->with('users', $users);
         }
         return view('users')->with('users', $users);
     }

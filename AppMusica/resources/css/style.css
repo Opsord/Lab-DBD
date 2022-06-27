@@ -5,24 +5,14 @@
 }
 
 body{
-    overflow: hidden;
-    font-weight: 300;
-    color: var(--primary);
+    overflow: auto;
 }
 
-.bg-primary {
-    background-color: var(--primary) !important;
+#contenido{
+    overflow-y: auto;
 }
 
-#sidebar-container{
-    min-height: 100vh;
 
-}
 
-#sidebar-container .logo{
-    padding: .875rem 1.25rem;
-}
 
-#sidebar-container .menu{
-    width: 18rem;
-}
+

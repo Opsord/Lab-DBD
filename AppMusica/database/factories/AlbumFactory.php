@@ -20,7 +20,7 @@ class AlbumFactory extends Factory
     public function definition()
     {
         return [
-            'name_album' => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
+            'name_album' => $this->faker->word,
             'release_date' => $this->faker->dateTimeBetween($startDate = '-30 years', $endDate = 'now', $timezone = null),
 
             'distributed_by' => Distributor::all() -> random() -> id_distributor,

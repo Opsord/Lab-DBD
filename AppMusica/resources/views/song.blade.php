@@ -51,30 +51,34 @@
                 <td>Namesong</td>
                 <td>duration</td>
                 <td>explicit?</td>
-                <td>album</td>
+                <td>album name</td>
+                <td>album id</td>
                 <td>country</td>
+                <td>country id</td>
                 <td>genre</td>
                 <td></td>
             </tr>
         </thead>
         <tbody class="text-light">
-            @foreach ($songs as $cancion)
-                <tr>
-                    <td>{{ $cancion->id_song }}</td>
-                    <td>{{ $cancion->name_song }}</td>
-                    <td>{{ $cancion->duration }}</td>
-                    <td>{{ $cancion->is_explicit }}</td>
-                    <td>{{ $cancion->album }}</td>
-                    <td>{{ $cancion->country }}</td>
-                    <td>{{ $cancion->genre }}</td>
-                    <td>
-                        <form action="{{ url('song/delete') }}/{{ $cancion->id_song }}" method="post">
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-circle"></i></button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
+            @for($i = 0; $i< count($songs); $i++)
+            <tr>
+                <td>{{ $songs[$i]->id_song }}</td>
+                <td>{{ $songs[$i]->name_song }}</td>
+                <td>{{ $songs[$i]->duration }}</td>
+                <td>{{ $songs[$i]->is_explicit }}</td>
+                <td>{{ $album[$songs[$i]->album - 1]->name_album}}</td>
+                <td>{{$songs[$i]->album}}</td>
+                <td>{{ $country[$songs[$i]->country - 1]->name_country }}</td>
+                <td>{{$songs[$i]->country}}</td>
+                <td>{{ $songs[$i]->genre }}</td>
+                <td>
+                    <form action="{{ url('song/delete') }}/{{ $songs[$i]->id_song }}" method="post">
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-circle"></i></button>
+                    </form>
+                </td>
+            </tr>
+            @endfor
         </tbody>
     </table>
     <div>

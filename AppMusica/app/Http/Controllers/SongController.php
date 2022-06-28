@@ -20,11 +20,13 @@ class SongController extends Controller
     public function index()
     {
         //
-        $songs = Song::all();
+        $songs = Song::all(); 
         if (empty($songs)) {
             return response()->json(['message' => 'No songs found'], 404);
         }
-        return view('song')->with('songs', $songs);
+        $album = Album::all();
+        $country = Geographic_restriction::all();
+        return view('song')->with('songs', $songs)->with('album', $album)->with('country', $country);
     }
 
     /**

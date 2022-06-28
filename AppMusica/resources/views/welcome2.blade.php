@@ -224,7 +224,7 @@
     </div>
 </div>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="text-light">albums para ti, wapo</h1>
+    <h1 class="text-light">albums para ti</h1>
 </div>
 <div class="container-fluid">
     <div class="row">

@@ -1,6 +1,6 @@
-@extends('layouts.template')
+@extends('layouts.logintemplate')
 
-@section('content')
+@section('logincontent')
 
 <body>
 
@@ -11,9 +11,7 @@
 
       </div>
       <div class="col bg-white p-5 rounded-end">
-        <div class="text-end">
-          <img src="https://image.freepik.com/free-psd/vr-video-game-composition_1419-2358.jpg" width="48" alt="">
-        </div>
+        
         <h2 class="fd-bold text-center pt-5 mb-5">Bienvenido</h2>
 
         
@@ -26,7 +24,7 @@
             <input type="password" class="form-control" name="password">
           </div>
           <div class="d-grid">
-            <button type="submit" class="btn btn-primary" href="/login/attempt">Iniciar Sesión</button>
+            <button type="button" class="btn btn-primary" href="/welcome2">Iniciar Sesión</button> 
           </div>
           <div class="my-3">
             <span>

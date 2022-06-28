@@ -15,12 +15,12 @@
     <div class="d-flex">
         <div id="sidebar-container" class="bg-primary">
             <div class="logo">
-                <a href="/">
+                <a href="/welcome2">
                     <h4 class="text-light font-weight-bold">ZHIV</h4>
                 </a>
             </div>
             <div class="menu">
-                <a href="/" class="d-block text-light p-3">
+                <a href="/welcome2" class="d-block text-light p-3">
                     <ion-icon class="lead" name="logo-soundcloud"></ion-icon> Inicio
                 </a>
                 <a href="#" class="d-block text-light p-3"><i class="bi bi-music-note-beamed lead"></i>

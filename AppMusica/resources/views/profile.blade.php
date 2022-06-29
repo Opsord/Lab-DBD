@@ -43,6 +43,7 @@
                                 @endfor
                             </div>
                         </div>
+                    </div>
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">

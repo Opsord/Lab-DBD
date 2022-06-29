@@ -24,7 +24,7 @@
             <input type="password" class="form-control" name="password">
           </div>
           <div class="d-grid">
-            <button type="button" class="btn btn-primary" href="/welcome2">Iniciar Sesión</button> 
+            <button type="button" class="btn btn-primary"><a href="/welcome2" style="color:white">Iniciar Sesión</a></button> 
           </div>
           <div class="my-3">
             <span>

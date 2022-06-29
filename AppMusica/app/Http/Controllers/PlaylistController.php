@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Playlist;
+use App\Models\Song;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -18,10 +19,14 @@ class PlaylistController extends Controller
     {
         //
         $playlists  = Playlist::all();
-        if(empty($playlist)){
+        $songs = Song::all();
+        if(empty($playlists)){
             return response()->json(['message'=>'No playlists  found'], 404);
         }
-        return response($playlists, 200);
+        return view('profile', [
+            'playlists' => $playlists,
+            'songs' => $songs,
+        ]);
     }
 
     /**

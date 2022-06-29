@@ -23,10 +23,7 @@ Route::get('/dashboard', function () {
     
 });
 
-Route::get('/profile', function () {
-    return view('profile');
-    
-});
+Route::get('/profile', 'App\Http\Controllers\PlaylistController@index');
 
 Route::get('/welcome2', function () {
     return view('welcome2');

@@ -14,13 +14,15 @@
     <table class="table col-12 table-responsive">
         <thead class="text-light">
             <tr>
-                <td>ID</td>
-                <td>Namesong</td>
-                <td>duration</td>
-                <td>explicit?</td>
-                <td>album</td>
-                <td>country</td>
-                <td>genre</td>
+                <td>#</td>
+                <td>TITULO</td>
+                <td>⌛</td>
+                <td>EXPLÍCITO(?)</td>
+                <td>ÁLBUM</td>
+                {{-- <td>album id</td> --}}
+                <td>RESTRINGIDA EN</td>
+                {{-- <td>country id</td> --}}
+                <td>GENERO</td>
                 <td></td>
                 <td></td>
             </tr>
@@ -32,9 +34,10 @@
                     <td>{{ $cancion->name_song }}</td>
                     <td>{{ $cancion->duration }}</td>
                     <td>{{ $cancion->is_explicit }}</td>
-                    <td>{{ $cancion->album }}</td>
-                    <td>{{ $cancion->country }}</td>
-                    <td>{{ $cancion->genre }}</td>
+                    <td>{{ $album[$songs[$i]->album - 1]->name_album}}</td>
+                    <td>{{ $country[$songs[$i]->country - 1]->name_country }}</td>
+                    <td>{{ $genre[$songs[$i]->genre - 1]->name_genre }}</td>
+                    
                     <td>
                         <form action="{{ url('song/restore') }}/{{ $cancion->id_song }}" method="post">
                             <button class="btn btn-outline-success"><i class="bi bi-arrow-counterclockwise"></i></button>

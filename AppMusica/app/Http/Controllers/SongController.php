@@ -26,7 +26,8 @@ class SongController extends Controller
         }
         $album = Album::all();
         $country = Geographic_restriction::all();
-        return view('song')->with('songs', $songs)->with('album', $album)->with('country', $country);
+        $genre = Genre::all();
+        return view('song')->with('songs', $songs)->with('album', $album)->with('country', $country) ->with('genre', $genre);
     }
 
     /**
@@ -104,6 +105,12 @@ class SongController extends Controller
     {
         //
         $songs = Song::onlyTrashed()->get();
+        
+        $album = Album::all();
+        $country = Geographic_restriction::all();
+        $genre = Genre::all();
+        return view('song')->with('songs', $songs)->with('album', $album)->with('country', $country) ->with('genre', $genre);
+
         if (empty($songs)) {
             return response()->json(['message' => 'No archived songs found'], 404);
         } else {

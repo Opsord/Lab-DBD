@@ -47,15 +47,13 @@
     <table class="table col-12 table-responsive">
         <thead class="text-light">
             <tr>
-                <td>ID</td>
-                <td>Namesong</td>
-                <td>duration</td>
-                <td>explicit?</td>
-                <td>album name</td>
-                <td>album id</td>
-                <td>country</td>
-                <td>country id</td>
-                <td>genre</td>
+                <td>#</td>
+                <td>TITULO</td>
+                <td>⌛</td>
+                <td>EXPLÍCITO(?)</td>
+                <td>ÁLBUM</td>
+                <td>RESTRINGIDA EN</td>
+                <td>GENERO</td>
                 <td></td>
             </tr>
         </thead>
@@ -67,10 +65,10 @@
                 <td>{{ $songs[$i]->duration }}</td>
                 <td>{{ $songs[$i]->is_explicit }}</td>
                 <td>{{ $album[$songs[$i]->album - 1]->name_album}}</td>
-                <td>{{$songs[$i]->album}}</td>
                 <td>{{ $country[$songs[$i]->country - 1]->name_country }}</td>
-                <td>{{$songs[$i]->country}}</td>
-                <td>{{ $songs[$i]->genre }}</td>
+                <td>{{ $genre[$songs[$i]->genre - 1]->name_genre }}</td> {{-- (intento de colocar el nommbre del genero) --}}
+
+
                 <td>
                     <form action="{{ url('song/delete') }}/{{ $songs[$i]->id_song }}" method="post">
                         @method('DELETE')

@@ -40,15 +40,15 @@ class DatabaseSeeder extends Seeder
         Genre::factory(10)->create();
         Distributor::factory(10)->create();
         Geographic_restriction::factory(10)->create();
-        Role::factory(10)->create();
+        Role::factory(3)->create();
         Permission::factory(10)->create();
         Payment_method::factory(10)->create();
         Playlist::factory(10)->create();
         Receipt::factory(10)->create();
         Subscription::factory(10)->create();
-        User::factory(10)->create();
+        User::factory(15)->create();
         Album::factory(10)->create();
-        Song::factory(10)->create();
+        Song::factory(40)->create();
         Song_genre::factory(10)->create();
         Song_GeoRec::factory(10)->create();
         User_role::factory(10)->create();
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         User_user::factory(10)->create();
         Server::factory(10)->create();
         Song_server::factory(10)->create();
-        Like::factory(10)->create();
+        Like::factory(100)->create();
         Song_playlist::factory(10)->create();
         User_playlist::factory(10)->create();
         

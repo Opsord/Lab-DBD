@@ -16,6 +16,10 @@ class Song extends Model
         return $this->belongsTo('App\Models\Album');
     }
 
+    public function artist(){
+        return $this->belongsTo('App\Models\User');
+    }
+
     public function song_rg(){
         return $this->hasMany('App\Models\Song_GeoRec');
     }

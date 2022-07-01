@@ -12,6 +12,10 @@ class Role_permission extends Model
 
     protected $primaryKey = 'id_role_permission';
     
+    public function role(){
+        return $this->belongsTo('App\Models\Role');
+    }
+
     public function permission(){
         return $this->belongsTo('App\Models\Permission');
     }

@@ -37,28 +37,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Genre::factory(10)->create();
+
+        $this -> call(GenreSeeder::class);
         Distributor::factory(10)->create();
-        Geographic_restriction::factory(10)->create();
-        Role::factory(3)->create();
-        Permission::factory(10)->create();
-        Payment_method::factory(10)->create();
+        Geographic_restriction::factory(15)->create();
+        $this -> call(RoleSeeder::class);
+        $this -> call(PermissionSeeder::class);
+        $this -> call(RolePermissionsSeeder::class);
+        Payment_method::factory(5)->create();
         Playlist::factory(10)->create();
-        Receipt::factory(10)->create();
-        Subscription::factory(10)->create();
-        User::factory(15)->create();
+        Receipt::factory(20)->create();
+        Subscription::factory(20)->create();
+        User::factory(20)->create();
         Album::factory(10)->create();
         Song::factory(40)->create();
-        Song_genre::factory(10)->create();
-        Song_GeoRec::factory(10)->create();
-        User_role::factory(10)->create();
-        Role_permission::factory(10)->create();
-        User_user::factory(10)->create();
+        Song_genre::factory(40)->create();
+        Song_GeoRec::factory(40)->create();
+        User_role::factory(20)->create();
+        User_user::factory(20)->create();
         Server::factory(10)->create();
-        Song_server::factory(10)->create();
-        Like::factory(100)->create();
-        Song_playlist::factory(10)->create();
-        User_playlist::factory(10)->create();
+        Song_server::factory(40)->create();
+        $this -> call(LikeSeeder::class);
+        Song_playlist::factory(40)->create();
+        User_playlist::factory(20)->create();
         
     }
 }

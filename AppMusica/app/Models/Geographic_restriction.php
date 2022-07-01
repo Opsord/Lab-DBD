@@ -15,5 +15,4 @@ class Geographic_restriction extends Model
     public function song_rg(){
         return $this->hasMany('App\Models\Song_GeoRec');
     }
-    
 }

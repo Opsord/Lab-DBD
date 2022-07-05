@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\Login;
+use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
     /**
@@ -23,7 +25,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +36,35 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newlog = new Login();
+
+        $validator = Validator::make(
+            $request->all(),[
+                'password' => 'required',
+                'email' => 'required|regex:/^.+@.+$/i'
+            ]
+        );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        $user = User::where('email', $request->email)->first();
+        if($user == NULL){
+            return response()->json([
+                'respuesta' => 'el correo no existe'
+            ]);
+        }
+        if($user->pass_user == $request->password){
+            $newlog->name_user = $user->name_user;
+            $newlog->pass_user = $request->password;
+            $newlog->email = $request->email;
+            $newlog->save();
+            return redirect('/welcome2');
+        }else{
+            return back();
+        }
+        
     }
 
     /**

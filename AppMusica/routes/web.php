@@ -30,7 +30,7 @@ Route::get('/welcome2', function () {
     
 });
 
-
+Route::post('login/create', 'App\Http\Controllers\LoginController@store');
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');

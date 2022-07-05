@@ -15,17 +15,20 @@
         <h2 class="fd-bold text-center pt-5 mb-5">Bienvenido</h2>
 
         
-          <div class="mb-4">
-            <label for="email" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" name="email">
-          </div>
-          <div class="mb-4">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" name="password">
-          </div>
-          <div class="d-grid">
-            <button type="button" class="btn btn-primary"><a href="/welcome2" style="color:white">Iniciar Sesión</a></button> 
-          </div>
+          <form action="/login/create" method="post">
+            <div class="mb-4">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" name="email">
+            </div>
+            <div class="mb-4">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password">
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Iniciar Sesión</button> 
+            </div>
+          </form>
+          
           <div class="my-3">
             <span>
               No tienes cuenta?<a href="/register"> Regístrate</a>

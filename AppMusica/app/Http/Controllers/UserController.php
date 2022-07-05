@@ -84,7 +84,6 @@ class UserController extends Controller
         if (empty($users)){
             return response()->json(['message' => 'No archived users found'], 404);
         } else {
-            //return response ()->json($users);
             return view('usertrash')->with('users', $users);
         }
     }

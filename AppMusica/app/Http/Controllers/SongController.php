@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Song;
 use App\Models\Album;
-use App\Models\Genre;
+use App\Models\Song_genre;
 use App\Models\Geographic_restriction;
+use App\Models\User;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -25,9 +26,7 @@ class SongController extends Controller
             return response()->json(['message' => 'No songs found'], 404);
         }
         $album = Album::all();
-        $country = Geographic_restriction::all();
-        $genre = Genre::all();
-        return view('song')->with('songs', $songs)->with('album', $album)->with('country', $country) ->with('genre', $genre);
+        return view('song')->with('songs', $songs)->with('album', $album);
     }
 
     /**
@@ -55,41 +54,31 @@ class SongController extends Controller
                 'duration' => 'required',
                 'explicit' => 'required|string',
                 'id_album' => 'required|integer',
-                'id_genre' => 'required|integer',
-                'id_country' => 'required|integer'
+                'id_artist' => 'required|integer'
             ]
         );
 
         $newsong = new Song();
         $album = Album::find($request->id_album);
-        $genre = Genre::find($request->id_genre);
-        $country = Geographic_restriction::find($request->id_country);
+        $artist = User::find($request->id_artist);
         if($album == NULL){
             return response()->json([
                 'respuesta' => 'id de album invalido'
             ]);
         }
-        if($genre == NULL){
+
+        if($artist == NULL){
             return response()->json([
-                'respuesta' => 'id de genero invalido'
+                'respuesta' => 'id del artista invalido'
             ]);
         }
-        if($country == NULL){
-            return response()->json([
-                'respuesta' => 'id de pais invalido'
-            ]);
-        }
+
         if ($request->explicit == "true" || $request->explicit == "false"){
             $newsong->name_song = $request->name_song;
             $newsong->duration = $request->duration;
-            if($request->explicit == "true"){
-                $newsong->is_explicit = 1; 
-            }else{
-                $newsong->is_explicit = 0; 
-            }
+            $newsong->is_explicit = $request->explicit;
             $newsong->album = $request->id_album;
-            $newsong->genre = $request->id_genre;
-            $newsong->country = $request->id_country;
+            $newsong->artist = $request->artist;
             $newsong->save();
 
             return back();
@@ -105,16 +94,11 @@ class SongController extends Controller
     {
         //
         $songs = Song::onlyTrashed()->get();
-        
         $album = Album::all();
-        $country = Geographic_restriction::all();
-        $genre = Genre::all();
-        return view('song')->with('songs', $songs)->with('album', $album)->with('country', $country) ->with('genre', $genre);
-
         if (empty($songs)) {
             return response()->json(['message' => 'No archived songs found'], 404);
         } else {
-            return view('songtrash')->with('songs', $songs);
+            return view('songtrash')->with('songs', $songs)->with('album', $album);
         }
     }
 
@@ -160,7 +144,6 @@ class SongController extends Controller
                 'name_song' => 'required',
                 'duration' => 'required',
                 'id_album' => 'required',
-                'id_genre' => 'required',
             ]
         );
 
@@ -176,7 +159,6 @@ class SongController extends Controller
         $song->name_song = $request->name_song;
         $song->duration = $request->duration;
         $song->id_album = $request->id_album;
-        $song->id_genre = $request->id_genre;
         $song->save();
 
         return response()->json([
@@ -233,8 +215,6 @@ class SongController extends Controller
         foreach ($songs as $song) {
             $song->restore();
         }
-        return response()->json([
-            'respuesta' => 'All songs restored',
-        ], 200);
+        return back();
     }
 }

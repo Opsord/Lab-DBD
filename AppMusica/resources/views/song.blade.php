@@ -30,10 +30,7 @@
                             <input type="number" class="form-control" name="id_album" placeholder="id Album">
                         </div>
                         <div class="form-group mb-3">
-                            <input type="number" class="form-control" name="id_genre" placeholder="id Genero">
-                        </div>
-                        <div class="form-group mb-3">
-                            <input type="number" class="form-control" name="id_country" placeholder="id Pais">
+                            <input type="number" class="form-control" name="id_artist" placeholder="id Artista">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -52,8 +49,6 @@
                 <td>⌛</td>
                 <td>EXPLÍCITO(?)</td>
                 <td>ÁLBUM</td>
-                <td>RESTRINGIDA EN</td>
-                <td>GENERO</td>
                 <td></td>
             </tr>
         </thead>
@@ -64,9 +59,7 @@
                 <td>{{ $songs[$i]->name_song }}</td>
                 <td>{{ $songs[$i]->duration }}</td>
                 <td>{{ $songs[$i]->is_explicit }}</td>
-                <td>{{ $album[$songs[$i]->album - 1]->name_album}}</td>
-                <td>{{ $country[$songs[$i]->country - 1]->name_country }}</td>
-                <td>{{ $genre[$songs[$i]->genre - 1]->name_genre }}</td> {{-- (intento de colocar el nommbre del genero) --}}
+                <td>{{ $album[$songs[$i]->album - 1]->name_album}}</td> {{-- (intento de colocar el nommbre del genero) --}}
 
 
                 <td>

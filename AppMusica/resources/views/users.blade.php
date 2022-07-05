@@ -51,6 +51,7 @@
                 <td>birthday</td>
                 <td>Subscription</td>
                 <td></td>
+                <td></td>
             </tr>
         </thead>
         <tbody class="text-light">
@@ -62,8 +63,54 @@
                     <td>{{ $usuario->email }}</td>
                     <td>{{ $usuario->birthday }}</td>
                     <td>{{ $usuario->id_subscription }}</td>
+                    <td><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#user-editmodal{{$usuario->id_user}}"><i
+                                class="bi bi-pencil-square"></i></button>
+                        <div class="modal fade" id="user-editmodal{{$usuario->id_user}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-black" id="exampleModalLabel">Editar Usuario id:
+                                            {{ $usuario->id_user }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ url('user/update') }}/{{ $usuario->id_user }}" method="post">
+                                        @method("PUT")
+                                        <div class="modal-body">
+                                            <div class="form-group mb-3">
+                                                <input type="text" class="form-control" name="name"
+                                                    placeholder="Nombre">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <input type="email" class="form-control" name="email"
+                                                    placeholder="Email">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <input type="password" class="form-control" name="password"
+                                                    placeholder="Password">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <input type="text" class="form-control" name="birthday"
+                                                    placeholder="Birthday">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <input type="number" class="form-control" name="id_subscription"
+                                                    placeholder="id suscripcion">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td>
-                        <form action="{{url("user/delete")}}/{{$usuario->id_user}}" method="post">
+                        <form action="{{ url('user/delete') }}/{{ $usuario->id_user }}" method="post">
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-danger"><i class="bi bi-x-circle"></i></button>
                         </form>
@@ -74,7 +121,8 @@
     </table>
     <div>
         <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <a style="text-decoration: none" class="text-light" href="/users/archive"><i class="bi bi-trash"></i> Papelera</a>
+            <a style="text-decoration: none" class="text-light" href="/users/archive"><i class="bi bi-trash"></i>
+                Papelera</a>
         </button>
     </div>
 @endsection

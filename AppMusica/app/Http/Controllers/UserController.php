@@ -156,10 +156,7 @@ class UserController extends Controller
         $user->birthday = $request->birthday;
         $user->id_subscription = $request->id_subscription;
         $user->save();
-        return response()->json([
-            'respuesta' => 'se ha actualizado el usuario',
-            'id' => $user->id_user,
-        ], 200);
+        return back();
 
     }
 

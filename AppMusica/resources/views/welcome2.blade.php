@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="text-light">Bienvenido, disfruta tu estancia en nuestra paltaforma!</h1>
+    <h1 class="text-light">Bienvenido {{$user->name_user}}, disfruta tu estancia en nuestra paltaforma!</h1>
 </div>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">

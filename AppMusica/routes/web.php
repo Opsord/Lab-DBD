@@ -23,13 +23,14 @@ Route::get('/dashboard', function () {
     
 });
 
-Route::get('/profile', 'App\Http\Controllers\PlaylistController@index');
+//Route::get('/profile', 'App\Http\Controllers\PlaylistController@index');
 
-Route::get('/welcome2', function () {
+/* Route::get('/welcome2', function () {
     return view('welcome2');
     
-});
-
+}); */
+Route::get('/welcome2', 'App\Http\Controllers\WelcomeController@index');
+Route::get('/profile', 'App\Http\Controllers\ProfileController@index');
 Route::post('login/create', 'App\Http\Controllers\LoginController@store');
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');

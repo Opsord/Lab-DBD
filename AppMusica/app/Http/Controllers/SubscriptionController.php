@@ -18,7 +18,7 @@ class SubscriptionController extends Controller
     public function index()
     {
         //
-        $Subscriptions = Subscription::all();
+        $Subscriptions = Subscription::orderby('id_subscription', 'ASC')->get();
         if (empty($Subscriptions)) {
             return response()->json(['message' => 'No Subscriptions found'], 404);
         }
@@ -90,7 +90,7 @@ class SubscriptionController extends Controller
         if (empty($Subscriptions)) {
             return response()->json(['message' => 'No archived Subscriptions found'], 404);
         } else {
-            return response($Subscriptions);
+            return view('subscriptiontrash')->with('Subscriptions', $Subscriptions);
         }
     }
 
@@ -209,10 +209,7 @@ class SubscriptionController extends Controller
 
         if ($subscription->trashed()) {
             $subscription->restore();
-            return response()->json([
-                'respuesta' => 'Subscription restored',
-                'id' => $subscription->id_subscription,
-            ], 200);
+            return back();
         }
     }
 

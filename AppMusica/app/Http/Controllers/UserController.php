@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderby('id_user', 'ASC')->get();
         if (empty($users)){
             return view('users')->with('users', $users);
         }

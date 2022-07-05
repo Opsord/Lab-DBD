@@ -7,6 +7,7 @@ use App\Models\Album;
 use App\Models\Song_genre;
 use App\Models\Geographic_restriction;
 use App\Models\User;
+use App\Models\Genre;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class SongController extends Controller
     public function index()
     {
         //
-        $songs = Song::all(); 
+        $songs = Song::orderby('id_song','ASC')->get(); 
         if (empty($songs)) {
             return response()->json(['message' => 'No songs found'], 404);
         }
@@ -54,13 +55,16 @@ class SongController extends Controller
                 'duration' => 'required',
                 'explicit' => 'required|string',
                 'id_album' => 'required|integer',
-                'id_artist' => 'required|integer'
+                'id_artist' => 'required|integer',
+                'id_genre' => 'required|integer'
             ]
         );
 
         $newsong = new Song();
+        $newsong_genre = new Song_genre();
         $album = Album::find($request->id_album);
         $artist = User::find($request->id_artist);
+        $genre = Genre::find($request->id_genre);
         if($album == NULL){
             return response()->json([
                 'respuesta' => 'id de album invalido'
@@ -73,14 +77,24 @@ class SongController extends Controller
             ]);
         }
 
+        if($genre == NULL){
+            return response()->json([
+                'respuesta' => 'id del artista invalido'
+            ]);
+        }
+
+
+
         if ($request->explicit == "true" || $request->explicit == "false"){
             $newsong->name_song = $request->name_song;
             $newsong->duration = $request->duration;
             $newsong->is_explicit = $request->explicit;
             $newsong->album = $request->id_album;
-            $newsong->artist = $request->artist;
+            $newsong->artist = $request->id_artist;
             $newsong->save();
-
+            $newsong_genre->song = $newsong->id_song;
+            $newsong_genre->genre = $request->id_genre;
+            $newsong_genre->save();
             return back();
         }else{
             return response()->json([
@@ -143,7 +157,9 @@ class SongController extends Controller
             $request->all(),[
                 'name_song' => 'required',
                 'duration' => 'required',
-                'id_album' => 'required',
+                'explicit' => 'required|string',
+                'id_album' => 'required|integer',
+                'id_artist' => 'required|integer'
             ]
         );
 
@@ -152,19 +168,32 @@ class SongController extends Controller
         }
 
         $song = Song::find($id);
+        $album = Album::find($request->id_album);
+        $artist = User::find($request->id_artist);
+
         if (empty($song)) {
             return response()->json(['message' => 'Song not found'], 404);
         }
+       
+        if($album == NULL){
+            return response()->json([
+                'respuesta' => 'id de album invalido'
+            ]);
+        }
 
+        if($artist == NULL){
+            return response()->json([
+                'respuesta' => 'id del artista invalido'
+            ]);
+        }
         $song->name_song = $request->name_song;
         $song->duration = $request->duration;
-        $song->id_album = $request->id_album;
+        $song->album = $request->id_album;
+        $song->artist = $request->id_artist;
+        $song->is_explicit = $request->explicit;
         $song->save();
 
-        return response()->json([
-            'respuesta' => 'cancion actualizada',
-            'id' => $song->id_song,
-        ], 200);
+        return back();
     }
 
     /**

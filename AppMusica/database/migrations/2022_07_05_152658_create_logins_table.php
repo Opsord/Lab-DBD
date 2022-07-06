@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('logins', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user')->unasigned()->nullable();
+            $table->foreign('id_user')->references('id_user')->on('users') ->onDelete('set null') ->onUpdate('cascade');
             $table->string('name_user');
             $table->string('pass_user');
             $table->string('email');

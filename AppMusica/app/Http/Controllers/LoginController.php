@@ -56,11 +56,12 @@ class LoginController extends Controller
             ]);
         }
         if($user->pass_user == $request->password){
+            $newlog->id_user = $user->id_user;
             $newlog->name_user = $user->name_user;
             $newlog->pass_user = $request->password;
             $newlog->email = $request->email;
             $newlog->save();
-            return redirect('/welcome2');
+            return redirect('/welcome2')->with('newlog', $newlog);
         }else{
             return back();
         }

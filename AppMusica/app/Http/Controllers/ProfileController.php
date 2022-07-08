@@ -87,4 +87,11 @@ class ProfileController extends Controller
     {
         //
     }
+
+    public function gotosong($id)
+    {
+        $song = Song::where('id_song', $id)->first();
+        return view('songview')->with('id', $id)->with('song', $song);
+    }
+
 }

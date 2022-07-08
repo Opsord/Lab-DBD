@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('pass_user');
             $table->string('email');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

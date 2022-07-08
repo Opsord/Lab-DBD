@@ -38,7 +38,7 @@
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li>Cerrar sesion</li>
+                        <li><a href="/logout">Cerrar sesion</a></li>
                     </ul>
                 </div>
 

@@ -36,6 +36,11 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
+        $oldlog = Login::first();
+        if ($oldlog != NULL){
+            Login::destroy($oldlog->id);
+        }
+        
         $newlog = new Login();
 
         $validator = Validator::make(
@@ -61,6 +66,7 @@ class LoginController extends Controller
             $newlog->pass_user = $request->password;
             $newlog->email = $request->email;
             $newlog->save();
+            $logged = 1;
             return redirect('/welcome2')->with('newlog', $newlog);
         }else{
             return back();
@@ -110,6 +116,26 @@ class LoginController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Login::withTrashed() -> find($id);
+        if (empty($user)) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        if ($user->trashed()) {
+            $user->forceDelete();
+            return response()->json([
+                'message' => 'User hard deleted',
+                'id' => $user->id_user
+                ], 200);
+        } else {
+            $user->delete();
+            return back();
+        }
+    }
+
+    public function logout(){
+        $login = Login::first();
+        Login::destroy($login->id);
+        redirect('/login');
     }
 }

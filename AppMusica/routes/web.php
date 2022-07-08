@@ -29,9 +29,11 @@ Route::get('/dashboard', function () {
     return view('welcome2');
     
 }); */
+Route::get('/logout', 'App\Http\Controllers\LoginController@logout');
 Route::get('/welcome2', 'App\Http\Controllers\WelcomeController@index');
 Route::get('/profile', 'App\Http\Controllers\ProfileController@index');
 Route::post('login/create', 'App\Http\Controllers\LoginController@store');
+Route::get('songview/{id}', 'App\Http\Controllers\ProfileController@gotosong');
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');

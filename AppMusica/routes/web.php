@@ -23,6 +23,11 @@ Route::get('/dashboard', function () {
     
 });
 
+Route::get('/register', function () {
+    return view('register');
+    
+});
+
 //Route::get('/profile', 'App\Http\Controllers\PlaylistController@index');
 
 /* Route::get('/welcome2', function () {

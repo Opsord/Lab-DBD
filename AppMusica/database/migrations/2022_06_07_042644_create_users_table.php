@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('pass_user');
             $table->string('email');
             $table->string('birthday');
+            $table->string('genre');
 
             $table->unsignedBigInteger('id_subscription')->unasigned()->nullable();
             $table->foreign('id_subscription')->references('id_subscription')->on('subscriptions') ->onDelete('set null') ->onUpdate('cascade');

@@ -22,6 +22,7 @@ class UserFactory extends Factory
             'pass_user' => $this->faker->password,
             'email' => $this->faker->safeEmail,
             'birthday' => $this->faker->dateTimeThisDecade($max = 'now', $timezone = null),
+            'genre' => $this->faker->randomElement(['H', 'M', 'O']),
             'id_subscription' => Subscription::all()->random()->id_subscription
         ];
     }

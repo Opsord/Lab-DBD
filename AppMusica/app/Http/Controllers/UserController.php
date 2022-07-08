@@ -49,6 +49,7 @@ class UserController extends Controller
                 'password' => 'required',
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',
+                'genre' => 'required',
                 'id_subscription' => 'required|integer'
 
             ]
@@ -69,6 +70,7 @@ class UserController extends Controller
         $newuser->pass_user = $request->password;
         $newuser->email = $request->email;
         $newuser->birthday = $request->birthday;
+        $newuser->genre = $request->genre;
         $newuser->id_subscription = $request->id_subscription;
         $newuser->save();
         return back();
@@ -130,6 +132,7 @@ class UserController extends Controller
                 'password' => 'required',
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',
+                'genre' => 'required',
                 'id_subscription' => 'required|integer'
             ]
         );
@@ -154,6 +157,7 @@ class UserController extends Controller
         $user->pass_user = $request->password;
         $user->email = $request->email;
         $user->birthday = $request->birthday;
+        $user->genre = $request->genre;
         $user->id_subscription = $request->id_subscription;
         $user->save();
         return back();

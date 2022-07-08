@@ -10,7 +10,9 @@
     </div>
     <div >
         <div class="d-flex justify-content-center align-items-center">
-            <form action="">
+            <form action="/songview/create" method="post">
+                <input type="hidden" class="form-control" name="id_song" value={{$song->id_song}}>
+                <input type="hidden" class="form-control" name="id_user" value={{$user->id_user}}>
                 <button class="btn btn-primary btn-lg m-4" style="height: 60px; width: 60px;"><i class="bi bi-heart"></i></button>
             </form>
             

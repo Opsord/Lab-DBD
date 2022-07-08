@@ -8,7 +8,9 @@ use App\Models\Playlist;
 use App\Models\Song;
 use App\Models\User;
 use App\Models\User_playlist;
-
+use App\Models\Like;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Collection;
 class ProfileController extends Controller
 {
     /**
@@ -19,16 +21,18 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Login::first();
-        $playlists = Playlist::all();
+        $user_playlists = User_playlist::where('id_user', $user->id_user)->get();
+        $playlists  = Playlist::all();
+        $user_like = Like::where('id_user', $user->id_user)->get();
         $songs = Song::all();
         $artist = User::all();
-        $users_playlist = User_playlist::all();
         return view('profile', [
             'user' => $user,
+            'user_playlists' => $user_playlists,
             'playlists' => $playlists,
             'songs' => $songs,
             'artist' => $artist,
-            'users_playlist' => $users_playlist
+            'user_like' =>$user_like
         ]);
     }
 
@@ -50,7 +54,20 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),[
+                'id_song' => 'required|integer',
+                'id_user' => 'required|integer',
+            ]
+        );
+
+        $newlike = new Like();
+        $newlike->id_user = $request->id_user;
+        $newlike->id_song = $request->id_song;
+        $newlike->save();
+
+
+        return back();
     }
 
     /**
@@ -102,10 +119,13 @@ class ProfileController extends Controller
     {
         $song = Song::where('id_song', $id)->first();
         $artist = User::all();
+        $user = Login::first();
         return view('songview', [
             'id' => $id,
             'song' => $song,
-            'artist' => $artist
+            'artist' => $artist,
+            'user' => $user
+
         ]);
     }
 

@@ -53,10 +53,12 @@
                 <div class="carousel-item active">
                     <div class="container">
                         <div class="row">
-                            {{contador = 0}}
+                            @php
+                                $contador = 0;
+                            @endphp
                             @foreach($playlists as $p) <div class="col">
                                 @foreach($users_playlist as $u_p)
-                                @if($u_p->id_playlist == $p->id_playlist && $u_p->id_user == $user->id_user && contador
+                                @if($u_p->id_playlist == $p->id_playlist && $u_p->id_user == $user->id_user && $contador
                                 < 4) <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
                                     <a href="https://ibb.co/K96Nm7K"><img
                                             src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
@@ -65,7 +67,9 @@
                                         <p class="card-text">{{$p->name_playlist}}</p>
 
                                         <p class="card-text"><small class="text-muted">{{$user->name_user}}</small></p>
-                                        {{contador = contador + 1}}
+                                        @php
+                                            $contador = contador + 1;
+                                        @endphp
                                     </div>
                             </div>
                             @endif

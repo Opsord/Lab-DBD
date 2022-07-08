@@ -13,7 +13,7 @@
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">{{$user->name_user}}</h5>
-                <p class="card-text">El unico e inigualable perrito del bar</p>
+                <p class="card-text">Intente ligar con una chica informatica pero no se deJava</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
@@ -30,49 +30,61 @@
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
-                                @for($i = 0;$i < 4;$i++)
-                                <div class="col">
+                                @for($i = 0;$i < 4;$i++) <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/K96Nm7K" ><img src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1" borde="0"></a>
+                                        <a href="https://ibb.co/K96Nm7K"><img
+                                                src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
+                                                borde="0"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$playlists[$i]->name_playlist}}</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
+                                            @foreach($users_playlist as $u_p)
+                                            @if($u_p->id_playlist == $playlists[$i]->id_playlist)
+                                            <p class="card-text"><small class="text-muted">{{$users[$u_p->id_user -
+                                                    1]->name_user}}</small></p>
+                                            @endif
+                                            @endforeach
                                         </div>
                                     </div>
-                                </div>
-                                @endfor
                             </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item active">
-                        <div class="container">
-                            <div class="row">
-                                @for($i = 4;$i < 8;$i++)
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/K96Nm7K"><img src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1" borde="0"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">{{$playlists[$i]->name_playlist}}</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endfor
-                            </div>
+                            @endfor
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#inam" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#inam" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                <div class="carousel-item active">
+                    <div class="container">
+                        <div class="row">
+                            @for($i = 4;$i < 8;$i++) <div class="col">
+                                <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
+                                    <a href="https://ibb.co/K96Nm7K"><img
+                                            src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
+                                            borde="0"></a>
+                                    <div class="card-body">
+                                        <p class="card-text">{{$playlists[$i]->name_playlist}}</p>
+                                        @foreach($users_playlist as $u_p)
+                                        @if($u_p->id_playlist == $playlists[$i]->id_playlist)
+                                        <p class="card-text"><small class="text-muted">{{$users[$u_p->id_user -
+                                                1]->name_user}}</small></p>
+                                        @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                        </div>
+                        @endfor
+                    </div>
+                </div>
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#inam" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#inam" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+</div>
+</div>
 </div>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="text-light">Canciones Favoritas</h1>
@@ -85,49 +97,52 @@
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
-                                @for($i = 0;$i < 4;$i++)
-                                <div class="col">
+                                @for($i = 0;$i < 4;$i++) <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="{{url('songview')}}/{{$songs[$i]->id_song}}"><img src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
+                                        <a href="{{url('songview')}}/{{$songs[$i]->id_song}}"><img
+                                                src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"
+                                                borde="0"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$i]->name_song}}</p>
-                                            <p class="card-text"><small class="text-muted">Snoop Dogg</small></p>
+                                            <p class="card-text"><small class="text-muted">{{$users[$songs[$i]->artist -
+                                                    1]->name_user}}</small></p>
                                         </div>
                                     </div>
-                                </div>
-                                @endfor
                             </div>
+                            @endfor
                         </div>
                     </div>
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
-                                @for($i = 4;$i < 8;$i++)
-                                <div class="col">
+                                @for($i = 4;$i < 8;$i++) <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="{{url('songview')}}/{{$songs[$i]->id_song}}"><img src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
+                                        <a href="{{url('songview')}}/{{$songs[$i]->id_song}}"><img
+                                                src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"
+                                                borde="0"></a>
                                         <div class="card-body">
-                                            <p class="card-text">{{$songs[$i]->name_song}}</p>
-                                            <p class="card-text"><small class="text-muted">{{$artist[$songs[$i]->artist]->name_user}}</small></p>
+                                            <p class="card-text">{{$songs[i]->name_song}}</p>
+                                            <p class="card-text"><small class="text-muted">{{$users[$songs[$i]->artist - 1]->name_user}}</small></p>
                                         </div>
                                     </div>
-                                </div>
-                                @endfor
                             </div>
                         </div>
+                        @endfor
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#inam2" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#inam2" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#inam2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#inam2" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+</div>
+</div>
 </div>
 
 

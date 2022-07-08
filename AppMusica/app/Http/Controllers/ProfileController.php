@@ -21,7 +21,12 @@ class ProfileController extends Controller
         $playlists = Playlist::all();
         $songs = Song::all();
         $artist = User::all();
-        return view('profile')->with('user', $user)->with('playlists', $playlists)->with('songs', $songs)->with('artist', $artist);
+        return view('profile', [
+            'user' => $user,
+            'playlists' => $playlists,
+            'songs' => $songs,
+            'artist' => $artist
+        ]);
     }
 
     /**
@@ -94,7 +99,11 @@ class ProfileController extends Controller
     {
         $song = Song::where('id_song', $id)->first();
         $artist = User::all();
-        return view('songview')->with('id', $id)->with('song', $song)->with('artist', $artist);
+        return view('songview', [
+            'id' => $id,
+            'song' => $song,
+            'artist' => $artist
+        ]);
     }
 
 }

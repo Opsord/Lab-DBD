@@ -7,6 +7,7 @@ use App\Models\Login;
 use App\Models\Playlist;
 use App\Models\Song;
 use App\Models\User;
+use App\Models\User_playlist;
 
 class ProfileController extends Controller
 {
@@ -21,11 +22,13 @@ class ProfileController extends Controller
         $playlists = Playlist::all();
         $songs = Song::all();
         $artist = User::all();
+        $users_playlist = User_playlist::all();
         return view('profile', [
             'user' => $user,
             'playlists' => $playlists,
             'songs' => $songs,
-            'artist' => $artist
+            'artist' => $artist,
+            'users_playlist' => $users_playlist
         ]);
     }
 

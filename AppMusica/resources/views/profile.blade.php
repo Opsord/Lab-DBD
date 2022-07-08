@@ -53,23 +53,25 @@
                 <div class="carousel-item active">
                     <div class="container">
                         <div class="row">
-                            @for($i = 4;$i < 8;$i++) <div class="col">
-                                <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
+                            {{contador = 0}}
+                            @foreach($playlists as $p) <div class="col">
+                                @foreach($users_playlist as $u_p)
+                                @if($u_p->id_playlist == $p->id_playlist && $u_p->id_user == $user->id_user && contador
+                                < 4) <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
                                     <a href="https://ibb.co/K96Nm7K"><img
                                             src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
                                             borde="0"></a>
                                     <div class="card-body">
-                                        <p class="card-text">{{$playlists[$i]->name_playlist}}</p>
-                                        @foreach($users_playlist as $u_p)
-                                        @if($u_p->id_playlist == $playlists[$i]->id_playlist)
-                                        <p class="card-text"><small class="text-muted">{{$users[$u_p->id_user -
-                                                1]->name_user}}</small></p>
-                                        @endif
-                                        @endforeach
+                                        <p class="card-text">{{$p->name_playlist}}</p>
+
+                                        <p class="card-text"><small class="text-muted">{{$user->name_user}}</small></p>
+                                        {{contador = contador + 1}}
                                     </div>
-                                </div>
+                            </div>
+                            @endif
+                            @endforeach
                         </div>
-                        @endfor
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -122,7 +124,8 @@
                                                 borde="0"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[i]->name_song}}</p>
-                                            <p class="card-text"><small class="text-muted">{{$users[$songs[$i]->artist - 1]->name_user}}</small></p>
+                                            <p class="card-text"><small class="text-muted">{{$users[$songs[$i]->artist -
+                                                    1]->name_user}}</small></p>
                                         </div>
                                     </div>
                             </div>

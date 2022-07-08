@@ -107,8 +107,8 @@
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
                                         <a href="{{url('songview')}}/{{$songs[$i]->id_song}}"><img src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
                                         <div class="card-body">
-                                            <p class="card-text">Perros Salvajes</p>
-                                            <p class="card-text"><small class="text-muted">Daddy Yankee</small></p>
+                                            <p class="card-text">{{$songs[$i]->name_song}}</p>
+                                            <p class="card-text"><small class="text-muted">{{$artist[$songs[$i]->artist]->name_user}}</small></p>
                                         </div>
                                     </div>
                                 </div>

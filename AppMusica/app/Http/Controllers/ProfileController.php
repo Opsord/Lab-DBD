@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Login;
 use App\Models\Playlist;
 use App\Models\Song;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -19,7 +20,8 @@ class ProfileController extends Controller
         $user = Login::first();
         $playlists = Playlist::all();
         $songs = Song::all();
-        return view('profile')->with('user', $user)->with('playlists', $playlists)->with('songs', $songs);
+        $artist = User::all();
+        return view('profile')->with('user', $user)->with('playlists', $playlists)->with('songs', $songs)->with('artist', $artist);
     }
 
     /**
@@ -91,7 +93,8 @@ class ProfileController extends Controller
     public function gotosong($id)
     {
         $song = Song::where('id_song', $id)->first();
-        return view('songview')->with('id', $id)->with('song', $song);
+        $artist = User::all();
+        return view('songview')->with('id', $id)->with('song', $song)->with('artist', $artist);
     }
 
 }

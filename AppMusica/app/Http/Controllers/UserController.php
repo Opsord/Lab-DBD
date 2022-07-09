@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Subscription;
+use App\Models\User_role;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -113,6 +114,10 @@ class UserController extends Controller
         $newuser->genre = $request->genre;
         $newuser->id_subscription = $request->id_subscription;
         $newuser->save();
+        $role = new User_role();
+        $role->id_user = $newuser->id_user;
+        $role->id_role = 2;
+        $role->save();
         return view('login');
         }
         

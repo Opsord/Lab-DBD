@@ -136,6 +136,6 @@ class LoginController extends Controller
     public function logout(){
         $login = Login::first();
         Login::destroy($login->id);
-        redirect('/login');
+        return redirect('/');
     }
 }

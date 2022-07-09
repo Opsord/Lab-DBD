@@ -15,6 +15,9 @@ class WelcomeController extends Controller
     public function index()
     {
         $user = Login::first();
+        if($user == NULL){
+            return redirect('/');
+        } 
         $role = User_role::where('id_user', $user->id_user)->first();
         return view('welcome2')->with('user', $user)->with('role', $role);
     }

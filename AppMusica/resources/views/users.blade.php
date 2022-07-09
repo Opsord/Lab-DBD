@@ -98,21 +98,21 @@
                                 @method("PUT")
                                 <div class="modal-body">
                                     <div class="form-group mb-3">
-                                        <input type="text" class="form-control" name="name" placeholder="Nombre">
+                                        <input type="text" class="form-control" name="name" placeholder="Nombre" value="{{$usuario->name_user}}">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="email" class="form-control" name="email" placeholder="Email">
+                                        <input type="email" class="form-control" name="email" placeholder="Email" value="{{$usuario->email}}">
                                     </div>
                                     <div class="form-group mb-3">
                                         <input type="password" class="form-control" name="password"
                                             placeholder="Password">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="text" class="form-control" name="birthday" placeholder="Birthday">
+                                        <input type="text" class="form-control" name="birthday" placeholder="Birthday" value="{{$usuario->birthday}}">
                                     </div>
                                     <div class="form-group mb-3">
                                         <input type="number" class="form-control" name="id_subscription"
-                                            placeholder="id suscripcion">
+                                            placeholder="id suscripcion" value="{{$usuario->id_subscription}}">
                                     </div>
                                 </div>
                                 <div class="modal-footer">

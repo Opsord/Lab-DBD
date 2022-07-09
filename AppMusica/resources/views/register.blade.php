@@ -49,14 +49,8 @@
                     </div>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="number" class="form-control" name="id_subscription" placeholder="id suscripcion" />
-                      <label class="form-label" for="form3Example5c">id_subscription</label>
-                    </div>
-                  </div>
-
+                  <input type="hidden" class="form-control" name="id_subscription" value=1 />
+                  
 
                   <div class="col-md-10 mb-4">
 

@@ -58,8 +58,8 @@ class DatabaseSeeder extends Seeder
         Server::factory(10)->create();
         Song_server::factory(40)->create();
         $this -> call(LikeSeeder::class);
-        Song_playlist::factory(40)->create();
-        User_playlist::factory(20)->create();
+        Song_playlist::factory(100)->create();
+        User_playlist::factory(50)->create();
         
     }
 }

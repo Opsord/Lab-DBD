@@ -78,6 +78,7 @@ class User_roleController extends Controller
 
     }
 
+
     /**
      * Display the specified resource.
      *

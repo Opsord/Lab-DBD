@@ -11,6 +11,8 @@ use App\Models\User_playlist;
 use App\Models\Like;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
+
+
 class ProfileController extends Controller
 {
     /**
@@ -26,13 +28,14 @@ class ProfileController extends Controller
         $user_like = Like::where('id_user', $user->id_user)->get();
         $songs = Song::all();
         $artist = User::all();
+        $users_playlist = User_playlist::all();
         return view('profile', [
             'user' => $user,
-            'user_playlists' => $user_playlists,
             'playlists' => $playlists,
             'songs' => $songs,
             'artist' => $artist,
-            'user_like' =>$user_like
+            'user_playlists' => $user_playlists,
+            'user_like' => $user_like
         ]);
     }
 

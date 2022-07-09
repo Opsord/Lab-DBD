@@ -79,6 +79,45 @@ class UserController extends Controller
         
     }
 
+    public function storeReg(Request $request)
+    {
+        $newuser = new User();
+
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required',
+                'password' => 'required',
+                'email' => 'required|regex:/^.+@.+$/i',
+                'birthday' => 'required',
+                'genre' => 'required',
+                'id_subscription' => 'required|integer'
+
+            ]
+            
+        );
+
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        $subscription = Subscription::find($request->id_subscription);
+        if($subscription == NULL){
+            return response()->json([
+                'respuesta' => 'id de subscripcion invalido'
+            ]);
+        }else{
+        $newuser->name_user = $request->name;
+        $newuser->pass_user = $request->password;
+        $newuser->email = $request->email;
+        $newuser->birthday = $request->birthday;
+        $newuser->genre = $request->genre;
+        $newuser->id_subscription = $request->id_subscription;
+        $newuser->save();
+        return view('login');
+        }
+        
+        
+    }
 
     public function archive()
     {

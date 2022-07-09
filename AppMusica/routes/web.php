@@ -44,6 +44,7 @@ Route::post('/songview/create', 'App\Http\Controllers\ProfileController@store');
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');
 Route::post('/user/create', 'App\Http\Controllers\UserController@store');
+Route::post('/user/createR', 'App\Http\Controllers\UserController@storeReg');
 Route::get('/users/archive', 'App\Http\Controllers\UserController@archive');
 Route::put('/user/update/{id}', 'App\Http\Controllers\UserController@update');
 Route::delete('/user/delete/{id}', 'App\Http\Controllers\UserController@destroy');

@@ -13,7 +13,7 @@
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">{{ $user->name_user }}</h5>
-                <p class="card-text">Intente ligar con una informatica pero no se de Java</p>
+                <p class="card-text">Intente ligar con una informatica pero no C de Java</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>

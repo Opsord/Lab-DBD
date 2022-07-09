@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
         Song::factory(40)->create();
         Song_genre::factory(40)->create();
         Song_GeoRec::factory(40)->create();
-        User_role::factory(20)->create();
+        $this -> call(User_RoleSeeder::class);
         User_user::factory(20)->create();
         Server::factory(10)->create();
         Song_server::factory(40)->create();

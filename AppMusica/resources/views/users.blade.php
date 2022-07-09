@@ -69,6 +69,7 @@
             <td>Email</td>
             <td>birthday</td>
             <td>Subscription</td>
+            <td>Role</td>
             <td></td>
             <td></td>
         </tr>
@@ -82,6 +83,7 @@
             <td>{{ $usuario->email }}</td>
             <td>{{ $usuario->birthday }}</td>
             <td>{{ $usuario->id_subscription }}</td>
+            <td>{{ $role[$usuario->id_user - 1]->id_role}}</td>
             <td><button class="btn btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#user-editmodal{{$usuario->id_user}}"><i class="bi bi-pencil-square"></i></button>
                 <div class="modal fade" id="user-editmodal{{$usuario->id_user}}" tabindex="-1"

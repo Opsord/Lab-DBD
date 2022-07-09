@@ -3,15 +3,16 @@
 @section('admin')
 @if ($role->id_role == 1)
 <a href="/dashboard" class="d-block text-light p-3"><i class="bi bi-card-list lead"></i></ion-icon> Dashboard</a>
-@else
-
+@endif
+@if ($role->id_role == 3)
+<a href="" class="d-block text-light p-3"><i class="bi bi-file-music"></i> Crear una cancion</a>
 @endif
 @endsection
 
 @section('user')
-<button class="btn btn-warning btn-lg" type="button">
+<a href="/profile"><button class="btn btn-warning btn-lg" type="button">
     <i class="bi bi-person-circle"></i>{{$user->name_user}}
-</button>
+</button></a>
 <button type="button" class="btn btn-lg btn-warning dropdown-toggle dropdown-toggle-split"
     data-bs-toggle="dropdown" aria-expanded="false">
     <span class="visually-hidden">Toggle Dropdown</span>

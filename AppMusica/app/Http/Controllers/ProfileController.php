@@ -9,6 +9,7 @@ use App\Models\Song;
 use App\Models\User;
 use App\Models\User_playlist;
 use App\Models\Like;
+use App\Models\User_role;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
 
@@ -32,13 +33,15 @@ class ProfileController extends Controller
         $songs = Song::all();
         $artist = User::all();
         $users_playlist = User_playlist::all();
+        $role = User_role::where('id_user', $user->id_user)->first();
         return view('profile', [
             'user' => $user,
             'playlists' => $playlists,
             'songs' => $songs,
             'artist' => $artist,
             'user_playlists' => $user_playlists,
-            'user_like' => $user_like
+            'user_like' => $user_like,
+            'role' => $role
         ]);
     }
 
@@ -126,11 +129,13 @@ class ProfileController extends Controller
         $song = Song::where('id_song', $id)->first();
         $artist = User::all();
         $user = Login::first();
+        $role = User_role::where('id_user', $user->id_user)->first();
         return view('songview', [
             'id' => $id,
             'song' => $song,
             'artist' => $artist,
-            'user' => $user
+            'user' => $user,
+            'role' => $role
 
         ]);
     }

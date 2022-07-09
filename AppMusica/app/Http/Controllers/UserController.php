@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Subscription;
 use App\Models\User_role;
-
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 class UserController extends Controller
@@ -18,10 +17,11 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderby('id_user', 'ASC')->get();
+        $role = User_role::all();
         if (empty($users)){
             return view('users')->with('users', $users);
         }
-        return view('users')->with('users', $users);
+        return view('users')->with('users', $users)->with('role', $role);
     }
 
     /**

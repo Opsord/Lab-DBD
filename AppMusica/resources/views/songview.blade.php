@@ -1,5 +1,18 @@
 @extends('layouts.template')
 
+@section('user')
+<button class="btn btn-warning btn-lg" type="button">
+    <i class="bi bi-person-circle"></i>{{$user->name_user}}
+</button>
+<button type="button" class="btn btn-lg btn-warning dropdown-toggle dropdown-toggle-split"
+    data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+</button>
+<ul class="dropdown-menu">
+    <li><a href="/logout">Cerrar sesion</a></li>
+</ul>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="card m-auto mt-5 bg-warning" style="width: 18rem;">

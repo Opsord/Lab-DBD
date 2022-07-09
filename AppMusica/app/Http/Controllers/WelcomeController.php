@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Login;
+use App\Models\User_role;
 class WelcomeController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class WelcomeController extends Controller
     public function index()
     {
         $user = Login::first();
-        return view('welcome2')->with('user', $user);
+        $role = User_role::where('id_user', $user->id_user)->first();
+        return view('welcome2')->with('user', $user)->with('role', $role);
     }
 
     /**

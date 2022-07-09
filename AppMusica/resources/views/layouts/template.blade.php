@@ -27,19 +27,10 @@
                     Biblioteca</a>
                 <a href="/profile" class="d-block text-light p-3"><i class="bi bi-person-circle lead"></i> Perfil</a>
                 <a href="#" class="d-block text-light p-3"><i class="bi bi-gear lead"></i></ion-icon> Opciones</a>
-                <a href="/dashboard" class="d-block text-light p-3"><i class="bi bi-card-list lead"></i></ion-icon>
-                    Dashboard</a>
+                @yield('admin')
+                    
                 <div class="btn-group dropup position-absolute bottom-0 p-3 mb-5 ">
-                    <button class="btn btn-warning btn-lg" type="button">
-                        <i class="bi bi-person-circle"></i>Username
-                    </button>
-                    <button type="button" class="btn btn-lg btn-warning dropdown-toggle dropdown-toggle-split"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="/logout">Cerrar sesion</a></li>
-                    </ul>
+                    @yield('user');
                 </div>
 
             </div>

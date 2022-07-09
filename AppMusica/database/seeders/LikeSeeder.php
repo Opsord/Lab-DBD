@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 use App\Models\User;
 use App\Models\Song;
@@ -18,18 +20,18 @@ class LikeSeeder extends Seeder
      */
     public function run()
     {
+
         $users = User::all();
         foreach ($users as $user) {
-            $songs = Song::all();
-            $num_likes = rand(0, count($songs));
-            for ($i = 0; $i < $num_likes; $i++) {
+            $amount_likes = rand(0, Song::count());
+            $songs = collect(Song::all());
+            for ($i = 0; $i < $amount_likes; $i++) {
+                $song = $songs->random();
                 $like = new Like();
                 $like->id_user = $user->id_user;
-                $like->id_song = $songs->random()->id_song;
+                $like->id_song = $song->id_song;
                 $like->save();
-                $id_aux = $like->id_song;
-                //borrar canción de la lista
-                //$songs->forget($songs->search($id_aux, $songs, true)); 
+                $songs->forget($songs->search($song));
             }
         }
     }

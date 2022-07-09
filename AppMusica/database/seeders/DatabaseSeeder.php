@@ -24,6 +24,7 @@ use App\Models\Song_playlist;
 use App\Models\Song_genre;
 use App\Models\User_playlist;
 use App\Models\User_role;
+use App\Models\Artist_Album;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -58,8 +59,9 @@ class DatabaseSeeder extends Seeder
         Server::factory(10)->create();
         Song_server::factory(40)->create();
         $this -> call(LikeSeeder::class);
-        Song_playlist::factory(100)->create();
+        $this -> call(Song_PlaylistSeeder::class);
         User_playlist::factory(50)->create();
+        $this -> call(Artist_AlbumSeeder::class);
         
     }
 }

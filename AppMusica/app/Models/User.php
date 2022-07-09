@@ -35,4 +35,8 @@ class User extends Model
     public function user_playlist(){
         return $this->hasMany('App\Models\User_playlist');
     }
+
+    public function Artist_Album(){
+        return $this->hasMany('App\Models\Artist_Album');
+    }
 }

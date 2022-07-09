@@ -15,4 +15,8 @@ class Album extends Model
     public function distributor(){
         return $this->belongsTo('App\Models\Distributor');
     }
+
+    public function Artist_Album(){
+        return $this->hasMany('App\Models\Artist_Album');
+    }
 }

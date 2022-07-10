@@ -5,7 +5,7 @@
 <a href="/dashboard" class="d-block text-light p-3"><i class="bi bi-card-list lead"></i></ion-icon> Dashboard</a>
 @endif
 @if ($role->id_role == 3)
-<a href="" class="d-block text-light p-3"><i class="bi bi-file-music"></i> Crear una cancion</a>
+<a href="/artistdash" class="d-block text-light p-3"><i class="bi bi-file-music"></i> Administrar Canciones</a>
 @endif
 @endsection
 

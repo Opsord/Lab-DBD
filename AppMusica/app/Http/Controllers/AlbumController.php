@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
-
+use App\Models\Login;
+use App\Models\Artist_Album;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,13 @@ class AlbumController extends Controller
             return response()->json(['message' => 'No albums found'], 404);
         }
         return response($albums, 200);
+    }
+
+    public function artistalbum(){
+        $artist = Login::first();
+        $album = Artist_Album::where('artist', $artist->id_user)
+        ->join('albums', 'albums.id_album', '=' , 'artist__albums.album')->get();
+        return view('artistalbum')->with('album', $album);
     }
 
     /**

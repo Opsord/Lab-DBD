@@ -54,7 +54,7 @@ class UserController extends Controller
                     'regex:/[a-z]/',      // una letra minuscula
                     'regex:/[A-Z]/',      // una letra mayuscula
                     'regex:/[0-9]/',      // un numero del 1 al 9
-                    'regex:/[@$!%*#?&]/', // debe tener un caracter especial
+                    'regex:/[@$!%.,*#?&]/', // debe tener un caracter especial
                 ],
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',
@@ -106,7 +106,7 @@ class UserController extends Controller
                     'regex:/[a-z]/',      // una letra minuscula
                     'regex:/[A-Z]/',      // una letra mayuscula
                     'regex:/[0-9]/',      // un numero del 1 al 9
-                    'regex:/[@$!%*#?&]/', // debe tener un caracter especial
+                    'regex:/[@$!%*.,#?&]/', // debe tener un caracter especial
                 ],
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',
@@ -208,7 +208,7 @@ class UserController extends Controller
                     'regex:/[a-z]/',      // una letra minuscula
                     'regex:/[A-Z]/',      // una letra mayuscula
                     'regex:/[0-9]/',      // un numero del 1 al 9
-                    'regex:/[@$!%*#?&]/', // debe tener un caracter especial
+                    'regex:/[@$!%*.,#?&]/', // debe tener un caracter especial
                 ],
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',

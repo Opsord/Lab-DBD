@@ -1,12 +1,12 @@
 @extends('layouts.template')
 
 @section('admin')
-@if ($role->id_role == 1)
-<a href="/dashboard" class="d-block text-light p-3"><i class="bi bi-card-list lead"></i></ion-icon> Dashboard</a>
-@endif
-@if ($role->id_role == 3)
-<a href="" class="d-block text-light p-3"><i class="bi bi-file-music"></i> Crear una cancion</a>
-@endif
+    @if ($role->id_role == 1)
+        <a href="/dashboard" class="d-block text-light p-3"><i class="bi bi-card-list lead"></i></ion-icon> Dashboard</a>
+    @endif
+    @if ($role->id_role == 3)
+        <a href="/artistdash" class="d-block text-light p-3"><i class="bi bi-file-music"></i> Administrar Canciones</a>
+    @endif
 @endsection
 
 @section('user')

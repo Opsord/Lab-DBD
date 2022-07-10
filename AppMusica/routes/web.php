@@ -21,6 +21,12 @@ Route::get('/dashboard', function () {
     
 });
 
+Route::get('/artistdash', function () {
+    return view('artistdash');
+    
+});
+Route::get('/myalbumsdash', 'App\Http\Controllers\AlbumController@artistalbum');
+
 Route::get('/register', function () {
     return view('register');
     
@@ -44,6 +50,7 @@ Route::post('login/create', 'App\Http\Controllers\LoginController@store');
 Route::get('songview/{id}', 'App\Http\Controllers\ProfileController@gotosong');
 Route::post('/songview/create', 'App\Http\Controllers\ProfileController@store');
 Route::get('/library', 'App\Http\Controllers\LibraryController@index');
+Route::get('albumedit/{id}', 'App\Http\Controllers\ArtistdashController@albumedit');
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');

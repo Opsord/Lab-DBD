@@ -30,6 +30,7 @@ class SongController extends Controller
         return view('song')->with('songs', $songs)->with('album', $album);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

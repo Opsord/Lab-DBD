@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-    
-});
+Route::get('/', 'App\Http\Controllers\SingupController@index');;
 
 Route::get('/dashboard', function () {
     return view('dashboard');

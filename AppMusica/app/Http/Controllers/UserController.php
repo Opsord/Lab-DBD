@@ -62,6 +62,10 @@ class UserController extends Controller
         }
 
         $subscription = Subscription::find($request->id_subscription);
+        $mail = User::where('email', $request->email)->first();
+        if($mail != NULL){
+            return back();
+        }
         if($subscription == NULL){
             return response()->json([
                 'respuesta' => 'id de subscripcion invalido'
@@ -101,7 +105,11 @@ class UserController extends Controller
         if($validator->fails()){
             return response($validator->errors(), 400);
         }
-
+        $mail = User::where('email', $request->email)->first();
+        if ($mail != NULL){
+            $error = 1;
+            return view('login')->with('error', $error);
+        }
         $subscription = Subscription::find($request->id_subscription);
         if($subscription == NULL){
             return response()->json([
@@ -119,7 +127,8 @@ class UserController extends Controller
         $role->id_user = $newuser->id_user;
         $role->id_role = $request->role;
         $role->save();
-        return view('login');
+        $error = 2;
+        return redirect('/')->with('error', $error);
         }
         
         

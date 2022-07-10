@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Login;
+use App\Models\User_role;
 use App\Models\Playlist;
 use App\Models\Song;
 use App\Models\Album;
-use App\Models\Login;
 use App\Models\User;
 use App\Models\Artist_Album;
 use Illuminate\Support\Facades\Validator;
@@ -22,11 +23,15 @@ class LibraryController extends Controller
     public function index()
     {
         $user = Login::first();
+        if($user == NULL){
+            return redirect('/');
+        } 
         $artist = User::all();
         $playlists  = Playlist::all();
         $songs = Song::all();
         $albums = Album::all();
         $artist_albums = Artist_Album::all();
+        $role = User_role::where('id_user', $user->id_user)->first();
 
         //return view('library')->with('artist', $artist)->with('playlists', $playlists)->with('songs', $songs)->with('albums', $albums)->with('artist_albums', $artist_albums);
 
@@ -37,7 +42,9 @@ class LibraryController extends Controller
             'songs' => $songs,
             'albums' => $albums,
             'artist' => $artist,
-            'artist_albums' => $artist_albums
+            'artist_albums' => $artist_albums,
+            'role' => $role,
+            'user' => $user
         ]);
     }
 

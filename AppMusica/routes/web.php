@@ -40,6 +40,7 @@ Route::get('/profile', 'App\Http\Controllers\ProfileController@index');
 Route::post('login/create', 'App\Http\Controllers\LoginController@store');
 Route::get('songview/{id}', 'App\Http\Controllers\ProfileController@gotosong');
 Route::post('/songview/create', 'App\Http\Controllers\ProfileController@store');
+Route::get('/library', 'App\Http\Controllers\LibraryController@index');
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::get('/user/{id}', 'App\Http\Controllers\UserController@show');

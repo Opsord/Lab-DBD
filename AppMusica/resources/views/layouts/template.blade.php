@@ -23,7 +23,7 @@
                 <a href="/welcome2" class="d-block text-light p-3">
                     <ion-icon class="lead" name="logo-soundcloud"></ion-icon> Inicio
                 </a>
-                <a href="#" class="d-block text-light p-3"><i class="bi bi-music-note-beamed lead"></i>
+                <a href="/library" class="d-block text-light p-3"><i class="bi bi-music-note-beamed lead"></i>
                     Biblioteca</a>
                 <a href="/profile" class="d-block text-light p-3"><i class="bi bi-person-circle lead"></i> Perfil</a>
                 <a href="#" class="d-block text-light p-3"><i class="bi bi-gear lead"></i></ion-icon> Opciones</a>

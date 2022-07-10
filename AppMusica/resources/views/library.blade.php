@@ -290,7 +290,7 @@
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$j]->name_song}}</p>
                                             <p class="card-text"><small class="text-muted">{{
-                                                $artist[$s->artist -1]->name_user }}</small>
+                                                $artist[$songs[$j]->artist -1]->name_user }}</small>
                                             </p>
                                         </div>
                                     </div>
@@ -311,7 +311,7 @@
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$j]->name_song}}</p>
                                             <p class="card-text"><small class="text-muted">{{
-                                                $artist[$s->artist -1]->name_user }}</small>
+                                                $artist[$songs[$j]->artist -1]->name_user }}</small>
                                             </p>
                                         </div>
                                     </div>
@@ -333,7 +333,7 @@
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$j]->name_song}}</p>
                                             <p class="card-text"><small class="text-muted">{{
-                                                $artist[$s->artist -1]->name_user }}</small>
+                                                $artist[$songs[$j]->artist -1]->name_user }}</small>
                                             </p>
                                         </div>
                                     </div>

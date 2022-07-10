@@ -82,7 +82,7 @@
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="role" id="Artist"
-                        value="1" checked />
+                        value="3" checked />
                         <label class="form-check-label" for="femaleGender">Artista</label>
                     </div>
 
@@ -90,6 +90,12 @@
                         <input class="form-check-input" type="radio" name="role" id="User"
                         value="2" />
                         <label class="form-check-label" for="maleGender">Usuario</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="role" id="User"
+                        value="1" />
+                        <label class="form-check-label" for="maleGender">admin previsorio</label>
                     </div>
 
                   </div>

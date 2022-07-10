@@ -213,7 +213,12 @@ class UserController extends Controller
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',
                 'genre' => 'required',
-                'id_subscription' => 'required|integer'
+                'id_subscription' => 'required|integer',
+                'role' => [
+                    'required',
+                    'max:1',
+                    'regex:/[1-3]/',
+                ]
             ]
         );
         if($validator->fails()){
@@ -240,6 +245,10 @@ class UserController extends Controller
         $user->genre = $request->genre;
         $user->id_subscription = $request->id_subscription;
         $user->save();
+
+        $role = User_role::where('id_user', $id)->first();
+        $role->id_role = $request->role;
+        $role->save();
         return back();
 
     }

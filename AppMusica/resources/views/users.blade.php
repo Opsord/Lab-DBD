@@ -120,6 +120,31 @@
                                         <input type="text" class="form-control" name="genre"
                                             placeholder="Gender" value="{{$usuario->genre}}">
                                     </div>
+
+                                    <div class="col-md-10 mb-4">
+
+                                        <h6 class="mb-2 pb-1">Rol</h6>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="role" id="Artist"
+                                            value="3" checked />
+                                            <label class="form-check-label" for="Artist">Artista</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="role" id="User"
+                                            value="2" />
+                                            <label class="form-check-label" for="User">Usuario</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="role" id="Admin"
+                                            value="1" />
+                                            <label class="form-check-label" for="Admin">Admin</label>
+                                        </div>
+
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"

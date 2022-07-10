@@ -91,7 +91,8 @@ class UserController extends Controller
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',
                 'genre' => 'required',
-                'id_subscription' => 'required|integer'
+                'id_subscription' => 'required|integer',
+                'role' => 'required|integer'
 
             ]
             
@@ -116,7 +117,7 @@ class UserController extends Controller
         $newuser->save();
         $role = new User_role();
         $role->id_user = $newuser->id_user;
-        $role->id_role = 2;
+        $role->id_role = $request->role;
         $role->save();
         return view('login');
         }

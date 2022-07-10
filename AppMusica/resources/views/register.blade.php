@@ -54,7 +54,7 @@
 
                   <div class="col-md-10 mb-4">
 
-                  <h6 class="mb-2 pb-1">Gender: </h6>
+                  <h6 class="mb-2 pb-1">Genero: </h6>
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="genre" id="femaleGender"
@@ -72,6 +72,24 @@
                         <input class="form-check-input" type="radio" name="genre" id="otherGender"
                         value="option3" />
                         <label class="form-check-label" for="otherGender">Otro</label>
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-10 mb-4">
+
+                  <h6 class="mb-2 pb-1">Rol</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="role" id="Artist"
+                        value="1" checked />
+                        <label class="form-check-label" for="femaleGender">Artista</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="role" id="User"
+                        value="2" />
+                        <label class="form-check-label" for="maleGender">Usuario</label>
                     </div>
 
                   </div>

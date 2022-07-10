@@ -27,6 +27,11 @@ class LibraryController extends Controller
         $songs = Song::all();
         $albums = Album::all();
         $artist_albums = Artist_Album::all();
+
+        //return view('library')->with('artist', $artist)->with('playlists', $playlists)->with('songs', $songs)->with('albums', $albums)->with('artist_albums', $artist_albums);
+
+
+
         return view('library', [
             'playlists' => $playlists,
             'songs' => $songs,

@@ -165,7 +165,7 @@
                                             src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
                                             borde="0"></a>
                                         <div class="card-body">
-                                            <p class="card-text">{{$albums[arist_albums[$j]->album - 1]->name_album}}</p>
+                                            <p class="card-text">{{$albums[$artist_albums[$j]->album]->name_album}}</p>
                                             <p class="card-text"><small class="text-muted">{{
                                                 $artist[$artist_albums[$j]->artist -1]->name_user }}</small>
                                             </p>
@@ -186,7 +186,7 @@
                                             src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
                                             borde="0"></a>
                                         <div class="card-body">
-                                            <p class="card-text">{{$albums[artist_albums[$j]->album - 1]->name_album}}</p>
+                                            <p class="card-text">{{$albums[$artist_albums[$j]->album - 1]->name_album}}</p>
                                             <p class="card-text"><small class="text-muted">{{
                                                 $artist[$artist_albums[$j]->artist -1]->name_user }}</small>
                                             </p>
@@ -208,7 +208,7 @@
                                         src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
                                         borde="0"></a>
                                         <div class="card-body">
-                                            <p class="card-text">{{$albums[artist_albums[$j]->album - 1]->name_album}}</p>
+                                            <p class="card-text">{{$albums[$artist_albums[$j]->album - 1]->name_album}}</p>
                                             <p class="card-text"><small class="text-muted">{{
                                                 $artist[$artist_albums[$j]->artist -1]->name_user }}</small>
                                             </p>

@@ -23,8 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('album') ->unasigned()->nullable();
             $table->foreign('album')->references('id_album')->on('albums') ->onDelete('set null') ->onUpdate('cascade');
 
-
             $table->timestamps();
+            //$table->softDeletes();
         });
     }
 
@@ -36,5 +36,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('artist__albums');
+
+        //$table->dropSoftDeletes();
     }
 };

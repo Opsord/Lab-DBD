@@ -37,7 +37,52 @@
                 <h5 class="card-title">{{ $user->name_user }}</h5>
                 <p class="card-text">Intente ligar con una informatica pero no C de Java</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <button class="btn btn-outline-primary" data-bs-toggle="modal"
+                        data-bs-target="#user-editmodal{{ $user->id_user }}"><i class="bi bi-pencil-square"></i></button>
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="user-editmodal{{$user->id_user}}" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-black" id="exampleModalLabel">Editar user id:
+                    {{ $user->id_user }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <form action="{{ url('user/update') }}/{{ $user->id_user }}" method="post">
+                @method("PUT")
+                <div class="modal-body">
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" name="name" placeholder="Nombre" value="{{$user->name_user}}">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="email" class="form-control" name="email" placeholder="Email" value="{{$user->email}}">
+                    </div>
+                        <input type="hidden" class="form-control" name="password"
+                            placeholder="Password" value="{{$user->pass_user}}">
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" name="birthday" placeholder="Birthday" value="{{$user->birthday}}">
+                    </div>
+                        <input type="hidden" class="form-control" name="id_subscription"
+                            placeholder="id suscripcion" value="{{$user->id_subscription}}">
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" name="genre"
+                            placeholder="Gender" value="{{$user->genre}}">
+                    </div>
+
+                    <input type="hidden" class="form-control" name="role" value="{{$role->id_role}}">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

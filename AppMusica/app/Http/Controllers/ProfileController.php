@@ -27,6 +27,7 @@ class ProfileController extends Controller
         if($user == NULL){
             return redirect('/');
         } 
+        $user = User::where('id_user', $user->id_user)->first();
         $user_playlists = User_playlist::where('id_user', $user->id_user)->get();
         $playlists  = Playlist::all();
         $user_like = Like::where('id_user', $user->id_user)->get();

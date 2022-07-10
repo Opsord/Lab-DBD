@@ -222,7 +222,9 @@ class UserController extends Controller
             ]
         );
         if($validator->fails()){
-            return back();
+            return response()->json([
+                'respuesta' => 'id de usuario invalido'
+            ]);
         }
 
         if($user == NULL){

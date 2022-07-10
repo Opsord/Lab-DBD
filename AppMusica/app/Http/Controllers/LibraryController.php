@@ -26,6 +26,7 @@ class LibraryController extends Controller
         if($user == NULL){
             return redirect('/');
         } 
+        $user = User::where('id_user', $user->id_user)->first();
         $artist = User::all();
         $playlists  = Playlist::all();
         $songs = Song::all();

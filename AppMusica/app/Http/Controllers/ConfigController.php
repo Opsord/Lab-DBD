@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Login;
 use App\Models\User_role;
-use App\Models\User;
-class WelcomeController extends Controller
+use App\Models\Login;
+class ConfigController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +18,8 @@ class WelcomeController extends Controller
         if($user == NULL){
             return redirect('/');
         } 
-        $user = User::where('id_user', $user->id_user)->first();
         $role = User_role::where('id_user', $user->id_user)->first();
-        return view('welcome2')->with('user', $user)->with('role', $role);
+        return view('config')->with('user', $user)->with('role', $role);
     }
 
     /**

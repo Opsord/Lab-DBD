@@ -20,6 +20,11 @@
           Usuario creado con exito
         </div>
         @endif
+        @if ($error == 3)
+        <div class="alert alert-danger" role="alert">
+          Los datos de registro ingresados no son validos
+        </div>
+        @endif
         
           <form action="/login/create" method="post">
             <div class="mb-4">

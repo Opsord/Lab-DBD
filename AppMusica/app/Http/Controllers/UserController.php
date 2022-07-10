@@ -47,7 +47,15 @@ class UserController extends Controller
         $validator = Validator::make(
             $request->all(),[
                 'name' => 'required',
-                'password' => 'required',
+                'password' =>  [
+                    'required',
+                    'string',
+                    'min:10',             // al menos de 10 caracteres
+                    'regex:/[a-z]/',      // una letra minuscula
+                    'regex:/[A-Z]/',      // una letra mayuscula
+                    'regex:/[0-9]/',      // un numero del 1 al 9
+                    'regex:/[@$!%*#?&]/', // debe tener un caracter especial
+                ],
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',
                 'genre' => 'required',
@@ -91,7 +99,15 @@ class UserController extends Controller
         $validator = Validator::make(
             $request->all(),[
                 'name' => 'required',
-                'password' => 'required',
+                'password' =>  [
+                    'required',
+                    'string',
+                    'min:10',             // al menos de 10 caracteres
+                    'regex:/[a-z]/',      // una letra minuscula
+                    'regex:/[A-Z]/',      // una letra mayuscula
+                    'regex:/[0-9]/',      // un numero del 1 al 9
+                    'regex:/[@$!%*#?&]/', // debe tener un caracter especial
+                ],
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',
                 'genre' => 'required',
@@ -103,7 +119,9 @@ class UserController extends Controller
         );
 
         if($validator->fails()){
-            return response($validator->errors(), 400);
+            $error = 3;
+            return view('login')->with('error', $error);
+
         }
         $mail = User::where('email', $request->email)->first();
         if ($mail != NULL){
@@ -183,7 +201,15 @@ class UserController extends Controller
         $validator = Validator::make(
             $request->all(),[
                 'name' => 'required',
-                'password' => 'required',
+                'password' => [
+                    'required',
+                    'string',
+                    'min:10',             // al menos de 10 caracteres
+                    'regex:/[a-z]/',      // una letra minuscula
+                    'regex:/[A-Z]/',      // una letra mayuscula
+                    'regex:/[0-9]/',      // un numero del 1 al 9
+                    'regex:/[@$!%*#?&]/', // debe tener un caracter especial
+                ],
                 'email' => 'required|regex:/^.+@.+$/i',
                 'birthday' => 'required',
                 'genre' => 'required',

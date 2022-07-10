@@ -58,19 +58,19 @@
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="genre" id="femaleGender"
-                        value="option1" checked />
+                        value="F" checked />
                         <label class="form-check-label" for="femaleGender">F</label>
                     </div>
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="genre" id="maleGender"
-                        value="option2" />
+                        value="M" />
                         <label class="form-check-label" for="maleGender">M</label>
                     </div>
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="genre" id="otherGender"
-                        value="option3" />
+                        value="O" />
                         <label class="form-check-label" for="otherGender">Otro</label>
                     </div>
 

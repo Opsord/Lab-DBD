@@ -116,6 +116,10 @@
                                         <input type="number" class="form-control" name="id_subscription"
                                             placeholder="id suscripcion" value="{{$usuario->id_subscription}}">
                                     </div>
+                                    <div class="form-group mb-3">
+                                        <input type="text" class="form-control" name="genre"
+                                            placeholder="Gender" value="{{$usuario->genre}}">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"

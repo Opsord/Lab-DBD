@@ -26,6 +26,11 @@ Route::get('/register', function () {
     
 });
 
+Route::get('/payment', function () {
+    return view('payment');
+    
+});
+
 //Route::get('/profile', 'App\Http\Controllers\PlaylistController@index');
 
 /* Route::get('/welcome2', function () {

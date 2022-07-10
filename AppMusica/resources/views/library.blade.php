@@ -23,6 +23,35 @@
 @endsection
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="text-light">Biblioteca</h1>
+</div>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="https://ibb.co/c8fJW1K"><img src="https://i.ibb.co/B6WLhtH/pop-stars2.jpg" class="d-block w-100 border border-danger" style="--bs-border-opacity: .5" alt="pop-stars2" ></a>
+      </div>
+      <div class="carousel-item">
+        <a href="https://ibb.co/02chGTY"><img src="https://i.ibb.co/XLbSC1F/hits2.jpg" class="d-block w-100 border border-warning" alt="hits2" borde="0"></a>
+      </div>
+      <div class="carousel-item">
+        <a href="https://ibb.co/2gnh6t2"><img src="https://i.ibb.co/LnkRPtw/daft-punk.jpg" class="d-block w-100 border border-info" alt="daft-punk" borde="0"></a>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="text-light">Playlists</h1>
 </div>
 

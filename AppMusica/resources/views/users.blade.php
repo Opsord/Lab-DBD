@@ -32,7 +32,7 @@
                     <div class="form-group mb-3">
                         <input type="number" class="form-control" name="id_subscription" placeholder="id suscripcion">
                     </div>
-                    <h6 class="mb-2 pb-1">Gender: </h6>
+                    <h6 class="mb-2 pb-1">Genero: </h6>
 
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="genre" id="femaleGender"

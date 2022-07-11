@@ -36,7 +36,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" class="form-control" name="password" placeholder="10 caracteres una mayuscula, minuscula y caracter especial" />
+                      <input type="password" class="form-control" name="password" placeholder="10 car. un num, una may, min y esp" />
                       <label class="form-label" for="form3Example4c">Contraseña</label>
                     </div>
                   </div>
@@ -90,12 +90,6 @@
                         <input class="form-check-input" type="radio" name="role" id="User"
                         value="2" />
                         <label class="form-check-label" for="maleGender">Usuario</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="role" id="User"
-                        value="1" />
-                        <label class="form-check-label" for="maleGender">admin previsorio</label>
                     </div>
 
                   </div>

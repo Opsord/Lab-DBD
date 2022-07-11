@@ -334,7 +334,7 @@
                             @for ($j = 0;$j < 4;$j++) 
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="https://ibb.co/K96Nm7K"><img
+                                        <a href="{{url('songview')}}/{{$j + 1}}"><img
                                             src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
                                             borde="0"></a>
                                         <div class="card-body">
@@ -355,7 +355,7 @@
                                 @for ($j = 4;$j < 8;$j++)
                                 <div class="col">                                    
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="https://ibb.co/K96Nm7K"><img
+                                        <a href="{{url('songview')}}/{{$j + 1}}"><img
                                             src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
                                             borde="0"></a>
                                         <div class="card-body">

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name_song');
             $table->time('duration');
             $table->string('is_explicit');
-
+            $table->integer('reproducciones');
             $table->unsignedBigInteger('album')->unasigned()->nullable();
             $table->foreign('album')->references('id_album')->on('albums') ->onDelete('set null') ->onUpdate('cascade');
 

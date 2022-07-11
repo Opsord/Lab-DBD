@@ -26,6 +26,7 @@ class SongFactory extends Factory
             'is_explicit' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'album' => Album::all()->random()->id_album,
             'artist' => User_role::all() -> where('id_role', 3) -> random() -> id_user,
+            'reproducciones' => 0
         ];
     }
 }

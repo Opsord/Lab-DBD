@@ -152,6 +152,7 @@ Route::put('/song/update/{id}', 'App\Http\Controllers\SongController@update');
 Route::delete('/song/delete/{id}', 'App\Http\Controllers\SongController@destroy');
 Route::post('/song/restore/{id}', 'App\Http\Controllers\SongController@restore');
 Route::post('/song/restoreAll', 'App\Http\Controllers\SongController@restoreAll');
+Route::put('song/play/{id}', 'App\Http\Controllers\SongController@play');
 
 Route::get('/song_genres', 'App\Http\Controllers\Song_genreController@index');
 Route::get('/song_genre/{id}', 'App\Http\Controllers\Song_genreController@show');

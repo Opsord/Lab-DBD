@@ -247,4 +247,11 @@ class SongController extends Controller
         }
         return back();
     }
+
+    public function play($id){
+        $song = Song::find($id);
+        $song->reproducciones ++;
+        $song->save();
+        return redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+    }
 }

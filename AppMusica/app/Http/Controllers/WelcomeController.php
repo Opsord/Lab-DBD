@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Login;
 use App\Models\User_role;
 use App\Models\User;
+use App\Models\Song;
 class WelcomeController extends Controller
 {
     /**
@@ -21,6 +22,7 @@ class WelcomeController extends Controller
         } 
         $user = User::where('id_user', $user->id_user)->first();
         $role = User_role::where('id_user', $user->id_user)->first();
+        $top10 = Song::orderby('reproducciones', 'DESC')->get();
         return view('welcome2')->with('user', $user)->with('role', $role);
     }
 

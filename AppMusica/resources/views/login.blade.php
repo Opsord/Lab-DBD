@@ -25,6 +25,11 @@
           Los datos de registro ingresados no son validos
         </div>
         @endif
+        @if ($error == 4)
+        <div class="alert alert-danger" role="alert">
+          El email ingresado en el metodo de pago no corresponde a un email en uso
+        </div>
+        @endif
         
           <form action="/login/create" method="post">
             <div class="mb-4">

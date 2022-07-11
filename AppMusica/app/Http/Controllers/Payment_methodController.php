@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment_method;
+use App\Models\Subscription;
+use App\Models\User;
+
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -47,28 +50,55 @@ class Payment_methodController extends Controller
             $request->all(),[
                 'alias' => 'required',
                 'holder' => 'required',
-                'card_number' => 'required',
+                'card_number' => [
+                    'required',
+                    'string',
+                    'min:15',
+                    'max:17',             // de 16 numeros
+                ],
                 'date' => 'required',
-                'security_code' => 'required'
+                'security_code' => [
+                    'required',
+                    'string',
+                    'min:2',
+                    'max:4',             // de 3 numeros
+                ],
+                'email' => 'required|regex:/^.+@.+$/i'
             ]
             
         );
 
         if($validator->fails()){
-            return response($validator->errors(), 400);
+            return back();
         }
+
+        $now = new \DateTime();
 
         $newPayMeth = new Payment_method();
         $newPayMeth->card_alias = $request->alias;
         $newPayMeth->card_holder = $request->holder;
-        $newPayMeth->card_number = $request->number;
-        $newPayMeth->expiration_date = $request->date;
+        $newPayMeth->card_number = $request->card_number;
+        $newPayMeth->expiration_date = $now->format('d-m-Y H:i:s');
         $newPayMeth->security_code = $request->security_code;
         $newPayMeth->save();
-        return response()->json([
-            'respuesta' => 'se ha creado un nuevo metodo de pago',
-            'id' => $newPayMeth->id_method,
-        ], 201);
+
+        $sub = new Subscription();
+        $sub->payment_method = $newPayMeth->id;
+        $sub->start_date = $now->format('d-m-Y H:i:s');
+        $sub->end_date = $now->format('d-m-Y H:i:s');
+        $sub->state = True;
+        $sub->save();
+
+        $user = User::where('email', $request->email)->first();
+        if ($user == Null) {
+            $error = 4;
+            return back();
+        }
+        $user->id_subscription = $sub->id;
+        $user->save();
+        
+        $error = 2;
+        return redirect('/')->with('error', $error);
     }
 
 

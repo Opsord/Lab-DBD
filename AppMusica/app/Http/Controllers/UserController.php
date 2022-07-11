@@ -145,8 +145,7 @@ class UserController extends Controller
         $role->id_user = $newuser->id_user;
         $role->id_role = $request->role;
         $role->save();
-        $error = 2;
-        return redirect('/')->with('error', $error);
+        return redirect('/payment');
         }
         
         

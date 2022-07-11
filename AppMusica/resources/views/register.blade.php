@@ -36,7 +36,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" class="form-control" name="password" placeholder="Password" />
+                      <input type="password" class="form-control" name="password" placeholder="10 caracteres una mayuscula, minuscula y caracter especial" />
                       <label class="form-label" for="form3Example4c">Contraseña</label>
                     </div>
                   </div>
@@ -44,12 +44,12 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" class="form-control" name="birthday" placeholder="Birthday" />
+                      <input type="text" class="form-control" name="birthday" placeholder="dd-mm-yy" />
                       <label class="form-label" for="form3Example5c">Fecha de Nacimiento</label>
                     </div>
                   </div>
 
-                  <input type="hidden" class="form-control" name="id_subscription" value=1 />
+                  <input type="hidden" class="form-control" name="id_subscription" value=4 />
                   
 
                   <div class="col-md-10 mb-4">

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
 
             $table->id('id_subscription');
-            $table->string('state');
+            $table->boolean('state');
             $table->string('start_date');
             $table->string('end_date');
 

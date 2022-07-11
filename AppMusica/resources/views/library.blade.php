@@ -325,7 +325,7 @@
                             @for ($j = 0;$j < 4;$j++) 
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="{{ url('songview') }}/{{ $songs[$j + 1]->id_song}}"><img
+                                        <a href="{{ url('songview') }}/{{ $songs[$j]->id_song}}"><img
                                             src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$j]->name_song}}</p>
@@ -345,7 +345,7 @@
                                 @for ($j = 4;$j < 8;$j++)
                                 <div class="col">                                    
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="{{ url('songview') }}/{{ $songs[$j + 1]->id_song}}"><img
+                                        <a href="{{ url('songview') }}/{{ $songs[$j]->id_song}}"><img
                                             src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$j]->name_song}}</p>
@@ -366,7 +366,7 @@
                                 @for ($j = 8;$j < 12;$j++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="{{ url('songview') }}/{{ $songs[$j + 1]->id_song}}"><img
+                                        <a href="{{ url('songview') }}/{{ $songs[$j]->id_song}}"><img
                                             src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$j]->name_song}}</p>

@@ -123,27 +123,44 @@
         @else
         <div id="inam" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner d-flex">
-                @for($i = 0;$i < count($user_playlists)/4;$i++)
                 <div class="carousel-item active ">
                     <div class="container">
                         <div class="row">
-                            @foreach ($user_playlists->take(4) as $user_playlists)
+                            @for($i = 0;$i < 4;$i++)
                             <div class="col">
                                 <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
                                     <a href="https://ibb.co/K96Nm7K"><img
                                             src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
                                             borde="0"></a>
                                     <div class="card-body">
-                                        <p class="card-text">{{ $playlists[$user_playlists->id_playlist
+                                        <p class="card-text">{{ $playlists[$user_playlists[$i]->id_playlist
                                             -1]->name_playlist }}</p>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                            @endfor
                         </div>
                     </div>
                 </div>
-                @endfor
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row">
+                            @for($i = 4;$i < 8;$i++)
+                            <div class="col">
+                                <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
+                                    <a href="https://ibb.co/K96Nm7K"><img
+                                            src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
+                                            borde="0"></a>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ $playlists[$user_playlists[$i]->id_playlist
+                                            -1]->name_playlist }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endfor
+                        </div>
+                    </div>
+                </div>
             </div>
             <a href="#inam" class="carousel-control-prev" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
@@ -164,60 +181,64 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            @if (count($user_like) < 5) @foreach ($user_like as $ul) <div class="col">
-                <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                    <a href="{{ url('songview') }}/{{ $songs[$ul->id_song]->id_song}}"><img
-                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
-                    <div class="card-body">
-                        <p class="card-text">{{ $songs[$ul->id_song]->name_song }}</p>
-                        <p class="card-text"><small class="text-muted">{{$artist[$songs[$ul->id_song]->artist -
-                                1]->name_user}}</small></p>
-                    </div>
-                </div>
-        </div>
-        @endforeach
-        @else
-        <div id="inam2" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="container">
-                        <div class="row">
-                            @foreach ($user_like->random(4) as $ul)
-                            <div class="col">
-                                <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                    <a href="{{ url('songview') }}/{{ $songs[$ul->id_song]->id_song}}"><img
-                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"
-                                            borde="0"></a>
-                                    <div class="card-body">
-                                        <p class="card-text">{{ $songs[$ul->id_song]->name_song }}</p>
-                                        <p class="card-text"><small
-                                                class="text-muted">{{$artist[$songs[$ul->id_song]->artist -
-                                                1]->name_user}}</small></p>
-                                    </div>
-                                </div>
+            @if (count($user_like) < 5) 
+            <div class="container">
+                <div class="row">
+                    @foreach ($user_like as $ul)
+                    <div class="col">
+                        <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
+                            <a href="{{ url('songview') }}/{{ $songs[$ul->id_song]->id_song}}"><img src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
+                            <div class="card-body">
+                                <p class="card-text">{{ $songs[$ul->id_song]->name_song }}</p>
+                                <p class="card-text"><small class="text-muted">{{$artist[$songs[$ul->id_song]->artist -1]->name_user}}</small></p>
                             </div>
-                            @endforeach
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item active">
-                    <div class="container">
-                        <div class="row">
-                            @foreach ($user_like->random(4) as $ul)
-                            <div class="col">
-                                <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                    <a href="{{ url('songview') }}/{{ $songs[$ul->id_song]->id_song }}"><img
-                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"
-                                            borde="0"></a>
-                                    <div class="card-body">
-                                        <p class="card-text">{{ $songs[$ul->id_song]->name_song }}</p>
-                                        <p class="card-text"><small class="text-muted">{{
-                                                $artist[$songs[$ul->id_song]->artist]->name_user }}</small>
-                                        </p>
+                    @endforeach
+                </div> 
+            </div>
+            @else
+            <div id="inam2" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="row">
+                                @for ($i = 0;$i < 4;$i++)
+                                <div class="col">
+                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
+                                        <a href="{{ url('songview') }}/{{ $songs[$user_like[$i]->id_song]->id_song}}"><img
+                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
+                                        <div class="card-body">
+                                            <p class="card-text">{{ $songs[$user_like[$i]->id_song]->name_song }}</p>
+                                            <p class="card-text"><small
+                                                class="text-muted">{{$artist[$songs[$user_like[$i]->id_song]->artist -
+                                                1]->name_user}}</small></p>
+                                        </div>
                                     </div>
                                 </div>
+                                @endfor
                             </div>
-                            @endforeach
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row">
+                                @for ($i = 4;$i < 8;$i++)
+                                <div class="col">
+                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
+                                        <a href="{{ url('songview') }}/{{ $songs[$user_like[$i]->id_song]->id_song }}"><img
+                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"
+                                            borde="0"></a>
+                                        <div class="card-body">
+                                            <p class="card-text">{{ $songs[$user_like[$i]->id_song]->name_song }}</p>
+                                            <p class="card-text"><small class="text-muted">{{
+                                                $artist[$songs[$user_like[$i]->id_song]->artist]->name_user }}</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endfor
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -230,17 +251,8 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#inam2" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#inam2" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        @endif
+            @endif
+        </div> 
     </div>
-</div>
 </div>
 @endsection

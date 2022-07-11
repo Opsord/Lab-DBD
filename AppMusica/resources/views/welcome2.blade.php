@@ -84,7 +84,7 @@
     </div>
 </div>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="text-light">Canciones recomendadas</h1>
+    <h1 class="text-light">TOP 10 más escuchadas</h1>
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -97,11 +97,11 @@
                                 @for ($i = 0;$i < 4;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="{{ url('songview') }}/{{ $top10[$i + 1]->id_song}}"><img
+                                        <a href="{{ url('songview') }}/{{ $top10[$i]->id_song}}"><img
                                             src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$top10[$i]->name_song}}</p>
-                                            <p class="card-text"><small class="text-muted">Snoop Dogg</small></p>
+                                            <p class="card-text"><small class="text-muted">{{$artist[$top10[$i]->artist - 1]->name_user}}</small></p>
                                         </div>
                                     </div>
                                 </div>
@@ -115,11 +115,11 @@
                                 @for ($i = 4;$i < 8;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="{{ url('songview') }}/{{ $top10[$i + 1]->id_song}}"><img
+                                        <a href="{{ url('songview') }}/{{ $top10[$i]->id_song}}"><img
                                             src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$top10[$i]->name_song}}</p>
-                                            <p class="card-text"><small class="text-muted">Daddy Yankee</small></p>
+                                            <p class="card-text"><small class="text-muted">{{$artist[$top10[$i]->artist - 1]->name_user}}</small></p>
                                         </div>
                                     </div>
                                 </div>
@@ -133,11 +133,11 @@
                                 @for ($i = 8;$i < 10;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                    <a href="{{ url('songview') }}/{{ $top10[$i + 1]->id_song}}"><img
+                                    <a href="{{ url('songview') }}/{{ $top10[$i]->id_song}}"><img
                                             src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$top10[$i]->name_song}}</p>
-                                            <p class="card-text"><small class="text-muted">Daddy Yankee</small></p>
+                                            <p class="card-text"><small class="text-muted">{{$artist[$top10[$i]->artist - 1]->name_user}}</small></p>
                                         </div>
                                     </div>
                                 </div>

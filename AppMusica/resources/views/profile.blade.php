@@ -30,7 +30,19 @@
 <div class="card text-bg-warning mb-3" style="max-width: 540px;">
     <div class="row g-0">
         <div class="col-md-4">
-            <a href="https://ibb.co/Gt3BRf7"><img src="https://i.ibb.co/Gt3BRf7/zhiv-2.jpg" alt="zhiv-2" borde="0"></a>
+            <img src="https://i.ibb.co/Gt3BRf7/zhiv-2.jpg" class="img-fluid" alt="zhiv-2" data-bs-toggle="modal"
+            data-bs-target="#profilemodal" >
+        </div>
+        <div class="modal fade" id="profilemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Foto de Perfil</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <a href="/profile"><img src="https://i.ibb.co/cCXMQKJ/zhiv-2.jpg" class="img-fluid" alt="zhiv-2" /></a>
+                </div>
+            </div>
         </div>
         <div class="col-md-8">
             <div class="card-body">

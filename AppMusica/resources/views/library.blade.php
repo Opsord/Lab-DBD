@@ -33,7 +33,7 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <a href="https://ibb.co/c8fJW1K"><img src="https://i.ibb.co/B6WLhtH/pop-stars2.jpg" class="d-block w-100 border border-danger" style="--bs-border-opacity: .5" alt="pop-stars2" ></a>
+        <a href="https://ibb.co/c8fJW1K"><img src="https://i.ibb.co/B6WLhtH/pop-stars2.jpg" class="d-block w-100 border border-danger" alt="pop-stars2" ></a>
       </div>
       <div class="carousel-item">
         <a href="https://ibb.co/02chGTY"><img src="https://i.ibb.co/XLbSC1F/hits2.jpg" class="d-block w-100 border border-warning" alt="hits2" borde="0"></a>
@@ -301,9 +301,8 @@
                                 @foreach ($songs as $s)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="https://ibb.co/K96Nm7K"><img
-                                                src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
-                                                borde="0"></a>
+                                        <a href="{{ url('songview') }}/{{ $s->id_song}}"><img
+                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{ $s->name_song }}</p>
                                             <p class="card-text"><small class="text-muted">{{
@@ -334,9 +333,8 @@
                             @for ($j = 0;$j < 4;$j++) 
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="{{url('songview')}}/{{$j + 1}}"><img
-                                            src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
-                                            borde="0"></a>
+                                        <a href="{{ url('songview') }}/{{ $songs[$j + 1]->id_song}}"><img
+                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$j]->name_song}}</p>
                                             <p class="card-text"><small class="text-muted">{{
@@ -355,9 +353,8 @@
                                 @for ($j = 4;$j < 8;$j++)
                                 <div class="col">                                    
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="{{url('songview')}}/{{$j + 1}}"><img
-                                            src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
-                                            borde="0"></a>
+                                        <a href="{{ url('songview') }}/{{ $songs[$j + 1]->id_song}}"><img
+                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$j]->name_song}}</p>
                                             <p class="card-text"><small class="text-muted">{{
@@ -377,9 +374,8 @@
                                 @for ($j = 8;$j < 12;$j++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="https://ibb.co/K96Nm7K"><img
-                                        src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
-                                        borde="0"></a>
+                                        <a href="{{ url('songview') }}/{{ $songs[$j + 1]->id_song}}"><img
+                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$songs[$j]->name_song}}</p>
                                             <p class="card-text"><small class="text-muted">{{

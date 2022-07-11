@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Login;
 use App\Models\User_role;
 use App\Models\User;
+use App\Models\Playlist;
 use App\Models\Song;
+use App\Models\Album;
+use App\Models\Artist_Album;
+use App\Models\User_playlist;
 class WelcomeController extends Controller
 {
     /**
@@ -23,7 +27,21 @@ class WelcomeController extends Controller
         $user = User::where('id_user', $user->id_user)->first();
         $role = User_role::where('id_user', $user->id_user)->first();
         $top10 = Song::orderby('reproducciones', 'DESC')->get();
-        return view('welcome2')->with('user', $user)->with('role', $role);
+        $artist = User::all();
+        $playlists = Playlist::all();
+        $albums = Album::all();
+        $artist_albums = Artist_Album::all();
+        $user_playlists = User_playlist::all();
+        return view('welcome2', [
+            'user' => $user,
+            'role' => $role,
+            'top10' => $top10,
+            'artist' => $artist,
+            'playlists' => $playlists,
+            'albums' => $albums,
+            'artist_albums' => $artist_albums,
+            'user_playlists' => $user_playlists
+        ]);
     }
 
     /**

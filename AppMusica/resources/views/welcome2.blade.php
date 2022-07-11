@@ -26,7 +26,7 @@
 @section('content')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="text-light">Bienvenido {{$user->name_user}}, disfruta tu estancia en nuestra paltaforma!</h1>
+    <h1 class="text-light">¡Bienvenido {{$user->name_user}}, disfruta tu estancia en nuestra paltaforma!</h1>
 </div>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -40,90 +40,33 @@
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
+                                @for ($i = 0;$i < 4;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
                                         <a href="https://ibb.co/D159bPC"><img
                                                 src="https://i.ibb.co/D159bPC/reggaeton.jpg" alt="reggaeton"></a>
                                         <div class="card-body">
-                                            <p class="card-text">Mix Reggaeton</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
+                                            <p class="card-text">{{$playlists[$user_playlists[$i]->id_playlist - 1]->name_playlist}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/BNYvWcX"><img
-                                                src="https://i.ibb.co/BNYvWcX/Clasic-Rock.jpg" alt="Clasic-Rock"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Clasic Rock</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/8YPSxDJ"><img
-                                                src="https://i.ibb.co/8YPSxDJ/Pop-Music.jpg" alt="Pop-Music"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Best Pop Music</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/0JzyrGZ"><img
-                                                src="https://i.ibb.co/0JzyrGZ/Electro-House.jpg"
-                                                alt="Electro-House"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Electro House</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                @endfor
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item active">
+                    <div class="carousel-item">
                         <div class="container">
                             <div class="row">
+                                @for ($i = 4;$i < 8;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
                                         <a href="https://ibb.co/wSKqLpF"><img src="https://i.ibb.co/wSKqLpF/fiesta-tropical.jpg" alt="fiesta-tropical"></a>
                                         <div class="card-body">
-                                            <p class="card-text">Fiesta Tropical</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
+                                            <p class="card-text">{{$playlists[$user_playlists[$i]->id_playlist - 1]->name_playlist}}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/tq14hTg"><img src="https://i.ibb.co/tq14hTg/reggae.jpg" alt="reggae"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Reggae Music</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/sHvT84C"><img src="https://i.ibb.co/sHvT84C/cumbia-chilena.jpg" alt="cumbia-chilena"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Cumbia Chilena</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/DRS75zm"><img src="https://i.ibb.co/DRS75zm/trap.jpg" alt="trap"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Trap Music</p>
-                                            <p class="card-text"><small class="text-muted">Various Artists</small></p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endfor
                             </div>
                         </div>
                     </div>
@@ -151,85 +94,54 @@
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
+                                @for ($i = 0;$i < 4;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/YX90THB"><img src="https://i.ibb.co/YX90THB/woof.jpg" alt="woof"></a>
+                                        <a href="{{ url('songview') }}/{{ $top10[$i + 1]->id_song}}"><img
+                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
-                                            <p class="card-text">Woof!</p>
+                                            <p class="card-text">{{$top10[$i]->name_song}}</p>
                                             <p class="card-text"><small class="text-muted">Snoop Dogg</small></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/H28XGZ3"><img src="https://i.ibb.co/H28XGZ3/guach-perry.jpg" alt="guach-perry"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Guach Perry</p>
-                                            <p class="card-text"><small class="text-muted">Chancho En Piedra</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/zXcVfxs"><img src="https://i.ibb.co/zXcVfxs/Perro-Chocolo.jpg" alt="Perro-Chocolo"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Así yo ladro</p>
-                                            <p class="card-text"><small class="text-muted">El Perro Chocolo</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/c3rBjpk"><img src="https://i.ibb.co/c3rBjpk/Doggy-Style.webp" alt="Doggy-Style"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Doggy Style</p>
-                                            <p class="card-text"><small class="text-muted">31 Minutos</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                @endfor
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item active">
+                    <div class="carousel-item">
                         <div class="container">
                             <div class="row">
+                                @for ($i = 4;$i < 8;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/f8dQZ52"><img src="https://i.ibb.co/f8dQZ52/perros-salvajes.jpg" alt="perros-salvajes"></a>
+                                        <a href="{{ url('songview') }}/{{ $top10[$i + 1]->id_song}}"><img
+                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
-                                            <p class="card-text">Perros Salvajes</p>
+                                            <p class="card-text">{{$top10[$i]->name_song}}</p>
                                             <p class="card-text"><small class="text-muted">Daddy Yankee</small></p>
                                         </div>
                                     </div>
                                 </div>
+                                @endfor
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row">
+                                @for ($i = 8;$i < 10;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/txcVyDb"><img src="https://i.ibb.co/txcVyDb/Exilio.jpg" alt="Exilio"></a>
+                                    <a href="{{ url('songview') }}/{{ $top10[$i + 1]->id_song}}"><img
+                                            src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
-                                            <p class="card-text">Exilio</p>
-                                            <p class="card-text"><small class="text-muted">Perrosky</small></p>
+                                            <p class="card-text">{{$top10[$i]->name_song}}</p>
+                                            <p class="card-text"><small class="text-muted">Daddy Yankee</small></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/4M75qdd"><img src="https://i.ibb.co/4M75qdd/Baile-del-Perro.jpg" alt="Baile-del-Perro"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">El Baile del Perrito</p>
-                                            <p class="card-text"><small class="text-muted">Wilfrido Vargas</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/Hh3RWpN"><img src="https://i.ibb.co/Hh3RWpN/perrito-malvado.jpg" alt="perrito-malvado"></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Perrito Malvado</p>
-                                            <p class="card-text"><small class="text-muted">Damas Gratis</small></p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endfor
                             </div>
                         </div>
                     </div>
@@ -352,5 +264,4 @@
         </div>
     </div>
 </div>
-
 @endsection

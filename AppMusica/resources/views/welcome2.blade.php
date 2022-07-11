@@ -43,8 +43,7 @@
                                 @for ($i = 0;$i < 4;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/D159bPC"><img
-                                                src="https://i.ibb.co/D159bPC/reggaeton.jpg" alt="reggaeton"></a>
+                                    <a href="https://ibb.co/K96Nm7K"><img src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1" ></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$playlists[$user_playlists[$i]->id_playlist - 1]->name_playlist}}</p>
                                         </div>
@@ -60,7 +59,7 @@
                                 @for ($i = 4;$i < 8;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://ibb.co/wSKqLpF"><img src="https://i.ibb.co/wSKqLpF/fiesta-tropical.jpg" alt="fiesta-tropical"></a>
+                                    <a href="https://ibb.co/K96Nm7K"><img src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1" ></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$playlists[$user_playlists[$i]->id_playlist - 1]->name_playlist}}</p>
                                         </div>
@@ -159,7 +158,7 @@
     </div>
 </div>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="text-light">albums para ti</h1>
+    <h1 class="text-light">Albums para ti</h1>
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -169,85 +168,34 @@
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
+                                @for ($i = 0;$i < 4;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                    <a href="https://www.youtube.com/watch?v=uVu_y9ZV-D4"><img src="https://i.ibb.co/XF8YdPw/harry-styles-fine-line-portada.jpg" alt="harry-styles-fine-line-portada" /></a>
+                                    <a href="https://ibb.co/7GpPJF1"><img src="https://i.ibb.co/7GpPJF1/music-album-icon.png" alt="music-album-icon"></a>
                                         <div class="card-body">
-                                            <p class="card-text">Fine Line</p>
-                                            <p class="card-text"><small class="text-muted">Harry Styles</small></p>
+                                            <p class="card-text">{{$albums[$artist_albums[$i]->album - 1]->name_album}}</p>
+                                            <p class="card-text"><small class="text-muted">{{$artist[$artist_albums[$i]->artist -1]->name_user}}</small></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                    <a href="https://www.youtube.com/watch?v=w8eFZoOcYKc&list=PLtdokPm7vPss1TXrV4gr2pnSXmMu-UFF4"><img src="https://i.ibb.co/xs1Jmj3/el-finde-uwu.jpg" alt="el-finde-uwu" /></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Dawn FM</p>
-                                            <p class="card-text"><small class="text-muted">The Weeknd</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                    <a href="https://www.youtube.com/watch?v=NBghhjuMNKM&list=PLxA687tYuMWhfoXY3jn9zjMklNtWXcdMA"><img src="https://i.ibb.co/Thcj1m6/imagen-album.jpg" alt="imagen-album" ></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Un verano sin ti</p>
-                                            <p class="card-text"><small class="text-muted">Bad Bunny</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                    <a href="https://www.youtube.com/watch?v=9xE0x05Xuuk&list=PLOkPWZS9Q7ECOreiaeGJZ_dA8KlCtsvHN"><img src="https://i.ibb.co/nmVh5sW/AM-Arctic-Monkeys.jpg" alt="AM-Arctic-Monkeys" /></a>
-                                        <div class="card-body">
-                                            <p class="card-text">AM</p>
-                                            <p class="card-text"><small class="text-muted">Arctic Monkeys</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                @endfor
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item active">
+                    <div class="carousel-item">
                         <div class="container">
                             <div class="row">
+                                @for ($i = 4;$i < 8;$i++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://www.youtube.com/watch?v=QylI7_zJb_E&list=PLxzSZG7g8c8xSdLdrwSQAdxGeA9WZQ6EW"><img src="https://i.ibb.co/JxtfZPc/71lix6-Vf-WL-SL1425.jpg" alt="71lix6-Vf-WL-SL1425" /></a>
+                                        <a href="https://ibb.co/7GpPJF1"><img src="https://i.ibb.co/7GpPJF1/music-album-icon.png" alt="music-album-icon"></a>
                                         <div class="card-body">
-                                            <p class="card-text">DEMON DAYS</p>
-                                            <p class="card-text"><small class="text-muted">Gorillaz</small></p>
+                                            <p class="card-text">{{$albums[$artist_albums[$i]->album - 1]->name_album}}</p>
+                                            <p class="card-text"><small class="text-muted">{{$artist[$artist_albums[$i]->artist -1]->name_user}}</small></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://www.youtube.com/watch?v=j7nkIvq_pps&list=PLOjtwjHYJ8s6VkIeWhrT_-44gtTdeTRGf"><img src="https://i.ibb.co/58qp7mZ/giveon.jpg" alt="giveon" /></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Take Time</p>
-                                            <p class="card-text"><small class="text-muted">Giveon</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                        <a href="https://www.youtube.com/watch?v=I8c7UBa_0nk&list=PLxA687tYuMWjiBbeqzFWT8YYFMvbUzAX4"><img src="https://i.ibb.co/wy3WTqx/joji.jpg" alt="joji" /></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Nectar</p>
-                                            <p class="card-text"><small class="text-muted">Joji</small></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                                    <a href="https://www.youtube.com/watch?v=_hZCsgcKa-g&list=PLxKHVMqMZqUTP5JaywWtDhnTvczizFG8u"><img src="https://i.ibb.co/NStx54n/childish.png" alt="childish"  /></a>
-                                        <div class="card-body">
-                                            <p class="card-text">Redbone</p>
-                                            <p class="card-text"><small class="text-muted">Childish Gambino</small></p>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endfor
                             </div>
                         </div>
                     </div>

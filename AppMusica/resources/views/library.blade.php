@@ -178,9 +178,7 @@
                                 @foreach ($artist_albums as $a_a)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="https://ibb.co/K96Nm7K"><img
-                                                src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
-                                                borde="0"></a>
+                                        <a href="https://ibb.co/7GpPJF1"><img src="https://i.ibb.co/7GpPJF1/music-album-icon.png" alt="music-album-icon"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{ $albums[$a_a->album - 1]->name_album }}</p>
                                             <p class="card-text"><small class="text-muted">{{
@@ -211,9 +209,7 @@
                                 @for ($j = 0;$j < 4;$j++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="https://ibb.co/K96Nm7K"><img
-                                            src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
-                                            borde="0"></a>
+                                        <a href="https://ibb.co/7GpPJF1"><img src="https://i.ibb.co/7GpPJF1/music-album-icon.png" alt="music-album-icon"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$albums[$artist_albums[$j]->album]->name_album}}</p>
                                             <p class="card-text"><small class="text-muted">{{
@@ -232,9 +228,7 @@
                                 @for ($j = 4;$j < 8;$j++)
                                 <div class="col">                             
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="https://ibb.co/K96Nm7K"><img
-                                            src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
-                                            borde="0"></a>
+                                        <a href="https://ibb.co/7GpPJF1"><img src="https://i.ibb.co/7GpPJF1/music-album-icon.png" alt="music-album-icon"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$albums[$artist_albums[$j]->album - 1]->name_album}}</p>
                                             <p class="card-text"><small class="text-muted">{{
@@ -254,9 +248,7 @@
                                 @for ($j = 8;$j < count($albums);$j++)
                                 <div class="col">
                                     <div class="card text-bg-warning mb-3" style="width: 11.4rem;margin: auto;">
-                                        <a href="https://ibb.co/K96Nm7K"><img
-                                        src="https://i.ibb.co/K96Nm7K/music-album-1.png" alt="music-album-1"
-                                        borde="0"></a>
+                                        <a href="https://ibb.co/7GpPJF1"><img src="https://i.ibb.co/7GpPJF1/music-album-icon.png" alt="music-album-icon"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{$albums[$artist_albums[$j]->album - 1]->name_album}}</p>
                                             <p class="card-text"><small class="text-muted">{{

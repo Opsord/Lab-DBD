@@ -57,7 +57,8 @@ class SongController extends Controller
                 'explicit' => 'required|string',
                 'id_album' => 'required|integer',
                 'id_artist' => 'required|integer',
-                'id_genre' => 'required|integer'
+                'id_genre' => 'required|integer',
+                'reproducciones' => 'required|integer'
             ]
         );
 
@@ -92,9 +93,11 @@ class SongController extends Controller
             $newsong->is_explicit = $request->explicit;
             $newsong->album = $request->id_album;
             $newsong->artist = $request->id_artist;
+            $newsong->reproducciones = $request->reproducciones;
             $newsong->save();
             $newsong_genre->song = $newsong->id_song;
             $newsong_genre->genre = $request->id_genre;
+            
             $newsong_genre->save();
             return back();
         }else{

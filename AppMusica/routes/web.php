@@ -16,10 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\SingupController@index');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-    
-});
+Route::get('/dashboard', 'App\Http\Controllers\DashController@index');
+
 
 Route::get('/artistdash', function () {
     return view('artistdash');

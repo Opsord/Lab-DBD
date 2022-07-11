@@ -83,7 +83,7 @@
             <td>{{ $usuario->email }}</td>
             <td>{{ $usuario->birthday }}</td>
             <td>{{ $usuario->id_subscription }}</td>
-            <td>{{ $role[$usuario->id_user - 1]->id_role}}</td>
+            <td>{{ $role[$usuario->id_user-1]->id_role}}</td>
             <td><button class="btn btn-outline-primary" data-bs-toggle="modal"
                     data-bs-target="#user-editmodal{{$usuario->id_user}}"><i class="bi bi-pencil-square"></i></button>
                 <div class="modal fade" id="user-editmodal{{$usuario->id_user}}" tabindex="-1"
@@ -106,8 +106,8 @@
                                         <input type="email" class="form-control" name="email" placeholder="Email" value="{{$usuario->email}}">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="Password">
+                                        <input type="hidden" class="form-control" name="password"
+                                            placeholder="Password" value="{{$usuario->pass_user}}">
                                     </div>
                                     <div class="form-group mb-3">
                                         <input type="text" class="form-control" name="birthday" placeholder="Birthday" value="{{$usuario->birthday}}">

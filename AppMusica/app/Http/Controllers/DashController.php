@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Song;
-Use App\Models\Album;
-use App\Models\User;
 use App\Models\Login;
-class ArtistdashController extends Controller
+use App\Models\User;
+use App\Models\User_role;
+class DashController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,18 +15,16 @@ class ArtistdashController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    public function albumedit($id){
-        $album = Album::where('id_album', $id)->first();
-        $songs = Song::where('album', $album->id_album)->get();
         $user = Login::first();
         if($user == NULL){
             return redirect('/');
         } 
         $user = User::where('id_user', $user->id_user)->first();
-        return view('albumeditartist')->with('album', $album)->with('songs', $songs)->with('user', $user);
+        $role = User_role::where('id_user', $user->id_user)->first();
+        return view('dashboard', [
+            'user' => $user
+        ]);
+        
     }
 
     /**

@@ -187,7 +187,7 @@
                     @foreach ($user_like as $ul)
                     <div class="col">
                         <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
-                            <a href="{{ url('songview') }}/{{ $songs[$ul->id_song]->id_song}}"><img src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
+                            <a href="{{ url('songview') }}/{{ $songs[$ul->id_song - 1]->id_song}}"><img src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
                             <div class="card-body">
                                 <p class="card-text">{{ $songs[$ul->id_song - 1]->name_song }}</p>
                                 <p class="card-text"><small class="text-muted">{{$artist[$songs[$ul->id_song]->artist -1]->name_user}}</small></p>

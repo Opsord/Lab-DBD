@@ -36,6 +36,7 @@
                         <div class="form-group mb-3">
                             <input type="number" class="form-control" name="id_genre" placeholder="id Genero">
                         </div>
+                        <input type="hidden" name="reproducciones" name="reproducciones" value=0>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

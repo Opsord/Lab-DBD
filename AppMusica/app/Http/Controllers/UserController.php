@@ -86,6 +86,10 @@ class UserController extends Controller
         $newuser->genre = $request->genre;
         $newuser->id_subscription = $request->id_subscription;
         $newuser->save();
+        $newrole = new User_role();
+        $newrole->id_user = $newuser->id_user;
+        $newrole->id_role = 2;
+        $newrole->save();
         return back();
         }
         

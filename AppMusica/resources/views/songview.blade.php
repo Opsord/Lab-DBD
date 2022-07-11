@@ -38,7 +38,7 @@
                     <button class="btn btn-primary btn-lg m-4" style="height: 60px; width: 60px;"><i
                             class="bi bi-heart"></i></button>
                 </form>
-                <form action="{{ url('song/play') }}/{{ $song->id_song }}" method="POST">
+                <form action="{{ url('song/play') }}/{{ $song->id_song}}" method="POST">
                     @method('PUT')
                 <button type="submit" class="btn btn-primary btn-lg m-4"
                         style="height: 60px; width: 60px;"><i class="bi bi-play"></i></button>

@@ -35,6 +35,11 @@
           El email ingresado no esta registrado
         </div>
         @endif
+        @if ($error == 5)
+        <div class="alert alert-danger" role="alert">
+          Los campos no fueron ingresados correctamente
+        </div>
+        @endif
         
           <form action="/login/create" method="post">
             <div class="mb-4">

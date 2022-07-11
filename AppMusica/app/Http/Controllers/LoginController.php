@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Login;
+use App\Models\Role;
+use App\Models\Subscription;
+use App\Models\Payment_method;
 use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
@@ -51,7 +54,8 @@ class LoginController extends Controller
         );
 
         if($validator->fails()){
-            return response($validator->errors(), 400);
+            $error = 6;
+            return view('login')->with('error', $error);
         }
 
         $user = User::where('email', $request->email)->first();
@@ -66,6 +70,11 @@ class LoginController extends Controller
             $newlog->email = $request->email;
             $newlog->save();
             $logged = 1;
+
+            $subs = Subscription::find($user->id_subscription);
+            if($subs->state != True){
+                return redirect('/payment');
+            }
             return redirect('/welcome2')->with('newlog', $newlog);
         }else{
             return back();

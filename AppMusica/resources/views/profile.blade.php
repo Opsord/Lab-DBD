@@ -189,7 +189,7 @@
                         <div class="card text-bg-warning mb-3" style="width: 11.4rem;">
                             <a href="{{ url('songview') }}/{{ $songs[$ul->id_song]->id_song}}"><img src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4" borde="0"></a>
                             <div class="card-body">
-                                <p class="card-text">{{ $songs[$ul->id_song]->name_song }}</p>
+                                <p class="card-text">{{ $songs[$ul->id_song - 1]->name_song }}</p>
                                 <p class="card-text"><small class="text-muted">{{$artist[$songs[$ul->id_song]->artist -1]->name_user}}</small></p>
                             </div>
                         </div>
@@ -209,9 +209,9 @@
                                         <a href="{{ url('songview') }}/{{ $songs[$user_like[$i]->id_song]->id_song}}"><img
                                             src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"></a>
                                         <div class="card-body">
-                                            <p class="card-text">{{ $songs[$user_like[$i]->id_song]->name_song }}</p>
+                                            <p class="card-text">{{ $songs[$user_like[$i]->id_song -1]->name_song }}</p>
                                             <p class="card-text"><small
-                                                class="text-muted">{{$artist[$songs[$user_like[$i]->id_song]->artist -
+                                                class="text-muted">{{$artist[$songs[$user_like[$i]->id_song -1]->artist -
                                                 1]->name_user}}</small></p>
                                         </div>
                                     </div>
@@ -230,9 +230,9 @@
                                             src="https://i.ibb.co/1rqXc67/zhiv-song-4.png" alt="zhiv-song-4"
                                             borde="0"></a>
                                         <div class="card-body">
-                                            <p class="card-text">{{ $songs[$user_like[$i]->id_song]->name_song }}</p>
+                                            <p class="card-text">{{ $songs[$user_like[$i]->id_song -1]->name_song }}</p>
                                             <p class="card-text"><small class="text-muted">{{
-                                                $artist[$songs[$user_like[$i]->id_song]->artist]->name_user }}</small>
+                                                $artist[$songs[$user_like[$i]->id_song -1]->artist]->name_user }}</small>
                                             </p>
                                         </div>
                                     </div>

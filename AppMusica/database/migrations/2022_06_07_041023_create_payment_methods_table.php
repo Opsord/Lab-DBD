@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('card_alias');
             $table->string('card_holder');
             $table->bigInteger('card_number');
-            $table->date('expiration_date');
+            $table->string('expiration_date');
             $table->integer('security_code');
 
             $table->timestamps();

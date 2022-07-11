@@ -53,15 +53,15 @@ class Payment_methodController extends Controller
                 'card_number' => [
                     'required',
                     'string',
-                    'min:15',
-                    'max:17',             // de 16 numeros
+                    'min:16',
+                    'max:16',             // de 16 numeros
                 ],
                 'date' => 'required',
                 'security_code' => [
                     'required',
                     'string',
-                    'min:2',
-                    'max:4',             // de 3 numeros
+                    'min:3',
+                    'max:3',             // de 3 numeros
                 ],
                 'email' => 'required|regex:/^.+@.+$/i'
             ]
@@ -78,7 +78,7 @@ class Payment_methodController extends Controller
         $newPayMeth->card_alias = $request->alias;
         $newPayMeth->card_holder = $request->holder;
         $newPayMeth->card_number = $request->card_number;
-        $newPayMeth->expiration_date = $now->format('d-m-Y H:i:s');
+        $newPayMeth->expiration_date = $request->date;
         $newPayMeth->security_code = $request->security_code;
         $newPayMeth->save();
 

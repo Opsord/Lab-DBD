@@ -83,7 +83,7 @@ class Payment_methodController extends Controller
         $newPayMeth->save();
 
         $sub = new Subscription();
-        $sub->payment_method = $newPayMeth->id;
+        $sub->payment_method = $newPayMeth->id_method;
         $sub->start_date = $now->format('d-m-Y H:i:s');
         $sub->end_date = $now->format('d-m-Y H:i:s');
         $sub->state = True;
@@ -94,7 +94,7 @@ class Payment_methodController extends Controller
             $error = 4;
             return back();
         }
-        $user->id_subscription = $sub->id;
+        $user->id_subscription = $sub->id_subscription;
         $user->save();
         
         $error = 2;

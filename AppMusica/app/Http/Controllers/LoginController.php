@@ -56,9 +56,8 @@ class LoginController extends Controller
 
         $user = User::where('email', $request->email)->first();
         if($user == NULL){
-            return response()->json([
-                'respuesta' => 'el correo no existe'
-            ]);
+            $error = 5;
+            return view('login')->with('error', $error);
         }
         if($user->pass_user == $request->password){
             $newlog->id_user = $user->id_user;

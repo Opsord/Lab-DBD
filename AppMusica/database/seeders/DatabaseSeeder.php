@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
         Payment_method::factory(5)->create();
         Playlist::factory(10)->create();
         Receipt::factory(20)->create();
-        Subscription::factory(20)->create();
+        Subscription::factory(15)->create();
         User::factory(20)->create();
         $this -> call(User_RoleSeeder::class);
         Album::factory(10)->create();

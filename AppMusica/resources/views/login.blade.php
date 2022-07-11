@@ -30,6 +30,11 @@
           El email ingresado en el metodo de pago no corresponde a un email en uso
         </div>
         @endif
+        @if ($error == 5)
+        <div class="alert alert-danger" role="alert">
+          El email ingresado no esta registrado
+        </div>
+        @endif
         
           <form action="/login/create" method="post">
             <div class="mb-4">
